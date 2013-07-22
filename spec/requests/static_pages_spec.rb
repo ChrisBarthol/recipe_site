@@ -11,7 +11,7 @@ describe "Static pages" do
 
     it "should have the title 'Home'" do
     	visit '/static_pages/home'
-    	expect(page).to have_title("Pantry Raid | Home")
+    	expect(page).to have_title('Pantry Raid | Home')
     end
   end
 
@@ -35,7 +35,7 @@ describe "Static pages" do
   		expect(page).to have_content('About This Site')
   	end
 
-  	it "should have the title 'About" do
+  	it "should have the title 'About'" do
   		visit '/static_pages/about'
   		expect(page).to have_title("Pantry Raid | About")
   	end
