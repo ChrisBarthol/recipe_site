@@ -2,42 +2,34 @@ require 'spec_helper'
 
 describe "Static pages" do
 
+  subject { page }
+
   describe "Home page" do
+    before { visit root_path }
 
-    it "should have the content 'Sample App'" do
-      visit '/static_pages/home'
-      expect(page).to have_content('Recipe Site')
-    end
-
-    it "should have the title 'Home'" do
-    	visit '/static_pages/home'
-    	expect(page).to have_title('Pantry Raid | Home')
-    end
+    it { should have_content('Recipe Site') }
+    it { should have_title(full_title('')) }
+    it { should_not have_title('| Home') }
   end
 
-  describe "Help Page" do
+  describe "Help page" do
+    before { visit help_path }
 
-  	it "should have the content 'Help Page'" do
-  		visit '/static_pages/help'
-  		expect(page).to have_content('Need Some Help?')
-  	end
-
-  	it "should have the title 'Help'" do
-  		visit '/static_pages/help'
-  		expect(page).to have_title("Pantry Raid | Help")
-  	end
+    it { should have_content('Help') }
+    it { should have_title(full_title('Help')) }
   end
 
   describe "About page" do
+    before { visit about_path }
 
-  	it "should have the content 'About This Site'" do
-  		visit '/static_pages/about'
-  		expect(page).to have_content('About This Site')
-  	end
+    it { should have_content('About This Site') }
+    it { should have_title(full_title('About')) }
+  end
 
-  	it "should have the title 'About'" do
-  		visit '/static_pages/about'
-  		expect(page).to have_title("Pantry Raid | About")
-  	end
+  describe "Contact page" do
+    before { visit contact_path }
+
+    it { should have_content('Contact') }
+    it { should have_title(full_title('Contact')) }
   end
 end

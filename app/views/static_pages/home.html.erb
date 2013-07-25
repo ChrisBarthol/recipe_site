@@ -1,5 +1,11 @@
-<% provide(:title, 'Home') %>
-<h1>Recipe Site</h1>
-<p>
-	This is the home page for a potentially awesome recipe site.
-</p>
+<div class="center hero-unit">
+  <h1>Welcome to Pantry Raid</h1>
+
+  <h2>
+    This is the home page for all your cooking needs.  It is a Recipe Site.
+  </h2>
+
+  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+</div>
+
+<%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
