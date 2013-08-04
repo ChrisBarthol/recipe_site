@@ -8,7 +8,8 @@
     <%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>
   </head>
-  <body>
+
+  <body class = <%= @body_class || "none" %> >
     <%= render 'layouts/header' %>
     
     <div class="container">

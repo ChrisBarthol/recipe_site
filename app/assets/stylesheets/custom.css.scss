@@ -6,12 +6,16 @@ html {
   overflow-y: scroll;
 }
 
-body {
+body.none {
   padding-top: 60px;
-  //background-image:url('food2.jpg');
+  background-image:url('food2.jpg');
   background-size:100% 100%;
   background-repeat:no-repeat;
 }
+
+body.about{
+  padding-top: 60px;
+  background-color:white;}
 
 section {
   overflow: auto;
@@ -184,4 +188,20 @@ input {
 .field_with_errors {
   @extend .control-group;
   @extend .error;
+}
+
+/* Users index */
+
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-top: 1px solid $grayLighter;
+    &:last-child {
+      border-bottom: 1px solid $grayLighter;
+    }
+  }
+  background-color: lightgrey
 }
