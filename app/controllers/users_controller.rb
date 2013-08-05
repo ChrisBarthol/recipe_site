@@ -1,12 +1,15 @@
 class UsersController < ApplicationController
-  before_action :signed_in_user, only: [:index, :edit, :update]
+  before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user,  only: :destroy
 
   def destroy
-    User.find(params[:id]).destroy
-    flash[:successs] = "User destroyed"
-    redirect_to users_url
+    user = User.find(params[:id])
+      unless current_user?(user)
+      user.destroy
+      flash[:success] = "User destroyed"
+      end
+      redirect_to users_path
   end
 
   def show
@@ -18,11 +21,15 @@ class UsersController < ApplicationController
   end
   
   def new
-  	@user = User.new
+    if signed_in?
+      redirect_to root_url
+    else
+      @user = User.new
+    end
   end
 
   def create
-  	@user = User.new(user_params)  #Not the final implementation
+  	@user = User.new(user_params)
   	if @user.save
       sign_in @user
   		flash[:success] = "Welcome to Pantry Raid!"

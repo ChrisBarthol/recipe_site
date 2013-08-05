@@ -52,6 +52,10 @@ describe "User pages" do
           end.to change(User, :count).by(-1)
         end
         it { should_not have_link('delete', href: user_path(admin)) }
+
+        describe "dont delete yourself" do
+          it { expect { delete user_path(admin) }.to_not change(User, :count) }
+        end
       end
     end
   end
@@ -120,6 +124,16 @@ describe "User pages" do
       visit edit_user_path(user)
     end
 
+    describe "forbidden attributes" do
+      let(:params) do
+        { user: { admin: true, password: user.password,
+                  password_confirmation: user.password } }
+      end
+      before { patch user_path(user), params }
+      specify { expect(user.reload).not_to be_admin }
+    end
+
+
     describe "with valid information" do
       let(:new_name) { "New Name" }
       let(:new_email) { "new@example.com" }
@@ -128,7 +142,7 @@ describe "User pages" do
         fill_in "Name",         with: new_name
         fill_in "Email",        with: new_email
         fill_in "Password",     with: user.password
-        fill_in "Confirm Password",   with: user.password   
+        fill_in "Confirmation",   with: user.password   
         click_button "Save changes"
       end
 

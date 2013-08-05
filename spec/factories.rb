@@ -18,4 +18,9 @@ FactoryGirl.define do
     	admin true
     end
   end
+
+  factory :recipe do
+  	sequence(:name) 			{ |n| "Recipe #{n}" }
+  	sequence(:description)		{ |n| "recipe_#{n} description"}
+  end
 end
