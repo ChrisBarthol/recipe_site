@@ -1,0 +1,9 @@
+<li>
+  <span class="name"><%= ingredient.name %></span>
+  <span class="quantity"><%= ingredient.quantity %></span>
+
+
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(ingredient.created_at) %> ago.
+  </span>
+</li>

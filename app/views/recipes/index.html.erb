@@ -1,0 +1,11 @@
+<% @body_class = "about" %>
+<% provide(:title, 'All recipes') %>
+<h1>All recipes</h1>
+
+<%= will_paginate %>
+
+<ul class="users">
+	<%= render @recipes %>
+</ul>
+
+<%= will_paginate %>

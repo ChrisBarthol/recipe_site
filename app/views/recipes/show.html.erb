@@ -1,13 +1,21 @@
-<% provide(:title, @recipe.name) %>
+<% provide(:title, @recipe.name.titleize) %>
 <div class="center hero-unit">
 <div class="row">
   <aside class="span4">
     <section>
       <h1>
-        <%= @recipe.name %>
+        <%= @recipe.name.titleize %>
         <%= @recipe.description %>
       </h1>
     </section>
   </aside>
+  <div class="span8">
+    <% if @recipe.ingredients.any? %>
+      <h3>Ingredients (<%= @recipe.ingredients.count %>)</h3>
+      <ol class="ingredients">
+        <%= render @ingredients %>
+      </ol>
+    <% end %>
+  </div>
 </div>
 </div>

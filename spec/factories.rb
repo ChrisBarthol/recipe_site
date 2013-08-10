@@ -23,4 +23,18 @@ FactoryGirl.define do
   	sequence(:name) 			{ |n| "Recipe #{n}" }
   	sequence(:description)		{ |n| "recipe_#{n} description"}
   end
+
+  factory :ingredient do
+    name "Salt"
+    quantity "1 cup"
+    recipe
+  end
 end
+
+
+
+
+
+
+
+
