@@ -6,7 +6,7 @@ describe "RecipePages" do
 
   describe "index" do
     let(:recipe) { FactoryGirl.create(:recipe) }
-    let(:user)	 { FactoryGirl.create(:user) }
+    let(:user)	 { FactoryGirl.build(:user) }
     before(:each) do
       sign_in user
       visit recipes_path
@@ -16,9 +16,11 @@ describe "RecipePages" do
     it { should have_content('All recipes') }
 
     describe "pagination" do
-
-      before(:all) { 31.times { FactoryGirl.create(:recipe) } }
-      after(:all)  { Recipe.delete_all }
+      let(:user1) {FactoryGirl.create(:user, name: "erfn", email: "ena@gmail.com") }
+      before do
+        31.times { FactoryGirl.create(:recipe, user: user1) }
+        visit recipes_path
+      end
 
       it { should have_selector('div.pagination') }
 
@@ -97,7 +99,8 @@ describe "RecipePages" do
   end
 
   describe "recipe page" do
-  	let(:recipe) { FactoryGirl.create(:recipe) }
+    let(:user) { FactoryGirl.create(:user, name: "stuff", email: "otherstuff@example.com") }
+  	let(:recipe) { FactoryGirl.create(:recipe, user: user, name: "Ex", description: "Yep") }
   	let!(:i1) { FactoryGirl.create(:ingredient, recipe: recipe, quantity: "2") }
   	let!(:i2) { FactoryGirl.create(:ingredient, recipe: recipe, quantity: "234") }
 
@@ -105,6 +108,7 @@ describe "RecipePages" do
 
   	it { should have_content(recipe.name.titleize) }
   	it { should have_title(recipe.name.titleize) }
+    it { should have_content(recipe.user_id) }
 
   	describe "ingredients" do
   		it { should have_content(i1.quantity) }

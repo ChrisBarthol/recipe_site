@@ -19,6 +19,32 @@ describe User do
   it { should be_valid }
   it { should_not be_admin }
 
+  describe "recipe associations" do
+
+    before { @user.save }
+    let!(:older_recipe) do
+      FactoryGirl.create(:recipe, name: "Recipe1", user: @user, created_at: 1.day.ago)
+    end
+    let!(:newer_recipe) do
+      FactoryGirl.create(:recipe, user: @user, created_at: 1.hour.ago)
+    end
+
+    it "should have the right recipes in the right order" do
+      expect(@user.recipes.to_a).to eq [newer_recipe, older_recipe]
+    end
+
+    it "should NOT destroy associated recipes when user is deleted" do
+      recipes = @user.recipes.to_a
+      @user.destroy
+      expect(recipes).not_to be_empty
+
+      recipes.each do |recipe|
+        expect(Recipe.where(id: recipe.id)).not_to be_empty
+      end
+      
+    end
+  end
+
   describe "with admin attribute set to true" do
     before do
       @user.save!

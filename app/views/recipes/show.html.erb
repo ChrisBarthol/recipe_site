@@ -5,8 +5,11 @@
     <section>
       <h1>
         <%= @recipe.name.titleize %>
-        <%= @recipe.description %>
       </h1>
+      <p>
+        <%= @recipe.description %>
+        <%= @recipe.user_id %>
+      </p>
     </section>
   </aside>
   <div class="span8">

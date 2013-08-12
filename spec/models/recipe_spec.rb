@@ -1,16 +1,26 @@
 require 'spec_helper'
 
 describe Recipe do
-  
-  before { @recipe = Recipe.new(name: "Example Recipe", description: "This is an example recipe.  It has some text for the decription") }
+
+  let(:user) { FactoryGirl.create(:user, name: "Why", email: "Isthishappening@example.com") }
+  before { @recipe = user.recipes.build(name: "Ex Name", description: "Ex Des")}
 
   subject { @recipe }
 
   it { should respond_to(:name) }
   it { should respond_to(:description) }
   it { should respond_to(:ingredients) }
+  it { should respond_to(:user_id) }
+  it { should respond_to(:user) }
+  its(:user) { should eq user }
 
   it { should be_valid }
+
+  describe "when user_id is not present" do
+    before { @recipe.user_id = nil }
+    it { should_not be_valid }
+  end
+
 
    describe "when recipe name is already taken" do
     	before do 

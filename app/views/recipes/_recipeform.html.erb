@@ -6,7 +6,7 @@
 	  <%= f.text_field :description %>
 	  <ul id="ingredient-list">
 	  <%= f.fields_for :ingredients do |builder| %>
-	  	
+	  		
 	  		<%= render 'ingredient_fields', :f => builder %>
 
 	  <% end %>

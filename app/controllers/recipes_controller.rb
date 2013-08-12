@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-	before_action :signed_in_user, only: [:create, :destroy]
+	before_action :signed_in_user, only: [:create, :destroy, :new]
   
 
 
@@ -27,15 +27,17 @@ class RecipesController < ApplicationController
   end
 
   def create
-  	@recipe = Recipe.new(recipe_params)
+  	@recipe = current_user.recipes.build(recipe_params)
   	if @recipe.ingredients.blank?
   		flash[:notice] = "There are errors on this page"
-  		redirect_to newrecipe_path
+      3.times { @recipe.ingredients.build } if @recipe.ingredients.blank?
+  		render 'new'
   	else
   		if @recipe.save
   			flash.now[:success] = "New recipe created"
   			redirect_to @recipe
   		else
+        flash[:notice] = "Error: Failed to save"
   			redirect_to newrecipe_path
   		end
   	end

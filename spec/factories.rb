@@ -17,11 +17,22 @@ FactoryGirl.define do
     factory :admin do
     	admin true
     end
+
+    factory :user_with_recipes do
+      ignore do
+        posts_count 51
+      end
+
+      after(:create) do |user, evaluator|
+        FactoryGirl.create_list(:recipe, evaulator.posts_count, user: user)
+      end
+    end
   end
 
   factory :recipe do
-  	sequence(:name) 			{ |n| "Recipe #{n}" }
-  	sequence(:description)		{ |n| "recipe_#{n} description"}
+    sequence(:name) { |n| "Recipe ##{n}" }
+  	sequence(:description) { |n| "Description #{n}" }
+    user
   end
 
   factory :ingredient do
