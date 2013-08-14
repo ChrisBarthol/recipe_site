@@ -9,6 +9,7 @@
       <p>
         <%= @recipe.description %>
         <%= @recipe.user_id %>
+        <%= link_to "Edit this Recipe", edit_recipe_path(@recipe) %>
       </p>
     </section>
   </aside>

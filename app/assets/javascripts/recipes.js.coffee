@@ -3,12 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 
-$ ->
-  $('.delete-ingredient').click -> 
-    if ('#ingredient-list').length >1
-    	$(this).parent().remove()
-    else
-    	alert('You need at least one')
+
 
 $(document).on 'click', 'form .add_fields', (event) ->
   time = new Date().getTime()

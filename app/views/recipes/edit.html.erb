@@ -1,0 +1,11 @@
+<h1>Editing <%= @recipe.name %> </h1>
+
+<%= form_for(@recipe) do |f| %>
+  			<%= render 'shared/error_messages', object: f.object %>
+    		<%= render 'recipeform', f: f %>
+
+    	<p>Some Test Text</p>
+    		
+        <%= f.submit "Create this recipe", class: "btn btn-large btn-primary" %>
+
+	<% end %>

@@ -17,6 +17,21 @@ class RecipesController < ApplicationController
       redirect_to recipes_path
   end
 
+  def edit
+    @recipe = Recipe.find(params[:id])
+  end
+
+  def update
+    @recipe = Recipe.find(params[:id])
+    @ingredients = @recipe.ingredients
+    if @recipe.update_attributes(recipe_params)
+      flash[:success] = "Recipe Updated"
+      redirect_to @recipe
+    else
+      render 'edit'
+    end
+  end
+
   def show
   	@recipe = Recipe.find(params[:id])
   	@ingredients = @recipe.ingredients
@@ -46,7 +61,7 @@ class RecipesController < ApplicationController
   private
 
   	def recipe_params
-  		params.require(:recipe).permit(:name, :description, ingredients_attributes: [:name, :quantity, :recipe_id])
+  		params.require(:recipe).permit(:name, :id, :description, ingredients_attributes: [:name, :_destroy, :quantity, :recipe_id, :id, :created_at, :updated_at])
 
   	end
 

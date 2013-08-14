@@ -4,6 +4,40 @@ describe "RecipePages" do
 
   subject {page}
 
+  describe "edit" do
+    let(:user) { FactoryGirl.create(:user, id: 10) }
+    let(:recipe) {FactoryGirl.create(:recipe, user_id: 10)}
+
+    before do
+      sign_in user
+      visit recipe_path(recipe)
+    end
+
+    it {should have_link('Edit this Recipe', href: edit_recipe_path(recipe)) }
+
+    describe "Editing the recipe" do
+      let(:new_name) {"New Salt Recipe"}
+      let(:new_description) {"This is a new salt recipe"}
+      let(:new_ingredient) {"Sea Salt"}
+      let(:new_quantity) {"2 Cups"}
+      before do
+        visit recipe_path(recipe)
+        click_link "Edit this Recipe"
+        fill_in "Name",     with: new_name
+        fill_in "Description", with: new_description
+        click_button "Create this recipe"
+      end
+
+      it { should have_title(new_name) }
+      it { should have_selector('div.alert.alert-success') }
+      it { should have_link('Edit this Recipe') }
+      specify { expect(recipe.reload.name).to eq new_name.downcase }
+      specify { expect(recipe.reload.description).to eq new_description }
+    end
+  end
+
+
+
   describe "index" do
     let(:recipe) { FactoryGirl.create(:recipe) }
     let(:user)	 { FactoryGirl.build(:user) }
