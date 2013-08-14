@@ -1,8 +1,13 @@
 RecipeSite::Application.routes.draw do
   resources :recipes
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
   resources :sessions, only: [:new, :create, :destroy]
   resources :ingredients, only: [:create, :destroy]
+  resources :relationships, only: [:create, :destroy]
 
   root 'static_pages#home'
   match '/newrecipe', to: 'recipes#new',           via: 'get'

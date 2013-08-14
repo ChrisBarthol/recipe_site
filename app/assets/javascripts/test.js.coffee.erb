@@ -1,16 +1,13 @@
-$ ->
-  $('.delete-ingredient').click -> 
-    if ('#ingredient-list li').length >1
-    	$(this).parent().remove()
-    else
-    	alert('You need at least one')
 
-$ ->
-  $('a#add-another').click ->
-  	alert("SOME")
 
 	
 
 
 
 
+$ ->
+  $('.delete-ingredient').click -> 
+    if ('#ingredient-list').length >1
+    	$(this).parent().remove()
+    else
+    	alert('You need at least one')

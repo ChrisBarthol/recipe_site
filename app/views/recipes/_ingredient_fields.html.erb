@@ -1,5 +1,5 @@
-
-<li>
+<fieldset>
+<li id="ingredient">
 
 	  		<%= f.label :name, "Ingredient" %>
 	  		<%= f.text_field :name %>
@@ -7,5 +7,7 @@
 
 	  		<%= f.label :quantity, "Quantity" %>
 	  		<%= f.text_field :quantity %>
-	  		<%= link_to("Delete this ingredient", "#delete", :class => "delete-ingredient") %>
+	  		<%= f.hidden_field :_destroy %>
+	  		<%= link_to "Delete this ingredient", '#', class: "remove_fields" %>
 </li>
+</fieldset>
