@@ -149,6 +149,8 @@ describe "RecipePages" do
   		it { should have_content(i2.quantity) }
   		it { should have_content(recipe.ingredients.count) }
   	end
+
+    
   end
 end
 

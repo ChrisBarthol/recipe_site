@@ -12,9 +12,25 @@ class User < ActiveRecord::Base
  	has_many :followed_users, through: :relationships, source: :followed
  	has_many :reverse_relationships, foreign_key: "followed_id", class_name: "Relationship", dependent: :destroy
  	has_many :followers, through: :reverse_relationships, source: :follower
+ 	has_many :reciperelationships, foreign_key: "recipesaver_id", dependent: :destroy
+ 	has_many :saved_recipes, through: :reciperelationships, source: :recipesaved
+ 	has_many :reverse_reciperelationships, foreign_key: "recipesaved_id", class_name: "Reciperelationship", dependent: :destroy
+ 	has_many :recipesavers, through: :reverse_reciperelationships, source: :recipesaver
 
  	has_secure_password
  	before_save { email.downcase! }
+
+ 	def recipesaved?(recipe)
+ 		reciperelationships.find_by(recipesaved_id: recipe.id)
+ 	end
+
+ 	def recipesave!(recipe)
+ 		reciperelationships.create!(recipesaved_id: recipe.id)
+ 	end
+
+ 	def recipedelete!(recipe)
+ 		reciperelationships.find_by(recipesaved_id: recipe.id).destroy
+ 	end
 
  	def following?(other_user)
  		relationships.find_by(followed_id: other_user.id)

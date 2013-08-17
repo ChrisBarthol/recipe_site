@@ -12,4 +12,10 @@
     </strong>
     followers
   </a>
+  <a href="<%= saved_recipes_user_path(@user) %>">
+    <strong id="savedrecipes" class="stat">
+      <%= @user.saved_recipes.count %>
+    </strong>
+    saved recipes
+  </a>
 </div>

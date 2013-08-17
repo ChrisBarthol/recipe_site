@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :signed_in_user, only: [:index, :edit, :update, :destroy, :following, :followers]
+  before_action :signed_in_user, only: [:index, :edit, :update, :destroy, :following, :followers, :saved_recipes]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user,  only: :destroy
 
@@ -10,6 +10,13 @@ class UsersController < ApplicationController
       flash[:success] = "User destroyed"
       end
       redirect_to users_path
+  end
+
+  def saved_recipes
+    @title= "Saved Recipes"
+    @user= User.find(params[:id])
+    @recipe = @user.saved_recipes.paginate(page: params[:page])
+    render 'show_saved'
   end
 
   def following

@@ -12,9 +12,14 @@ describe Recipe do
   it { should respond_to(:ingredients) }
   it { should respond_to(:user_id) }
   it { should respond_to(:user) }
+  it { should respond_to(:reverse_reciperelationships) }
+  it { should respond_to(:recipesavers) }
   its(:user) { should eq user }
 
   it { should be_valid }
+
+
+
 
   describe "when user_id is not present" do
     before { @recipe.user_id = nil }

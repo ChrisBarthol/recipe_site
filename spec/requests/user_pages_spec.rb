@@ -4,6 +4,23 @@ describe "User pages" do
 
 	subject { page }
 
+  describe "saving recipes" do
+    let(:user) { FactoryGirl.create(:user) }
+    let(:recipe) { FactoryGirl.create(:recipe) }
+    before { user.recipesave!(recipe) }
+
+    describe "saved recipes" do
+      before do
+        sign_in user
+        visit saved_recipes_user_path(user)
+      end
+
+      it { should have_title(full_title('Saved Recipes')) }
+      it { should have_selector('h3', text: "Saved Recipes") }
+      it { should have_link(recipe.name, href: recipe_path(recipe)) }
+    end
+  end
+
   describe "following/followers" do
     let(:user) { FactoryGirl.create(:user) }
     let(:other_user) { FactoryGirl.create(:user) }
@@ -113,6 +130,16 @@ describe "User pages" do
 
       it { should have_link("0 following", href: following_user_path(user)) }
       it { should have_link("1 followers", href: followers_user_path(user)) }
+    end
+
+    describe "saving a recipe counts" do
+      let(:recipe) { FactoryGirl.create(:recipe) }
+      before do
+        user.recipesave!(recipe)
+        visit user_path(user)
+      end
+
+      it { should have_link("1 saved recipe", href:saved_recipes_user_path(user)) }
     end
 
     describe "Follow/unfollow buttons" do

@@ -54,6 +54,12 @@ def make_relationships
   followers      = users[3..40]
   followed_users.each { |followed| user.follow!(followed) }
   followers.each      { |follower| follower.follow!(user) }
+
+  recipes = Recipe.all
+  recipe = recipes.first
+  saved_recipes = recipes[2..8]
+  saved_recipes.each { |recipesaved| user.recipesave!(recipesaved) }
+
 end
 
 

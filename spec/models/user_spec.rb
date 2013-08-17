@@ -21,9 +21,40 @@ describe User do
   it { should respond_to(:follow!) }
   it { should respond_to(:unfollow!) }
   it { should respond_to(:reverse_relationships) }
+  it { should respond_to(:followers) }
+  it { should respond_to(:reciperelationships) }
+  it { should respond_to(:saved_recipes) }
+  it { should respond_to(:recipesaved?) }
+  it { should respond_to(:recipesave!) }
+  it { should respond_to(:recipedelete!) }
+  it { should respond_to(:reverse_reciperelationships) }
+  it { should respond_to(:recipesavers) }
 
   it { should be_valid }
   it { should_not be_admin }
+
+  describe "recipesave" do
+    let(:recipe) { FactoryGirl.create(:recipe) }
+    before do
+      @user.save
+      @user.recipesave!(recipe)
+    end
+
+    it { should be_recipesaved(recipe) }
+    its(:saved_recipes) { should include(recipe) }
+
+    describe "saved recipe" do
+      subject { recipe }
+      its(:recipesavers) { should include(@user) }
+    end
+
+    describe "and deleting" do
+      before { @user.recipedelete!(recipe)}
+
+      it { should_not be_recipesaved(recipe) }
+      its(:saved_recipes) { should_not include(recipe) }
+    end
+  end
 
   describe "following" do
     let(:other_user) { FactoryGirl.create(:user) }
@@ -52,10 +83,10 @@ describe User do
 
     before { @user.save }
     let!(:older_recipe) do
-      FactoryGirl.create(:recipe, name: "Recipe1", user: @user, created_at: 1.day.ago)
+      FactoryGirl.create(:recipe, name: "Old", user: @user, created_at: 1.day.ago)
     end
     let!(:newer_recipe) do
-      FactoryGirl.create(:recipe, user: @user, created_at: 1.hour.ago)
+      FactoryGirl.create(:recipe, name: "A", user: @user, created_at: 1.hour.ago)
     end
 
     it "should have the right recipes in the right order" do
