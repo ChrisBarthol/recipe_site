@@ -16,4 +16,12 @@ class Recipe < ActiveRecord::Base
 	def recipesaved?(recipe)
  		reciperelationships.find_by(recipesaved_id: recipe.id)
  	end
+
+ 	def recipesave!(recipe)
+ 		reciperelationships.create!(recipesaved_id: recipe.id)
+ 	end
+
+ 	def recipedelete!(recipe)
+ 		reciperelationships.find_by(recipesaved_id: recipe.id).destroy
+ 	end
 end	

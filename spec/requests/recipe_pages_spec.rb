@@ -150,7 +150,44 @@ describe "RecipePages" do
   		it { should have_content(recipe.ingredients.count) }
   	end
 
-    
+    describe "save/remove recipe buttons" do
+      let(:user) { FactoryGirl.create(:user) }
+      let(:recipe) {FactoryGirl.create(:recipe) }
+      before { sign_in user }
+
+      describe "following a recipe" do
+        before { visit recipe_path(recipe) }
+
+        it "should increment the saved recipe count" do
+          expect do
+            click_button "Save"
+          end.to change(user.saved_recipes, :count).by(1)
+        end
+
+        describe "toggling the button" do
+          before { click_button "Save" }
+          it { should have_xpath("//input[@value='Remove']") }
+        end
+      end
+
+      describe "removing a recipe" do
+        before do
+          user.recipesave!(recipe)
+          visit recipe_path(recipe)
+        end
+
+        it "should decrement the saved recipes count" do
+          expect do
+            click_button "Remove"
+          end.to change(user.saved_recipes, :count).by(-1)
+        end
+
+        describe "toggling the button" do
+          before { click_button "Remove" }
+          it { should have_xpath("//input[@value='Save']") }
+        end
+      end
+    end
   end
 end
 

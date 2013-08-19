@@ -119,6 +119,18 @@ describe "Authentication" do
         end
       end
 
+      describe "in the Reciperelationship controller" do
+        describe "submitting to the create action" do
+          before { post reciperelationships_path }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+
+        describe "submitting the the destroy action" do
+          before { delete reciperelationship_path(1) }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+      end
+
       describe "when attempting to visit a protected page" do
         before do
           visit edit_user_path(user)
