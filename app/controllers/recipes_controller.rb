@@ -11,6 +11,7 @@ class RecipesController < ApplicationController
   def fork
     @existing_recipe = Recipe.find(params[:id])
     @recipe= Recipe.new(@existing_recipe.attributes)
+    @recipe.name = Recipe.find(params[:id]).name + " Forked by " + current_user.name
     render 'new'   
   end
 
