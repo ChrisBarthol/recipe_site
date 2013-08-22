@@ -1,5 +1,9 @@
 RecipeSite::Application.routes.draw do
-  resources :recipes
+  resources :recipes do
+    member do
+      get :fork
+    end
+  end
   resources :users do
     member do
       get :following, :followers, :saved_recipes

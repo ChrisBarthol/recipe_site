@@ -1,4 +1,4 @@
-<%= form_for(current_user.reciperelationships.build(recipesaved_id: @recipe.id)) do |f| %>
+<%= form_for(current_user.reciperelationships.build(recipesaved_id: @recipe.id), remote: true) do |f| %>
   <div><%= f.hidden_field :recipesaved_id %></div>
   <%= f.submit "Save", class: "btn btn-large btn-primary" %>
 <% end %>

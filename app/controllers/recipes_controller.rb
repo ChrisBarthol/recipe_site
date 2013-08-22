@@ -8,6 +8,12 @@ class RecipesController < ApplicationController
   	3.times { @recipe.ingredients.build }
   end
 
+  def fork
+    @existing_recipe = Recipe.find(params[:id])
+    @recipe= Recipe.new(@existing_recipe.attributes)
+    render 'new'   
+  end
+
   def destroy
     recipe = Recipe.find(params[:id])
 
@@ -61,7 +67,7 @@ class RecipesController < ApplicationController
   private
 
   	def recipe_params
-  		params.require(:recipe).permit(:name, :id, :description, ingredients_attributes: [:name, :_destroy, :quantity, :recipe_id, :id, :created_at, :updated_at])
+  		params.require(:recipe).permit(:name, :id, :description, ingredients_attributes: [:name, :_destroy, :quantity, :created_at, :updated_at])
 
   	end
 

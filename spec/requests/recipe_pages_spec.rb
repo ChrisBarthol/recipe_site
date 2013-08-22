@@ -143,6 +143,28 @@ describe "RecipePages" do
   	it { should have_content(recipe.name.titleize) }
   	it { should have_title(recipe.name.titleize) }
     it { should have_content(recipe.user_id) }
+    it { should have_content("Fork this recipe") }
+
+    describe "forking a recipe" do
+      before do
+        sign_in user
+        visit recipe_path(recipe)
+        click_link "Fork this recipe"
+      end
+
+      describe "change the recipe" do
+        before do
+          fill_in "Name",         with: "New Example Recipe"
+          fill_in "Description",  with: "New Description"
+          click_button "Create this recipe"
+        end
+
+        it { should have_title("New Example Recipe") }
+        it { should have_content("New Description") }
+      end
+
+    end
+
 
   	describe "ingredients" do
   		it { should have_content(i1.quantity) }

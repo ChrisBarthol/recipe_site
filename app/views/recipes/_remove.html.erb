@@ -1,4 +1,4 @@
 <%= form_for(current_user.reciperelationships.find_by(recipesaved_id: @recipe),
-             html: { method: :delete }) do |f| %>
+             html: { method: :delete }, remote: true) do |f| %>
   <%= f.submit "Remove", class: "btn btn-large" %>
 <% end %>
