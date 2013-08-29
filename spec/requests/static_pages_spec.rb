@@ -11,11 +11,17 @@ describe "Static pages" do
 
   describe "Home page" do
     before { visit root_path }
-    let(:heading)     { 'Welcome to Pantry Raid' }
+    let(:heading)     { 'Welcome to Use Your Foodle' }
     let(:page_title)  { '' }
 
     it_should_behave_like "all static pages"
     it { should_not have_title('| Home') }
+  end
+
+  describe "Tour a tour page" do
+    before { visit tour_path }
+
+    it { should have_content('Tour') }
   end
 
   describe "Help page" do
@@ -50,7 +56,7 @@ describe "Static pages" do
     click_link "Home"
     click_link "Sign up now!"
     expect(page).to have_title(full_title('Sign up'))
-    click_link "Pantry Raid"
+    click_link "Use Your Foodle"
     expect(page).to have_title(full_title(''))
   end
 end

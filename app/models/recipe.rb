@@ -12,6 +12,7 @@ class Recipe < ActiveRecord::Base
 	validates :name, presence: true, uniqueness: { case_sensitive: false }
 	validates :description, presence: true
 	validates :user_id, presence: true
+	validates :direction, presence: true
 
 	def recipesaved?(recipe)
  		reciperelationships.find_by(recipesaved_id: recipe.id)

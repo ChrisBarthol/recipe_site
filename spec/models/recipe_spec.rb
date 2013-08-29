@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Recipe do
 
   let(:user) { FactoryGirl.create(:user, name: "Why", email: "Isthishappening@example.com") }
-  before { @recipe = user.recipes.build(name: "Ex Name", description: "Ex Des")}
+  before { @recipe = user.recipes.build(name: "Ex Name", description: "Ex Des", direction: "Add")}
 
   subject { @recipe }
 
@@ -14,6 +14,7 @@ describe Recipe do
   it { should respond_to(:user) }
   it { should respond_to(:reverse_reciperelationships) }
   it { should respond_to(:recipesavers) }
+  it { should respond_to(:direction) }
   its(:user) { should eq user }
 
   it { should be_valid }
@@ -68,6 +69,11 @@ describe Recipe do
   describe "when name is not present" do
   	before { @recipe.name = " " }
   	it { should_not be_valid }
+  end
+
+  describe "when direction is not present" do
+    before { @recipe.direction = " " }
+    it { should_not be_valid }
   end
 
   describe "when description is not present" do
