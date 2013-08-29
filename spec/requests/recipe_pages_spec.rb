@@ -20,11 +20,13 @@ describe "RecipePages" do
       let(:new_description) {"This is a new salt recipe"}
       let(:new_ingredient) {"Sea Salt"}
       let(:new_quantity) {"2 Cups"}
+      let(:new_direction) {"Add all the things together"}
       before do
         visit recipe_path(recipe)
         click_link "Edit this Recipe"
         fill_in "Name",     with: new_name
         fill_in "Description", with: new_description
+        fill_in "Direction", with: new_direction
         click_button "Create this recipe"
       end
 
@@ -33,6 +35,7 @@ describe "RecipePages" do
       it { should have_link('Edit this Recipe') }
       specify { expect(recipe.reload.name).to eq new_name.downcase }
       specify { expect(recipe.reload.description).to eq new_description }
+      specify { expect(recipe.reload.direction).to eq new_direction }
     end
   end
 
@@ -106,8 +109,10 @@ describe "RecipePages" do
 
   	describe "with valid information" do
       before do
+        visit newrecipe_path
         fill_in "Name",         with: "Example Recipe"
         fill_in "Description",   with: "Example Description"
+        fill_in "Direction",    with: "Example Direction"
         fill_in "Ingredient",	with: "Example Ingredient", :match => :first
         fill_in "Quantity",		with: "1 cup",  :match => :first
       end
@@ -120,6 +125,7 @@ describe "RecipePages" do
       	before { click_button submit }
 
       	it { should have_title('Example Recipe') }
+        it { should have_content('Example Direction') }
       	it { should have_content('Example Description') }
       	it { should have_content('Example Ingredient') }
       	it { should have_content('1 cup') }
@@ -134,7 +140,7 @@ describe "RecipePages" do
 
   describe "recipe page" do
     let(:user) { FactoryGirl.create(:user, name: "stuff", email: "otherstuff@example.com") }
-  	let(:recipe) { FactoryGirl.create(:recipe, user: user, name: "Ex", description: "Yep") }
+  	let(:recipe) { FactoryGirl.create(:recipe, user: user, name: "Ex", description: "Yep", direction: "Add") }
   	let!(:i1) { FactoryGirl.create(:ingredient, recipe: recipe, quantity: "2") }
   	let!(:i2) { FactoryGirl.create(:ingredient, recipe: recipe, quantity: "234") }
 

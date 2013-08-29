@@ -32,6 +32,7 @@ FactoryGirl.define do
   factory :recipe do
     sequence(:name) { |n| "Recipe ##{n}" }
   	sequence(:description) { |n| "Description #{n}" }
+    sequence(:direction) { |n| "Add #{n}" }
     user
   end
 

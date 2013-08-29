@@ -12,7 +12,10 @@ class RecipesController < ApplicationController
     @existing_recipe = Recipe.find(params[:id])
     @recipe= Recipe.new(@existing_recipe.attributes)
     @recipe.name = Recipe.find(params[:id]).name + " Forked by " + current_user.name
-    render 'new'   
+    @recipe.ingredients.each do |ingredient|
+      ingredient.id = nil
+    end
+    render 'new'
   end
 
   def destroy
@@ -68,8 +71,11 @@ class RecipesController < ApplicationController
   private
 
   	def recipe_params
-  		params.require(:recipe).permit(:name, :id, :description, ingredients_attributes: [:name, :_destroy, :quantity, :created_at, :updated_at])
+  		params.require(:recipe).permit(:name, :id, :description, :direction, :fork_id, ingredients_attributes: [:name, :id, :_destroy, :quantity, :created_at, :updated_at])
+    end
 
-  	end
+    def fork_params
+      params.require(:recipe).permit(:name, :id, :description, :direction, :fork_id, ingredients_attributes: [:name, :_destroy, :quantity, :created_at, :updated_at])
+    end
 
 end

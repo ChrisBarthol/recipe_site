@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130815143643) do
+ActiveRecord::Schema.define(version: 20130829153647) do
 
   create_table "ingredients", force: true do |t|
     t.string   "name"
@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 20130815143643) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.text     "direction"
+    t.integer  "fork_id"
   end
 
   add_index "recipes", ["name"], name: "index_recipes_on_name", unique: true
