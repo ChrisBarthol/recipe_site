@@ -7,6 +7,7 @@ describe "RecipePages" do
   describe "edit" do
     let(:user) { FactoryGirl.create(:user, id: 10) }
     let(:recipe) {FactoryGirl.create(:recipe, user_id: 10)}
+    let(:other_user) {FactoryGirl.create(:user, id: 12) }
 
     before do
       sign_in user
@@ -14,6 +15,15 @@ describe "RecipePages" do
     end
 
     it {should have_link('Edit this Recipe', href: edit_recipe_path(recipe)) }
+
+    describe "others should not edit recipe" do
+      before do
+        sign_in other_user
+        visit recipe_path(recipe)
+      end
+
+      it {should_not have_link('Edit this Recipe', href: edit_recipe_path(recipe)) }
+    end
 
     describe "Editing the recipe" do
       let(:new_name) {"New Salt Recipe"}

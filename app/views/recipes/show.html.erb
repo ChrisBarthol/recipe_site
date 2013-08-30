@@ -10,7 +10,10 @@
         <%= @recipe.description %>
         <%= @recipe.direction %>
         <%= @recipe.user_id %>
-        <%= link_to "Edit this Recipe", edit_recipe_path(@recipe) %>
+        
+        <%= link_to "Edit this Recipe", edit_recipe_path(@recipe) if current_user?(@recipe.user) %>
+        
+
         <%= link_to "Fork this recipe", fork_recipe_path(@recipe) %>
       </p>
     </section>

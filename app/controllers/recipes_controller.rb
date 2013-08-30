@@ -11,7 +11,12 @@ class RecipesController < ApplicationController
   def fork
     @existing_recipe = Recipe.find(params[:id])
     @recipe= Recipe.new(@existing_recipe.attributes)
-    @recipe.name = Recipe.find(params[:id]).name + " Forked by " + current_user.name
+    if @recipe.fork_id.nil?
+      @recipe.fork_id = 1
+    else
+      fork_id + 1
+    end
+    @recipe.name = Recipe.find(params[:id]).name + "-" + @recipe.fork_id.to_s
     @recipe.ingredients.each do |ingredient|
       ingredient.id = nil
     end
@@ -74,8 +79,6 @@ class RecipesController < ApplicationController
   		params.require(:recipe).permit(:name, :id, :description, :direction, :fork_id, ingredients_attributes: [:name, :id, :_destroy, :quantity, :created_at, :updated_at])
     end
 
-    def fork_params
-      params.require(:recipe).permit(:name, :id, :description, :direction, :fork_id, ingredients_attributes: [:name, :_destroy, :quantity, :created_at, :updated_at])
-    end
+
 
 end
