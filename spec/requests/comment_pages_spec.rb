@@ -8,6 +8,18 @@ describe "CommentPages" do
 	let(:recipe) { FactoryGirl.create(:recipe) }
 	before { sign_in user }
 
+	describe "comment destruction" do
+		before { FactoryGirl.create(:comment, user: user) }
+
+		describe "as correct user" do
+			before { visit root_path }
+
+			it "should delete a comment" do
+				expect { click_link "delete" }.to change(Comment, :count).by(-1)
+			end
+		end
+	end
+
 	describe "comment creation" do
 		before { visit recipe_path(recipe) }
 
