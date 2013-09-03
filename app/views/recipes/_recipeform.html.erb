@@ -3,10 +3,11 @@
 	  <%= f.text_field :name %>
 </div>
 	  <%= f.label :description %>
-	  <%= f.text_field :description %>
+	  <%= f.text_area :description %>
 
 	  <%= f.label :direction %>
-	  <%= f.text_field :direction %>
+	  <%= f.text_area :direction %>
+	  <div class="span4">
 	  <ul id="ingredient-list">
 	  <%= f.fields_for :ingredients do |builder| %>
 	  		
@@ -15,6 +16,7 @@
 	  <% end %>
 	  <%= link_to_add_fields "Add Field", f, :ingredients %>
 	  </ul>
+	</div>
 	  
 
 	  

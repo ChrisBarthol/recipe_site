@@ -48,12 +48,12 @@ describe "Authentication" do
 
       describe "should not be able to access the new action" do
         before { visit signup_path }
-        it { should have_content('Welcome') }
+        it { should have_content('Use Your Foodle') }
       end
 
       describe "should not be able to access the create action" do
         before { visit new_user_path }
-        it { should have_content('Welcome') }
+        it { should have_content('Use Your Foodle') }
       end
   	end
   end
@@ -93,6 +93,18 @@ describe "Authentication" do
 
       it { should_not have_link('Profile',    href: user_path(user)) }
       it { should_not have_link('Settings',   href: edit_user_path(user)) }
+
+      describe "in the Comments controller" do
+        describe "submitting to the create action" do
+          before { post comments_path }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+
+        describe "submitting to the destroy action" do
+          before { delete comment_path(FactoryGirl.create(:comment)) }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+      end
 
       describe "in the Relationships controller" do
         describe "submitting to the create action" do

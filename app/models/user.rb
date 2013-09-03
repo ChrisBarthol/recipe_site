@@ -16,10 +16,15 @@ class User < ActiveRecord::Base
  	has_many :saved_recipes, through: :reciperelationships, source: :recipesaved
  	has_many :reverse_reciperelationships, foreign_key: "recipesaved_id", class_name: "Reciperelationship", dependent: :destroy
  	has_many :recipesavers, through: :reverse_reciperelationships, source: :recipesaver
-
+ 	has_many :comments, dependent: :destroy
  	before_save { email.downcase! }
 
  	has_secure_password
+
+ 	def feed
+ 		Comment.where("user_id = ?", id)
+ 	end
+ 	
  	def recipesaved?(recipe)
  		reciperelationships.find_by(recipesaved_id: recipe.id)
  	end

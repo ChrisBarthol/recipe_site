@@ -1,0 +1,16 @@
+
+<div class = "center hero-unit">
+    <h1> Use Your Foodle! </h1>
+    <h2> Help elminate food waste!  Here are your most important items. </h2>
+</div>
+
+<div class="span2">
+  	<%= render 'shared/user_info' %>
+</div>
+<div class="span8">
+	<h3>Saved Recipes</h3>
+	<%= render current_user.saved_recipes %>
+
+    <h3>Recent Comments</h3>
+    <%= render 'shared/feed' %>
+</div>

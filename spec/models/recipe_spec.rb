@@ -15,6 +15,7 @@ describe Recipe do
   it { should respond_to(:reverse_reciperelationships) }
   it { should respond_to(:recipesavers) }
   it { should respond_to(:direction) }
+ 
   its(:user) { should eq user }
 
   it { should be_valid }

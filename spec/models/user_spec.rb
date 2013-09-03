@@ -29,9 +29,47 @@ describe User do
   it { should respond_to(:recipedelete!) }
   it { should respond_to(:reverse_reciperelationships) }
   it { should respond_to(:recipesavers) }
+  it { should respond_to(:comments) }
+  it { should respond_to(:feed) }
 
   it { should be_valid }
   it { should_not be_admin }
+
+
+
+  describe "comment associations" do
+
+    before { @user.save }
+    let!(:older_comment) do
+      FactoryGirl.create(:comment, user: @user, created_at: 1.day.ago)
+    end
+    let!(:newer_comment) do
+      FactoryGirl.create(:comment, user: @user, created_at: 1.hour.ago)
+    end
+
+    describe "status" do
+      let(:unfollowed_comment) do
+        FactoryGirl.create(:comment, user: FactoryGirl.create(:user))
+      end
+
+      its(:feed) { should include(newer_comment) }
+      its(:feed) { should include(older_comment) }
+      its(:feed) { should_not include(unfollowed_comment) }
+    end
+
+    it "should have the right comments in the right order" do
+      expect(@user.comments.to_a).to eq [newer_comment, older_comment]
+    end
+
+    it "should destroy associated comments" do
+      comments = @user.comments.to_a
+      @user.destroy
+      expect(comments).not_to be_empty
+      comments.each do |comment|
+        expect(Comment.where(id: comment.id)).to be_empty
+      end
+    end
+  end
 
   describe "recipesave" do
     let(:recipe) { FactoryGirl.create(:recipe) }

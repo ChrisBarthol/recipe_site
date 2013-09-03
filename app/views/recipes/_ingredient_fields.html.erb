@@ -1,12 +1,12 @@
 <fieldset>
 
-
+			<div class="span4">
 	  		<%= f.label :name, "Ingredient" %>
 	  		<%= f.text_field :name %>
 	  		
-
 	  		<%= f.label :quantity, "Quantity" %>
 	  		<%= f.text_field :quantity %>
+	  		</div>
 
 	  		<%= f.hidden_field :_destroy %>
 	  		<%= link_to "Delete this ingredient", '#', class: "remove_fields" %>

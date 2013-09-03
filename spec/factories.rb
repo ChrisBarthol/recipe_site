@@ -29,6 +29,11 @@ FactoryGirl.define do
     end
   end
 
+  factory :comment do
+    content "Lorem ipsum"
+    user
+  end
+
   factory :recipe do
     sequence(:name) { |n| "Recipe ##{n}" }
   	sequence(:description) { |n| "Description #{n}" }

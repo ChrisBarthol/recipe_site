@@ -116,10 +116,19 @@ describe "User pages" do
 
 	describe "profile page" do
 		let(:user) { FactoryGirl.create(:user) }
+    let!(:c1)  { FactoryGirl.create(:comment, user: user, content: "Foo") }
+    let!(:c2)  { FactoryGirl.create(:comment, user: user, content: "Bar") }
+
 		before { visit user_path(user) }
 
 		it { should have_content(user.name) }
 		it { should have_title(user.name) }
+
+    describe "comments" do
+      it { should have_content(c1.content) }
+      it { should have_content(c2.content) }
+      it { should have_content(user.comments.count) }
+    end
 
     describe "follower/following counts" do
       let(:other_user) { FactoryGirl.create(:user) }

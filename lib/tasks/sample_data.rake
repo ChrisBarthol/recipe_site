@@ -28,12 +28,17 @@ end
 
 def make_recipes
   users = User.all(limit: 6)
+  50.times do
+    content = Faker::Lorem.sentence(5)
+    users.each { |user| user.comments.create!(content: content) }
+  end
   10.times do |n|
     name = Faker::Name.name
     description = Faker::Lorem.sentence(2)
+    direction = Faker::Lorem.sentence(5)
     #user_id = 1
     Recipe.create!(name: name,
-                     description: description, user_id: 1 )
+                     description: description, direction: direction, user_id: 1 )
     #users.each { |user| user.recipes.create!(name: name, description: description, user_id: 1) }
   end
 end
