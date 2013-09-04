@@ -37,6 +37,7 @@ describe User do
 
 
 
+
   describe "comment associations" do
 
     before { @user.save }
@@ -51,10 +52,21 @@ describe User do
       let(:unfollowed_comment) do
         FactoryGirl.create(:comment, user: FactoryGirl.create(:user))
       end
+      let(:followed_user) { FactoryGirl.create(:user) }
+
+      before do
+        @user.follow!(followed_user)
+        3.times { followed_user.comments.create!(content: "Lorem ipsum") }
+      end
 
       its(:feed) { should include(newer_comment) }
       its(:feed) { should include(older_comment) }
       its(:feed) { should_not include(unfollowed_comment) }
+      its(:feed) do
+        followed_user.comments.each do |comment|
+          should include(comment)
+        end
+      end
     end
 
     it "should have the right comments in the right order" do

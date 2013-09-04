@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
  	has_secure_password
 
  	def feed
- 		Comment.where("user_id = ?", id)
+ 		Comment.from_users_followed_by(self)
  	end
  	
  	def recipesaved?(recipe)
