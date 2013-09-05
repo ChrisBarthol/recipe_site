@@ -52,6 +52,7 @@ class RecipesController < ApplicationController
   	@recipe = Recipe.find(params[:id])
   	@ingredients = @recipe.ingredients
     @comment = current_user.comments.build if signed_in?
+    @commentfeed = @recipe.commentfeed.paginate(page: params[:page])
   end
 
   def index

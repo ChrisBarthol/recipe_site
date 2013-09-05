@@ -14,6 +14,10 @@ class Recipe < ActiveRecord::Base
 	validates :user_id, presence: true
 	validates :direction, presence: true
 
+	def commentfeed
+		Comment.where("recipe_id = ?", id)
+	end
+
 	def recipesaved?(recipe)
  		reciperelationships.find_by(recipesaved_id: recipe.id)
  	end

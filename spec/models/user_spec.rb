@@ -56,7 +56,7 @@ describe User do
 
       before do
         @user.follow!(followed_user)
-        3.times { followed_user.comments.create!(content: "Lorem ipsum") }
+        3.times { followed_user.comments.create!(content: "Lorem ipsum", recipe_id: 1) }
       end
 
       its(:feed) { should include(newer_comment) }

@@ -139,6 +139,7 @@ describe "RecipePages" do
       	it { should have_content('Example Description') }
       	it { should have_content('Example Ingredient') }
       	it { should have_content('1 cup') }
+        it { should have_content("Fork this recipe") }
       end
     end
 
@@ -159,7 +160,7 @@ describe "RecipePages" do
   	it { should have_content(recipe.name.titleize) }
   	it { should have_title(recipe.name.titleize) }
     it { should have_content(recipe.user_id) }
-    it { should have_content("Fork this recipe") }
+    
 
     describe "forking a recipe" do
       before do

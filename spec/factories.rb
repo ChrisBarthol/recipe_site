@@ -31,6 +31,7 @@ FactoryGirl.define do
 
   factory :comment do
     content "Lorem ipsum"
+    recipe_id 1
     user
   end
 
