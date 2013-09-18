@@ -8,6 +8,7 @@
             <h1>
             <%= @recipe.name.titleize %>
             </h1>
+            
 
           
           </div>
@@ -30,6 +31,9 @@
       <h1>
         <%= @recipe.name.titleize %>
       </h1>
+      <h3>
+              Submitted by <%= @recipe.user_id %>
+            </h3>
     </section>
   </aside>
 
@@ -54,14 +58,16 @@
     </section>
       <p>
         <div>
-      <h3>
+      <h2>
         <%= @recipe.description %>
-      </h3>
+      </h2>
       <p>
       </p>
       <p>
         <div id="directiontitle">
+          <h3>
           Directions
+        </h3>
         </div>
 
       </p>
