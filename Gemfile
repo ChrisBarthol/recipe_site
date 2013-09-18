@@ -10,7 +10,7 @@ gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
 
 group :development, :test do
-  gem 'sqlite3', '1.3.7'
+  gem 'pg'
   gem 'rspec-rails'
   gem 'guard-rspec'
   gem 'spork-rails', github: 'sporkrb/spork-rails'
@@ -36,6 +36,6 @@ group :doc do
 end
 
 group :production do
-  gem 'pg', '0.15.1'
+  gem 'pg'
   gem 'rails_12factor', '0.0.2'
 end
