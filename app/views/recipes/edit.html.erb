@@ -1,11 +1,16 @@
+<% @body_class = "about" %>
 <h1>Editing <%= @recipe.name %> </h1>
-
+<div class="row">
+  <div class="span6 offset3">
 <%= form_for(@recipe) do |f| %>
   			<%= render 'shared/error_messages', object: f.object %>
     		<%= render 'recipeform', f: f %>
 
-    	<p>Some Test Text</p>
-    		
+    	
+    	<div>	
         <%= f.submit "Create this recipe", class: "btn btn-large btn-primary" %>
+    </div>
 
 	<% end %>
+</div>
+</div>

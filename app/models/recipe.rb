@@ -1,6 +1,7 @@
 class Recipe < ActiveRecord::Base
 	before_save { self.name = name.downcase }
 
+
 	belongs_to :user
 	default_scope -> { order('name') }
 	has_many :ingredients, dependent: :destroy
@@ -13,6 +14,8 @@ class Recipe < ActiveRecord::Base
 	validates :description, presence: true
 	validates :user_id, presence: true
 	validates :direction, presence: true
+
+	mount_uploader :recipeimage, RecipeimageUploader
 
 	def to_param
 		"#{id}-#{name}".parameterize

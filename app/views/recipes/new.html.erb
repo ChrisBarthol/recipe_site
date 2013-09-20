@@ -1,3 +1,4 @@
+<% @body_class = "about" %>
 <% provide(:title, 'Add a recipe') %>
 <h1>Add a recipe</h1>
 <div class="row">
@@ -6,9 +7,10 @@
   			<%= render 'shared/error_messages', object: f.object %>
     		<%= render 'recipeform', f: f %>
 
-    	<p>Some Test Text</p>
-    		
+    	
+    	<div>	
         <%= f.submit "Create this recipe", class: "btn btn-large btn-primary" %>
+    	</div>
 
 	<% end %>
   </div>

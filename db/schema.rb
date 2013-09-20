@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130905141952) do
+ActiveRecord::Schema.define(version: 20130920155638) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "comments", force: true do |t|
     t.text     "content"
@@ -21,8 +24,8 @@ ActiveRecord::Schema.define(version: 20130905141952) do
     t.integer  "recipe_id"
   end
 
-  add_index "comments", ["recipe_id"], name: "index_comments_on_recipe_id"
-  add_index "comments", ["user_id", "created_at"], name: "index_comments_on_user_id_and_created_at"
+  add_index "comments", ["recipe_id"], name: "index_comments_on_recipe_id", using: :btree
+  add_index "comments", ["user_id", "created_at"], name: "index_comments_on_user_id_and_created_at", using: :btree
 
   create_table "ingredients", force: true do |t|
     t.string   "name"
@@ -32,7 +35,7 @@ ActiveRecord::Schema.define(version: 20130905141952) do
     t.datetime "updated_at"
   end
 
-  add_index "ingredients", ["recipe_id", "name", "quantity"], name: "index_ingredients_on_recipe_id_and_name_and_quantity"
+  add_index "ingredients", ["recipe_id", "name", "quantity"], name: "index_ingredients_on_recipe_id_and_name_and_quantity", using: :btree
 
   create_table "reciperelationships", force: true do |t|
     t.integer  "recipesaver_id"
@@ -41,9 +44,9 @@ ActiveRecord::Schema.define(version: 20130905141952) do
     t.datetime "updated_at"
   end
 
-  add_index "reciperelationships", ["recipesaved_id"], name: "index_reciperelationships_on_recipesaved_id"
-  add_index "reciperelationships", ["recipesaver_id", "recipesaved_id"], name: "index_reciperelationships_on_recipesaver_id_and_recipesaved_id", unique: true
-  add_index "reciperelationships", ["recipesaver_id"], name: "index_reciperelationships_on_recipesaver_id"
+  add_index "reciperelationships", ["recipesaved_id"], name: "index_reciperelationships_on_recipesaved_id", using: :btree
+  add_index "reciperelationships", ["recipesaver_id", "recipesaved_id"], name: "index_reciperelationships_on_recipesaver_id_and_recipesaved_id", unique: true, using: :btree
+  add_index "reciperelationships", ["recipesaver_id"], name: "index_reciperelationships_on_recipesaver_id", using: :btree
 
   create_table "recipes", force: true do |t|
     t.string   "name"
@@ -53,10 +56,11 @@ ActiveRecord::Schema.define(version: 20130905141952) do
     t.integer  "user_id"
     t.text     "direction"
     t.integer  "fork_id"
+    t.string   "recipeimage"
   end
 
-  add_index "recipes", ["name"], name: "index_recipes_on_name", unique: true
-  add_index "recipes", ["user_id"], name: "index_recipes_on_user_id"
+  add_index "recipes", ["name"], name: "index_recipes_on_name", unique: true, using: :btree
+  add_index "recipes", ["user_id"], name: "index_recipes_on_user_id", using: :btree
 
   create_table "relationships", force: true do |t|
     t.integer  "follower_id"
@@ -65,9 +69,9 @@ ActiveRecord::Schema.define(version: 20130905141952) do
     t.datetime "updated_at"
   end
 
-  add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id"
-  add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
-  add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id"
+  add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id", using: :btree
+  add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true, using: :btree
+  add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"
@@ -79,7 +83,7 @@ ActiveRecord::Schema.define(version: 20130905141952) do
     t.boolean  "admin",           default: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
 
 end
