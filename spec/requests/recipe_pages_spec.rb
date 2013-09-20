@@ -161,7 +161,7 @@ describe "RecipePages" do
   	it { should have_title(recipe.name.titleize) }
     it { should have_content(recipe.user_id) }
     it { should have_content("Random Recipe") }
-    it { should have_content("Upload Image") }
+    it { should have_content("Upload an image") }
 
     #describe "when uploading a picture" do
       #image = :photo => File.new(RAILS_ROOT + '/spec/fixtures/files/pplogo.png')

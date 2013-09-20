@@ -19,6 +19,7 @@ group :development, :test do
   gem 'spork-rails', github: 'sporkrb/spork-rails'
   gem 'guard-spork'
   gem 'childprocess'
+  gem 'thin'
 end
 
 group :test do
