@@ -14,6 +14,10 @@ class Recipe < ActiveRecord::Base
 	validates :user_id, presence: true
 	validates :direction, presence: true
 
+	def to_param
+		"#{id}-#{name}".parameterize
+	end
+
 	def commentfeed
 		Comment.where("recipe_id = ?", id)
 	end

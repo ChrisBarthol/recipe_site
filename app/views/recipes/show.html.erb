@@ -41,7 +41,7 @@
 
    <div class="span12">
 
-    <%= link_to "Random Recipe", random_recipe_link %>
+    <%= link_to "Random Recipe", '#' %>
     
     ||
 
@@ -81,7 +81,7 @@
 
   
   <!--   Ingredient list  -->
-  <div class="span8">
+  <div class="span12">
     <% if @recipe.ingredients.any? %>
       <h3>Ingredients (<%= @recipe.ingredients.count %>)</h3>
       <ol class="ingredients">
