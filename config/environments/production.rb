@@ -27,7 +27,7 @@ RecipeSite::Application.configure do
   config.assets.compile = false
 
   # Generate digests for assets URLs
-  config.assets.digest = true
+  config.assets.digest = false
 
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
@@ -35,7 +35,7 @@ RecipeSite::Application.configure do
   # Specifies the header that your server uses for sending files
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
-  config.action_dispatch.x_sendfile_header = nil # For Heroku
+  #config.action_dispatch.x_sendfile_header = nil # For Heroku
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
