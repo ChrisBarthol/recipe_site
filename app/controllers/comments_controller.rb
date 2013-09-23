@@ -4,9 +4,10 @@ class CommentsController < ApplicationController
 
   def create
   	@comment = current_user.comments.build(comment_params)
+
   	if @comment.save
   		flash[:success] = "Comment created!"
-  		redirect_back_or root_url  #Doesn't redirect back to recipe
+  		redirect_to @comment.recipe
   	else
   		@feed_items = []
   		flash[:notice] = "Error: Failed to save"

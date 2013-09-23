@@ -1,4 +1,9 @@
 <li>
+
+      <%= gravatar_for comment.user %>
+      <h3><%= comment.user.name %></h3>
+      <%= link_to "view my profile", comment.user %>
+    
   <span class="content"><%= comment.content %></span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(comment.created_at) %> ago.
