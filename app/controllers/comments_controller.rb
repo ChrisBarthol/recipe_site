@@ -7,11 +7,14 @@ class CommentsController < ApplicationController
 
   	if @comment.save
   		flash[:success] = "Comment created!"
-  		redirect_to @comment.recipe
+  		respond_to do |format|
+        format.html { redirect_to @comment.recipe,:flash => { :notice => "Comment Created!" }}
+        format.js #requires remote true added
+      end
   	else
   		@feed_items = []
   		flash[:notice] = "Error: Failed to save"
-  		render 'static_pages/home'
+  		redirect_to @comment.recipe,:flash => { :error => "Error: Failed to save" }
   	end
   end
 
@@ -20,7 +23,11 @@ class CommentsController < ApplicationController
 
   def destroy
   	@comment.destroy
-  	redirect_to root_url
+    flash[:notice] = "Comment deleted"
+  	respond_to do |format|
+        format.html { redirect_to @comment.recipe,:flash => { :notice => "Comment removed" }}
+        format.js #requires remote true added
+      end
   end
 
   private

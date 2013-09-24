@@ -35,6 +35,7 @@ gem 'turbolinks', '1.1.1'
 gem 'jbuilder', '1.0.2'
 gem 'carrierwave'
 gem 'rmagick'
+gem 'newrelic_rpm'
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false
