@@ -106,7 +106,7 @@ describe "RecipePages" do
 
   		describe "error messages" do
   			before { click_button submit }
-  			it { should have_content('error') }
+  			it { should have_content('Error') }
   		end
 
   		describe "it should redirect to new recipe path" do
@@ -126,6 +126,8 @@ describe "RecipePages" do
         fill_in "Ingredient",	with: "Example Ingredient", :match => :first
         fill_in "Quantity",		with: "1 cup",  :match => :first
       end
+
+       it { should have_content("Upload an image") }
 
       it "should create a recipe" do
         expect { click_button submit }.to change(Recipe, :count).by(1)
@@ -161,7 +163,7 @@ describe "RecipePages" do
   	it { should have_title(recipe.name.titleize) }
     it { should have_content(recipe.user_id) }
     it { should have_content("Random Recipe") }
-    it { should have_content("Upload an image") }
+   
 
     #describe "when uploading a picture" do
       #image = :photo => File.new(RAILS_ROOT + '/spec/fixtures/files/pplogo.png')

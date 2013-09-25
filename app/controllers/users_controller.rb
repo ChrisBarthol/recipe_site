@@ -7,9 +7,8 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
       unless current_user?(user)
       user.destroy
-      flash[:success] = "User destroyed"
       end
-      redirect_to users_path
+      redirect_to users_path, :flash => {warning: "User destroyed" }
   end
 
   def saved_recipes
@@ -55,8 +54,7 @@ class UsersController < ApplicationController
   	if @user.save
       UserMailer.signup_confirmation(@user).deliver
       sign_in @user
-  		flash[:success] = "Welcome to Pantry Raid!"
-  		redirect_to @user
+  		redirect_to @user, :flash => {notice: "Welcome to Pantry Raid!" }
   	else
   		render 'new'
   	end
@@ -69,7 +67,7 @@ class UsersController < ApplicationController
     if @user.update_attributes(user_params)
       flash[:success] = "Profile Updated"
       sign_in @user
-      redirect_to @user
+      redirect_to @user, :flash => {info: "Profile updated." }
     else
       render 'edit'
     end

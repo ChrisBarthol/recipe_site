@@ -27,9 +27,7 @@ class RecipesController < ApplicationController
     recipe = Recipe.find(params[:id])
 
       recipe.destroy
-      flash[:success] = "Recipe destroyed"
-
-      redirect_to recipes_path
+      redirect_to recipes_path, :flash => {warning: "Recipe destroyed" }
   end
 
   def edit
@@ -40,8 +38,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @ingredients = @recipe.ingredients
     if @recipe.update_attributes(recipe_params)
-      flash[:success] = "Recipe Updated"
-      redirect_to @recipe
+      redirect_to @recipe, :flash => {notice: "Recipe Updated" }
     else
       render 'edit'
     end
@@ -53,6 +50,7 @@ class RecipesController < ApplicationController
   	@ingredients = @recipe.ingredients
     @comment = current_user.comments.build if signed_in?
     @commentfeed = @recipe.commentfeed.paginate(page: params[:page])
+    
   end
 
   def index
@@ -62,16 +60,13 @@ class RecipesController < ApplicationController
   def create
   	@recipe = current_user.recipes.build(recipe_params)
   	if @recipe.ingredients.blank?
-  		flash[:notice] = "There are errors on this page"
       3.times { @recipe.ingredients.build } if @recipe.ingredients.blank?
-  		render 'new'
+  		redirect_to newrecipe_path, :flash => {error: "Error: Ingredients cannot be blank" }
   	else
   		if @recipe.save
-  			flash.now[:success] = "New recipe created"
-  			redirect_to @recipe
+  			redirect_to @recipe, :flash => {notice: "New recipe created!" }
   		else
-        flash[:notice] = "Error: Failed to save"
-  			redirect_to newrecipe_path
+  			redirect_to newrecipe_path, :flash => {error: "Error: Failed to save" }
   		end
   	end
   end

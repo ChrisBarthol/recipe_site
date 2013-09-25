@@ -1,37 +1,20 @@
 <% provide(:title, @recipe.name.titleize) %>
 <% @body_class = "recipe" %>
 
-<div id="page-wrapper">
-      <div id="absolute-wrapper">
-        <div class="rectangle" id="namerec">
-          <div class="well" id="name">
-            <h1>
-            <%= @recipe.name.titleize %>
-            </h1>
-            
-
-          
-          </div>
-         
-
-          </div>
-        </div>
-      </div>
-</div>
-
-
+<div>
 
 
 <div class="center hero-unit">
-
-  <aside class="span8">
+  <aside class="span6">
     <section>
+
       <h1>
         <%= @recipe.name.titleize %>
       </h1>
       <h3>
               Submitted by <%= @recipe.user.name %>
             </h3>
+
     </section>
   </aside>
 
@@ -43,7 +26,7 @@
 
   <!-- Links to fork and editing pages  -->
 
-   <div class="span12">
+   <div class="span14">
 
     <%= link_to "Random Recipe", '#' %>
     
@@ -139,4 +122,5 @@
     </aside>
   </div>
 
+</div>
 </div>

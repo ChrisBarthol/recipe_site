@@ -17,9 +17,9 @@ class Recipe < ActiveRecord::Base
 
 	mount_uploader :recipeimage, RecipeimageUploader
 
-	def to_param
-		"#{id}-#{name}".parameterize
-	end
+	#def to_param
+	#	"#{id}-#{name}".parameterize
+	#end
 
 	def commentfeed
 		Comment.where("recipe_id = ?", id)

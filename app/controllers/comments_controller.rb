@@ -6,15 +6,14 @@ class CommentsController < ApplicationController
   	@comment = current_user.comments.build(comment_params)
 
   	if @comment.save
-  		flash[:success] = "Comment created!"
+  		
   		respond_to do |format|
-        format.html { redirect_to @comment.recipe,:flash => { :notice => "Comment Created!" }}
+        format.html { redirect_to @comment.recipe, :flash => {notice: "Comment was fully created." }}
         format.js #requires remote true added
       end
   	else
   		@feed_items = []
-  		flash[:notice] = "Error: Failed to save"
-  		redirect_to @comment.recipe,:flash => { :error => "Error: Failed to save" }
+  		redirect_to @comment.recipe, :flash => {error: "There was an error: Failed to save"}
   	end
   end
 
@@ -23,9 +22,8 @@ class CommentsController < ApplicationController
 
   def destroy
   	@comment.destroy
-    flash[:notice] = "Comment deleted"
   	respond_to do |format|
-        format.html { redirect_to @comment.recipe,:flash => { :notice => "Comment removed" }}
+        format.html { redirect_to @comment.recipe, :flash =>{info: "Comment removed"}}
         format.js #requires remote true added
       end
   end
