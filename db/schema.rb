@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130920155638) do
+ActiveRecord::Schema.define(version: 20130927180225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,9 +33,11 @@ ActiveRecord::Schema.define(version: 20130920155638) do
     t.integer  "recipe_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "unit"
   end
 
   add_index "ingredients", ["recipe_id", "name", "quantity"], name: "index_ingredients_on_recipe_id_and_name_and_quantity", using: :btree
+  add_index "ingredients", ["unit"], name: "index_ingredients_on_unit", using: :btree
 
   create_table "reciperelationships", force: true do |t|
     t.integer  "recipesaver_id"
@@ -57,9 +59,18 @@ ActiveRecord::Schema.define(version: 20130920155638) do
     t.text     "direction"
     t.integer  "fork_id"
     t.string   "recipeimage"
+    t.integer  "serving"
+    t.string   "preptime"
+    t.string   "totaltime"
+    t.string   "nutrition"
+    t.integer  "rating"
   end
 
   add_index "recipes", ["name"], name: "index_recipes_on_name", unique: true, using: :btree
+  add_index "recipes", ["preptime"], name: "index_recipes_on_preptime", using: :btree
+  add_index "recipes", ["rating"], name: "index_recipes_on_rating", using: :btree
+  add_index "recipes", ["serving"], name: "index_recipes_on_serving", using: :btree
+  add_index "recipes", ["totaltime"], name: "index_recipes_on_totaltime", using: :btree
   add_index "recipes", ["user_id"], name: "index_recipes_on_user_id", using: :btree
 
   create_table "relationships", force: true do |t|

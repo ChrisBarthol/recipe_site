@@ -29,7 +29,8 @@ describe "RecipePages" do
       let(:new_name) {"New Salt Recipe"}
       let(:new_description) {"This is a new salt recipe"}
       let(:new_ingredient) {"Sea Salt"}
-      let(:new_quantity) {"2 Cups"}
+      let(:new_quantity) {"2"}
+      let(:new_unit) {"cup"}
       let(:new_direction) {"Add all the things together"}
       before do
         visit recipe_path(recipe)
@@ -123,8 +124,14 @@ describe "RecipePages" do
         fill_in "Name",         with: "Example Recipe"
         fill_in "Description",   with: "Example Description"
         fill_in "Direction",    with: "Example Direction"
+        fill_in "Servings",   with: "4"
+        fill_in "Prep Time",  with: "23 minutes"
+        fill_in "Total Time", with: "6 hours"
+        fill_in "Rating",     with: "5"
+        fill_in "Nutrition",  with: "2 calories"
         fill_in "Ingredient",	with: "Example Ingredient", :match => :first
-        fill_in "Quantity",		with: "1 cup",  :match => :first
+        fill_in "Quantity",		with: "1",  :match => :first
+        fill_in "Units",      with: "cup", :match => :first
       end
 
        it { should have_content("Upload an image") }
@@ -140,7 +147,12 @@ describe "RecipePages" do
         it { should have_content('Example Direction') }
       	it { should have_content('Example Description') }
       	it { should have_content('Example Ingredient') }
-      	it { should have_content('1 cup') }
+      	it { should have_content('1') }
+        it { should have_content('cup') }
+        it { should have_content('4') }
+        it { should have_content('23 minutes') }
+        it { should have_content(' 6 hours') }
+        it { should have_content('2 calories') }
         it { should have_content("Fork this recipe") }
       end
     end

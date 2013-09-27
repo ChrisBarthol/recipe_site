@@ -44,7 +44,8 @@ FactoryGirl.define do
 
   factory :ingredient do
     name "Salt"
-    quantity "1 cup"
+    quantity "1"
+    unit "cup"
     recipe
   end
 end

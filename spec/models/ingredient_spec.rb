@@ -4,7 +4,7 @@ describe Ingredient do
   let(:user) { FacatoryGirl.create(:user) }
   let(:recipe) { FactoryGirl.create(:recipe) }
   before do
-  	@ingredient = Ingredient.new(name: "Salt", quantity: "1 cup", recipe_id: recipe.id)
+  	@ingredient = Ingredient.new(name: "Salt", quantity: "1", unit: "cup", recipe_id: recipe.id)
   end
 
   subject { @ingredient }
@@ -12,6 +12,7 @@ describe Ingredient do
   it { should respond_to(:name) }
   it { should respond_to(:quantity) }
   it { should respond_to(:recipe_id) }
+  it { should respond_to(:unit) }
   its(:recipe) { should eq recipe }
 
   it { should be_valid }

@@ -15,6 +15,11 @@ describe Recipe do
   it { should respond_to(:reverse_reciperelationships) }
   it { should respond_to(:recipesavers) }
   it { should respond_to(:direction) }
+  it { should respond_to(:serving) }
+  it { should respond_to(:preptime) }
+  it { should respond_to(:totaltime) }
+  it { should respond_to(:nutrition) }
+  it { should respond_to(:rating) }
  
   its(:user) { should eq user }
 

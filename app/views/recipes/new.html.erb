@@ -1,17 +1,20 @@
 <% @body_class = "about" %>
 <% provide(:title, 'Add a recipe') %>
 <h1>Add a recipe</h1>
-<div class="row">
-  <div class="span6 offset3">
-  	<%= form_for(@recipe) do |f| %>
-  			<%= render 'shared/error_messages', object: f.object %>
-    		<%= render 'recipeform', f: f %>
+<div class="container">
+  
+    
+    	<%= form_for(@recipe) do |f| %>
+    			<%= render 'shared/error_messages', object: f.object %>
+      		<%= render 'recipeform', f: f %>
 
-    	
-    	<div>	
-        <%= f.submit "Create this recipe", class: "btn btn-large btn-primary" %>
-    	</div>
+      	<div class="clearfix visible-xs"></div>
+      	<div class="row">	
+          <%= f.submit "Create this recipe", class: "btn btn-large btn-primary" %>
+      	</div>
+      
 
-	<% end %>
-  </div>
+  	<% end %>
+    
+  
 </div>

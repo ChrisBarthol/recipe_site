@@ -1,13 +1,42 @@
 <div class = "field">
+	<span class="span9">
 	  <%= f.label :name %>
 	  <%= f.text_field :name %>
+	</span>
 </div>
+	<span class="span8">
 	  <%= f.label :description %>
 	  <%= f.text_area :description %>
 
 	  <%= f.label :direction %>
-	  <%= f.text_area :direction %>
-	  <div class="span4">
+	  <%= f.text_area :direction, :rows => 10 %>
+	</span>
+	<div class="row">
+		<div class="clearfix visible-xs"></div>
+	<span class="span1">
+	  <%= f.label :serving, "Servings" %>
+	  <%= f.text_field :serving %>
+	  </span>
+	  <span class="span2">
+
+	  <%= f.label :preptime, "Prep Time" %>
+	  <%= f.text_field :preptime %>
+	</span>
+	<span class="span2">
+
+	  <%= f.label :totaltime, "Total Time" %>
+	  <%= f.text_field :totaltime %>
+	</span>
+	<span class="span1">
+
+	  <%= f.label :rating, "Rating" %>
+	  <%= f.text_field :rating %>
+	</span>
+
+	
+	</div>
+	<span class="span12">
+	  
 	  <ul id="ingredient-list">
 	  <%= f.fields_for :ingredients do |builder| %>
 	  		
@@ -16,17 +45,19 @@
 	  <% end %>
 	  <%= link_to_add_fields "Add Field", f, :ingredients %>
 	  </ul>
+	 </span>
 
-	  
+	 <%= f.label :nutrition %>
+	 <%= f.text_area :nutrition %>
+
+	<div class="span4" id="center">
 	  	Upload an image of the Recipe!
 	  	<%=f.file_field :recipeimage %>
 
 	  	<%= f.label :remote_recipeimage_url, "or image URL" %>
 	  	<%= f.text_field :remote_recipeimage_url %>
 	  
-
-
 	</div>
-	  
+
 
 	  

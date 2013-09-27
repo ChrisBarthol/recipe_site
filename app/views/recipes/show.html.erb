@@ -2,76 +2,106 @@
 <% @body_class = "about" %>
 
 
+<div id="recipetitle">
+  <div class ="row">
+    <div class="span5">
+      <h1>
+        <%= @recipe.name.titleize %>
+      </h1>
+      <h2>
+        Submitted by <%= @recipe.user.name %>
+      </p>
+        <%= @recipe.description %>
+      </p>
+      </h2>
+    </div>
 
-<div class ="row">
-  <div class="span5">
-    <h1>
-      <%= @recipe.name.titleize %>
-    </h1>
-    <h2>
-      Submitted by <%= @recipe.user.name %>
-    </p>
-      <%= @recipe.description %>
-    </p>
-    </h2>
-  </div>
-
-  <div class="span4">
-    <%= image_tag @recipe.recipeimage_url(:thumb).to_s %>
+    <div class="span4" id="pullright">
+      <%= image_tag @recipe.recipeimage_url(:thumb).to_s %>
+    </div>
   </div>
 </div>
 
   <!-- Links to fork and editing pages  -->
-
-<span class="span9">
+<div id="recipelinks">
+  <span class="span9">
     <h2>
-    <%= link_to "Random Recipe", '#' %>
-    
-    ||
+      <%= link_to "Random Recipe", '#' %>
 
-    <%= link_to "Fork this recipe", fork_recipe_path(@recipe) if signed_in? %>
-    ||
-    <%= link_to "Edit this Recipe", edit_recipe_path(@recipe) if current_user?(@recipe.user) %>
-    <p>
-    <%= render 'saverecipe_form' if signed_in? %>
-  </p>
-</h2>
-</span>
+      ||
 
-
-
+      <%= link_to "Fork this recipe", fork_recipe_path(@recipe) if signed_in? %>
+      ||
+      <%= link_to "Edit this Recipe", edit_recipe_path(@recipe) if current_user?(@recipe.user) %>
+      <p>
+        <%= render 'saverecipe_form' if signed_in? %>
+      </p>
+    </h2>
+  </span>
+</div>
 
 
+
+<div class="serving">
+  <h3><%= @recipe.name.titleize %> Info</h3>
+  <span class="span10">
+    <h4>
+      <div class="span2">Servings</div>
+      <div class="span2">Prep Time</div>
+      <div class="span2">Total Time</div>
+      <div class="span2">Rating</div>
+    </h4>
+    <div class="span2"><%= @recipe.serving %></div>
+    <div class="span2"><%= @recipe.preptime %></div>
+    <div class="span2"><%= @recipe.totaltime %></div>
+    <div class="span2"><%= @recipe.rating %></div>
+  </span>
+</div>
 
 
   
   <!--   Ingredient list  -->
+<div class="ingredientlist">
+  <h3>Ingredients (<%= @recipe.ingredients.count %>)</h3>
   <div class="span12">
     <% if @recipe.ingredients.any? %>
-      <h3>Ingredients (<%= @recipe.ingredients.count %>)</h3>
+      
+      <h4>
         <span class ="span12">
-            <div class="span4" id="center">Ingredient   </div>
             <div class="span2">Quantity</div>
+            <div class="span2">Units</div>
+            <div class="span4" id="center">Ingredient   </div>
         </span>
+      </h4>
       <ol class="ingredients">
         <%= render @ingredients %>
       </ol>
     <% end %>
   </div>
+</div>
 
     <!--  Recipe Description and Directions -->
-
+<div class="recipedirections">
+            <h3>
+          Directions
+        </h3>
   <span class="span12">
 
         <div id="directiontitle">
-          <h3>
-          Directions
-        </h3>
+
         </div>
         <%= @recipe.direction %>
         <%= @recipe.user_id %>
 
   </span>
+</div>
+
+<div class="nutrition">
+  <h3>Nutrition Information</h3>
+  <span class="span12">
+    <%= @recipe.nutrition %>
+  </span>
+</div>
 
   <!--   Carousel Example  -->
 <aside class ="span12">
