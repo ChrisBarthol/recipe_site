@@ -52,9 +52,9 @@ class UsersController < ApplicationController
   def create
   	@user = User.new(user_params)
   	if @user.save
-      UserMailer.signup_confirmation(@user).deliver
       sign_in @user
-  		redirect_to @user, :flash => {notice: "Welcome to Pantry Raid!" }
+      UserMailer.signup_confirmation(@user).deliver
+  		redirect_to root_url, :flash => {notice: "Welcome to Pantry Raid!" }
   	else
   		render 'new'
   	end
@@ -65,7 +65,6 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
-      flash[:success] = "Profile Updated"
       sign_in @user
       redirect_to @user, :flash => {info: "Profile updated." }
     else
