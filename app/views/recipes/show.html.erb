@@ -24,7 +24,7 @@
 
   <!-- Links to fork and editing pages  -->
 <div id="recipelinks">
-  <span class="span9">
+  <span class="span10">
     <h2>
       <%= link_to "Random Recipe", '#' %>
 
@@ -61,8 +61,11 @@
 
   
   <!--   Ingredient list  -->
+
 <div class="ingredientlist">
+  
   <h3>Ingredients (<%= @recipe.ingredients.count %>)</h3>
+
   <div class="span12">
     <% if @recipe.ingredients.any? %>
       
@@ -94,13 +97,15 @@
 
   </span>
 </div>
+<% if @recipe.nutrition.present? %>
+  <div class="nutrition">
+    <h3>Nutrition Information</h3>
+    <span class="span12">
+      <%= simple_format(@recipe.nutrition) %>
+    </span>
+  </div>
+<% end %>
 
-<div class="nutrition">
-  <h3>Nutrition Information</h3>
-  <span class="span12">
-    <%= simple_format(@recipe.nutrition) %>
-  </span>
-</div>
 
   <!--   Carousel Example  -->
 <aside class ="span12">

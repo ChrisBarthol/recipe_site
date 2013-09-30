@@ -173,7 +173,7 @@ describe "RecipePages" do
 
   	it { should have_content(recipe.name.titleize) }
   	it { should have_title(recipe.name.titleize) }
-    it { should have_content(recipe.user_id) }
+    it { should have_content(recipe.user.name) }
     it { should have_content("Random Recipe") }
    
 
