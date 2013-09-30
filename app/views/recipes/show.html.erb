@@ -90,8 +90,7 @@
         <div id="directiontitle">
 
         </div>
-        <%= @recipe.direction %>
-        <%= @recipe.user_id %>
+        <%= simple_format(@recipe.direction) %>
 
   </span>
 </div>
@@ -99,7 +98,7 @@
 <div class="nutrition">
   <h3>Nutrition Information</h3>
   <span class="span12">
-    <%= @recipe.nutrition %>
+    <%= simple_format(@recipe.nutrition) %>
   </span>
 </div>
 
