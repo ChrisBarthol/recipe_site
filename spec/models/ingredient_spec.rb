@@ -19,10 +19,6 @@ describe Ingredient do
   it { should be_valid }
 
 
-  describe "when quantity is not present" do
-  	before { @ingredient.quantity = nil }
-  	it { should_not be_valid }
-  end
 
   describe "when name is not present" do
   	before { @ingredient.name = nil }

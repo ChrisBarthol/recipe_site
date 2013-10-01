@@ -8,7 +8,7 @@ class Recipe < ActiveRecord::Base
 	has_many :reverse_reciperelationships, foreign_key: "recipesaved_id", class_name: "Reciperelationship", dependent: :destroy
  	has_many :recipesavers, through: :reverse_reciperelationships, source: :recipesaver
  	has_many :reciperelationships, foreign_key: "recipesaver_id", dependent: :destroy
-	accepts_nested_attributes_for :ingredients, :reject_if => lambda { |a| a[:name].blank? }, :reject_if => lambda { |a| a[:quantity].blank? }, allow_destroy: true
+	accepts_nested_attributes_for :ingredients, :reject_if => lambda { |a| a[:name].blank? }, allow_destroy: true
 	has_many :comments
 	validates :name, presence: true, uniqueness: { case_sensitive: false }
 	validates :description, presence: true
