@@ -1,7 +1,5 @@
 <fieldset>
 	<div class="clearfix visible-xs"></div>
-	
-		
 	  	<div class="span1">	
 	  		<%= f.label :quantity, "Quantity" %>
 	  		<%= f.text_field :quantity %>
@@ -13,6 +11,11 @@
 	  	<div class="span4">
 	  		<%= f.label :name, "Ingredient" %>
 	  		<%= f.text_field :name %>
+	  	</div>
+
+	  	<div class="span4">
+	  		<%= f.label :style, "Style" %>
+	  		<%= f.text_field :style %>
 	  	</div>
 
 	  		<%= f.hidden_field :_destroy %>

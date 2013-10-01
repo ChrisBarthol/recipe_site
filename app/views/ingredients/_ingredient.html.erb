@@ -1,7 +1,7 @@
 
   
 <div class="span2"><%= ingredient.quantity %> <%= ingredient.unit %></div>
-<div class="span8"><%= ingredient.name %>   </div>
+<div class="span8"><%= ingredient.name %> <% if ingredient.style.present? %>, <%= ingredient.style %>  <% end %></div>
 
 
 
