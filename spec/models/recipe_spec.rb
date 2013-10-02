@@ -20,12 +20,31 @@ describe Recipe do
   it { should respond_to(:totaltime) }
   it { should respond_to(:nutrition) }
   it { should respond_to(:rating) }
+  it { should respond_to(:ratings) }
  
   its(:user) { should eq user }
 
   it { should be_valid }
 
+  describe "rating associations" do
+    before { @recipe.save }
 
+    let!(:rating_1) do
+      FactoryGirl.create(:rating, recipe: @recipe, user_id: 1)
+    end
+    let!(:rating_2) do
+      FactoryGirl.create(:rating, recipe: @recipe, user_id: 2)
+    end
+
+    it "should destroy associated ratings" do
+      ratings = @recipe.ratings.to_a
+      @recipe.destroy
+      expect(ratings).not_to be_empty
+      ratings.each do |rating|
+        expect(Rating.where(id: rating.id)).to be_empty
+      end
+    end
+  end
 
 
   describe "when user_id is not present" do
@@ -42,7 +61,7 @@ describe Recipe do
   		end
 
   		it { should_not be_valid }
- 	end
+ 	  end
 
   describe "ingredient associations" do
 

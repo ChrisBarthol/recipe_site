@@ -8,6 +8,9 @@
 #end
 
 FactoryGirl.define do
+  sequence(:random_number) {|n| @random_number ||= (1..10).to_a.shuffle;
+    @random_number[n] }
+
   factory :user do
     sequence(:name)  { |n| "Person #{n}" }
     sequence(:email) { |n| "person_#{n}@example.com"}
@@ -46,6 +49,11 @@ FactoryGirl.define do
     name "Salt"
     quantity "1"
     unit "cup"
+    recipe
+  end
+
+  factory :rating do
+    ranking { FactoryGirl.generate(:random_number) }
     recipe
   end
 end

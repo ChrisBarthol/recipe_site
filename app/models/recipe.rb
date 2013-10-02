@@ -10,6 +10,7 @@ class Recipe < ActiveRecord::Base
  	has_many :reciperelationships, foreign_key: "recipesaver_id", dependent: :destroy
 	accepts_nested_attributes_for :ingredients, :reject_if => lambda { |a| a[:name].blank? }, allow_destroy: true
 	has_many :comments
+	has_many :ratings, dependent: :destroy
 	validates :name, presence: true, uniqueness: { case_sensitive: false }
 	validates :description, presence: true
 	validates :user_id, presence: true
