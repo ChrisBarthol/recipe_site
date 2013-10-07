@@ -1,7 +1,7 @@
 RecipeSite::Application.routes.draw do
   resources :recipes do
     member do
-      get :fork
+      get :fork, :random
     end
   end
   resources :users do

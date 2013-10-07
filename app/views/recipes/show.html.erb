@@ -26,13 +26,15 @@
 <div id="recipelinks">
   <span class="span10">
     <h2>
-      <%= link_to "Random Recipe", '#' %>
+      
 
       ||
-
       <%= link_to "Fork this recipe", fork_recipe_path(@recipe) if signed_in? %>
       ||
       <%= link_to "Edit this Recipe", edit_recipe_path(@recipe) if current_user?(@recipe.user) %>
+      ||
+      <%= link_to "Random Recipe", @random_recipe %>
+      ||
       <p>
         <%= render 'saverecipe_form' if signed_in? %>
       </p>

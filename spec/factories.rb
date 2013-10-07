@@ -8,8 +8,10 @@
 #end
 
 FactoryGirl.define do
-  sequence(:random_number) {|n| @random_number ||= (1..10).to_a.shuffle;
-    @random_number[n] }
+  sequence(:random_number) do |n|
+    @random_number ||= (1..10).to_a.shuffle
+    @random_number[n]
+  end
 
   factory :user do
     sequence(:name)  { |n| "Person #{n}" }

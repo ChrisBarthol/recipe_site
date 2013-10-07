@@ -50,6 +50,7 @@ class RecipesController < ApplicationController
   	@ingredients = @recipe.ingredients
     @comment = current_user.comments.build if signed_in?
     @commentfeed = @recipe.commentfeed.paginate(page: params[:page])
+    @random_recipe = Recipe.order('random()').first
     
   end
 
