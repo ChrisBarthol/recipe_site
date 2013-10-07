@@ -14,7 +14,7 @@ class RecipesController < ApplicationController
     if @recipe.fork_id.nil?
       @recipe.fork_id = 1
     else
-      fork_id + 1
+      @recipe.fork_id + 1
     end
     @recipe.name = Recipe.find(params[:id]).name + "-" + @recipe.fork_id.to_s
     @recipe.ingredients.each do |ingredient|

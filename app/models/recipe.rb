@@ -22,14 +22,6 @@ class Recipe < ActiveRecord::Base
 	#	"#{id}-#{name}".parameterize
 	#end
 
-	def random_recipe
-		newrecipe = Recipe.order("RANDOM()").limit(1)
-		if Recipe.find(newrecipe.description).present?
-		else
-		   random_recipe(recipe)
-		end
-	end
-
 	def commentfeed
 		Comment.where("recipe_id = ?", id)
 	end
