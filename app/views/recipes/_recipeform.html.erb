@@ -29,8 +29,11 @@
 	</span>
 	<span class="span1">
 
-	  <%= f.label :rating, "Rating" %>
-	  <%= f.text_field :rating %>
+	  <%= f.fields_for :ratings do |builder| %>
+
+	  		<%= render 'rating_fields', :f => builder %>
+	  <% end %>
+
 	</span>
 
 	

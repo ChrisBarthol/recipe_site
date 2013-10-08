@@ -1,0 +1,8 @@
+<span class="span2">
+
+	  <%= f.label :ranking, "Rating" %>
+	  <%= f.text_field :ranking %>
+
+	  <div><%= f.hidden_field :recipe_id, :value => @recipe.id %></div>
+	  <div><%= f.hidden_field :user_id, :value => current_user.id %></div>
+</span>
