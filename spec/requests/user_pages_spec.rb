@@ -118,11 +118,24 @@ describe "User pages" do
 		let(:user) { FactoryGirl.create(:user) }
     let!(:c1)  { FactoryGirl.create(:comment, user: user, content: "Foo") }
     let!(:c2)  { FactoryGirl.create(:comment, user: user, content: "Bar") }
+    let(:submituser) { FactoryGirl.create(:user) }
+    let(:submitrecipe) { FactoryGirl.create(:recipe, user: user) }
 
 		before { visit user_path(user) }
 
 		it { should have_content(user.name) }
 		it { should have_title(user.name) }
+    it { should have_content('submitted recipes')}
+
+    describe "show recipes" do
+      before do
+        sign_in user
+        visit user_path(user)
+      end
+
+      it { should have_link("0 submitted recipes", href: show_recipes_user_path(user)) }
+    end
+
 
     describe "comments" do
       it { should have_content(c1.content) }

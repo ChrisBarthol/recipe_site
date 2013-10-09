@@ -15,9 +15,9 @@
   </aside>
   <div class="span8">
     <h3><%= @title %></h3>
-    <% if @user.saved_recipes.any? %>
+    <% if @user.recipes.any? %>
       <ul class="users">
-        <%= render @user.saved_recipes %>
+        <%= render @user.recipes %>
       </ul>
       <%= will_paginate @recipe %>
     <% end %>

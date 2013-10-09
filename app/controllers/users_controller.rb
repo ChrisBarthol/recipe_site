@@ -18,6 +18,12 @@ class UsersController < ApplicationController
     render 'show_saved'
   end
 
+  def show_recipes
+    @title = "Submitted Recipes"
+    @user= User.find(params[:id])
+    @recipe = @user.recipes.paginate(page: params[:page])
+  end
+
   def following
     @title="Following"
     @user = User.find(params[:id])
