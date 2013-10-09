@@ -1,2 +1,2 @@
 $("#saverecipe_form").html("<%= escape_javascript(render('recipes/remove')) %>")
-
+$("#<%= @recipe.id %>").html("<%= escape_javascript(render('recipes/remove')) %>")

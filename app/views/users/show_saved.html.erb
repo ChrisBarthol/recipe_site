@@ -16,7 +16,7 @@
   <div class="span8">
     <h3><%= @title %></h3>
     <% if @user.saved_recipes.any? %>
-      <ul class="recipes">
+      <ul class="users">
         <%= render @user.saved_recipes %>
       </ul>
       <%= will_paginate @recipe %>

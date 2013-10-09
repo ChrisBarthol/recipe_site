@@ -1,6 +1,6 @@
 
   <div id="saverecipe_form">
-  <% if current_user.recipesaved?(@recipe) %>
+  <% if current_user.recipesaved?(recipe) %>
     <%= render 'recipes/remove' %>
   <% else %>
     <%= render 'recipes/save' %>

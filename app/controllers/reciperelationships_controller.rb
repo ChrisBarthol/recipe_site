@@ -4,6 +4,7 @@ class ReciperelationshipsController < ApplicationController
   def create
     @recipe = Recipe.find(params[:reciperelationship][:recipesaved_id])
     current_user.recipesave!(@recipe)
+    toadd = @recipe.name
      respond_to do |format|
       format.html { redirect_to @recipe }
       format.js
@@ -13,6 +14,7 @@ class ReciperelationshipsController < ApplicationController
   def destroy
     @recipe = Reciperelationship.find(params[:id]).recipesaved
     current_user.recipedelete!(@recipe)
+    todelete = @recipe.name
      respond_to do |format|
       format.html { redirect_to @recipe }
       format.js

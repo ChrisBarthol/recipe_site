@@ -65,8 +65,11 @@ describe "RecipePages" do
 
     describe "pagination" do
       let(:user1) {FactoryGirl.create(:user, name: "erfn", email: "ena@gmail.com") }
+      let(:user2) {FactoryGirl.create(:user) }
+      let(:recipe) {FactoryGirl.create(:recipe, id:100) }
       before do
         31.times { FactoryGirl.create(:recipe, user: user1) }
+        31.times { FactoryGirl.create(:recipe, user: user2) }
         visit recipes_path
       end
 
