@@ -192,6 +192,11 @@ describe "RecipePages" do
         click_link "Fork this recipe"
       end
 
+      #Don't know how to implement this yet
+      #it "should not make a new recipe" do
+      #  expect { click_button 'Create this recipe' }.to_not change(Recipe, :count)
+      #end
+
       describe "change the recipe" do
         before do
           fill_in "Name",         with: "New Example Recipe"
@@ -201,6 +206,7 @@ describe "RecipePages" do
 
         it { should have_title("New Example Recipe") }
         it { should have_content("New Description") }
+        it { should have_content("New Example Recipe Forked By "+recipe.user.name.capitalize) }
       end
 
     end

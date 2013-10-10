@@ -14,15 +14,21 @@ class RecipesController < ApplicationController
     @name=@existing_recipe.name
     @username = @existing_recipe.user.name.downcase
     array = [Regexp.union(@username), Regexp.union('forked by')]
-    #@name2 = @name.split.delete_if{|x| array.include?(x)}.join('')
     @name2 = @name.gsub(Regexp.union(array), '').split.join(' ')
     @recipe= Recipe.new(@existing_recipe.attributes)
     @recipe.fork_id = @newfork
     @recipe.name = @name2 + ' forked by ' + current_user.name
+    
     @recipe.ingredients.each do |ingredient|
       ingredient.id = nil
     end
-    render 'new'
+
+      if @recipe.name.downcase == @existing_recipe.name.downcase
+          flash[:warning] = "You've forked this recipe please update your fork"
+          render 'new'
+      else
+          render 'new'
+      end
   end
 
   def destroy
