@@ -4,6 +4,8 @@
 <div class="span1.5" >
 <div id="<%= recipe.id %>">
   <% if current_user == nil %>
+    <%= link_to recipe.name, recipe %>
+
   <% else %>
   <% if current_user.recipesaved?(recipe) %>
     <%= form_for(current_user.reciperelationships.find_by(recipesaved_id: recipe),
@@ -16,10 +18,11 @@
   	<%= f.submit "Save", class: "btn btn-small btn-primary" %>
 	<% end %>
   <% end %>
+  --  <%= link_to recipe.name, recipe %>
   <% end %>
  </div> 
 </div>
-  --  <%= link_to recipe.name, recipe %>
+  
 
 </li>
 

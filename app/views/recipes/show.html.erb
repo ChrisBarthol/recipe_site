@@ -28,9 +28,9 @@
     <h2>
       
 
-      ||
-      <%= link_to "Fork this recipe", fork_recipe_path(@recipe) if signed_in? %>
-      ||
+      <% if signed_in? %>
+       || <%= link_to "Fork this recipe", fork_recipe_path(@recipe) if signed_in? %>
+      <% end %>
       <%= link_to "Edit this Recipe", edit_recipe_path(@recipe) if current_user?(@recipe.user) %>
       ||
       <%= link_to "Random Recipe", @random_recipe %>
@@ -115,7 +115,7 @@
 <% end %>
 
 
-  <!--   Carousel Example  -->
+<!--   <!--   Carousel Example  
 <aside class ="span12">
  <div class="container">
     <h1>Use Your Leftover Ingredients!</h1>
@@ -126,17 +126,18 @@
                 <li data-target="#myCarousel" data-slide-to="1"></li>
                 <li data-target="#myCarousel" data-slide-to="2"></li>
             </ol>
-            <!-- Carousel items -->
+            <!-- Carousel items 
             <div class="carousel-inner">
                 <div class="active item"><img src="http://dummyimage.com/960x500/fff/000" alt="Slide 1"></div>
                 <div class="item"><img src="http://dummyimage.com/960x500/fff/000" alt="Slide 2"></div>
                 <div class="item"><img src="http://dummyimage.com/960x500/fff/000" alt="Slide 3"></div>
             </div>
-            <!-- Carousel nav -->
+            <!-- Carousel nav 
             <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
             <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
         </div>
   </div><!--//container-->
+
 </aside>
 <div class="row">
   <div>
