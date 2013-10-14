@@ -29,7 +29,7 @@
       
 
       <% if signed_in? %>
-       || <%= link_to "Fork this recipe", fork_recipe_path(@recipe) if signed_in? %>
+       || <%= link_to "Fork this recipe", fork_recipe_path(@recipe) if signed_in? %> ||
       <% end %>
       <%= link_to "Edit this Recipe", edit_recipe_path(@recipe) if current_user?(@recipe.user) %>
       ||
