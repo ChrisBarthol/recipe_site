@@ -11,33 +11,6 @@ class UsersController < ApplicationController
       redirect_to users_path, :flash => {warning: "User destroyed" }
   end
 
-  def saved_recipes
-    @title= "Saved Recipes"
-    @user= User.find(params[:id])
-    @recipe = @user.saved_recipes.paginate(page: params[:page])
-    render 'show_saved'
-  end
-
-  def show_recipes
-    @title = "Submitted Recipes"
-    @user= User.find(params[:id])
-    @recipe = @user.recipes.paginate(page: params[:page])
-  end
-
-  def following
-    @title="Following"
-    @user = User.find(params[:id])
-    @users = @user.followed_users.paginate(page: params[:page])
-    render 'show_follow'
-  end
-
-  def followers
-    @title = "Followers"
-    @user = User.find(params[:id])
-    @users = @user.followers.paginate(page: params[:page])
-    render 'show_follow'
-  end
-
   def show
   	@user = User.find(params[:id])
     @comments = @user.comments.paginate(page: params[:page])
@@ -45,6 +18,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.paginate(page: params[:page])
+    @newest = User.order('created_at DESC').limit(5)
   end
   
   def new
@@ -75,6 +49,33 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def saved_recipes
+    @title= "Saved Recipes"
+    @user= User.find(params[:id])
+    @recipe = @user.saved_recipes.paginate(page: params[:page])
+    render 'show_saved'
+  end
+
+  def show_recipes
+    @title = "Submitted Recipes"
+    @user= User.find(params[:id])
+    @recipe = @user.recipes.paginate(page: params[:page])
+  end
+
+  def following
+    @title="Following"
+    @user = User.find(params[:id])
+    @users = @user.followed_users.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "Followers"
+    @user = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
   end
 
   private

@@ -1,8 +1,9 @@
 
-
+<table class="table table-condensed">
 <div class="span2"><%= ingredient.quantity %> <%= ingredient.unit %></div>
 
-<div class="span8"><div class="info_link"><%= ingredient.name %></div> <% if ingredient.style.present? %><%= ingredient.style %>  <% end %></div>
+<span class="info_link"><%= ingredient.name %></span> <% if ingredient.style.present? %><%= ingredient.style %>  <% end %>
+</table>
 
 
 

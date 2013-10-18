@@ -60,6 +60,16 @@ class RecipesController < ApplicationController
     @commentfeed = @recipe.commentfeed.paginate(page: params[:page])
     @random_recipe = Recipe.order('random()').first
 
+    @recipetwo = Recipe.find_by_id(@recipe.id+1)
+    if @recipetwo.nil?
+      @recipetwo = Recipe.order('random()').first
+    end
+    @recipethree = Recipe.find_by_id(@recipe.id-1)
+    if @recipethree.nil?
+      @recipethree = Recipe.order('random()').first
+    end
+
+
     @ratings = @recipe.ratings
 
     if @ratings.length > 0
@@ -80,6 +90,7 @@ class RecipesController < ApplicationController
 
   def index
     @recipes = Recipe.paginate(page: params[:page])
+    @newest = Recipe.order('created_at DESC').limit(5)
   end
 
   def create

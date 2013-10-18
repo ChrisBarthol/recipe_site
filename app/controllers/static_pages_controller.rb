@@ -3,6 +3,7 @@ class StaticPagesController < ApplicationController
     if signed_in?
       @comment = current_user.comments.build
       @feed_items = current_user.feed.paginate(page:params[:page])
+      @newest = Recipe.order('created_at DESC').limit(5)
     end
   end
 

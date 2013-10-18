@@ -1,0 +1,8 @@
+<div>
+	<h3>Newest Recipes:</h3>
+	<ul>
+	    <% @newest.each do |recipe| %>
+	   	 <li><%= link_to recipe.name.titleize, recipe_path(recipe) %></li><%= image_tag recipe.recipeimage_url(:thumb).to_s %>
+	    <% end %>
+	</ul>
+</div>

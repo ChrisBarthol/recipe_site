@@ -2,6 +2,15 @@
 <% provide(:title, 'All users') %>
 <h1>All users</h1>
 
+	<!-- <div>
+	      <h3>Newest Users:</h3>
+	      <ul>
+	        <% @newest.each do |user| %>
+	          <li><%= user.name %></li>
+	        <% end %>
+	      </ul>
+	    </div> -->
+
 <%= will_paginate %>
 
 <ul class="users">
