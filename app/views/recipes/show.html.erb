@@ -43,10 +43,17 @@
 </div>
 
 <%= @newrating %>
-
-<%= @rating %>
-
-
+<% if signed_in? %>
+<%= form_for Rating.new do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_field :ranking %>
+    <div><%= f.hidden_field :recipe_id, :value => @recipe.id %></div>
+    <div><%= f.hidden_field :user_id, :value => current_user.id %></div>
+  </div>
+  <%= f.submit "Rate this Recipe", class: "btn btn-small btn-primary" %>
+<% end %>
+<% end %>
 
 
 <div class="serving">

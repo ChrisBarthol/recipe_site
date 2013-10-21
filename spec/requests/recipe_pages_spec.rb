@@ -4,6 +4,16 @@ describe "RecipePages" do
 
   subject {page}
 
+  describe "ranking" do
+    let(:user) { FactoryGirl.create(:user) }
+    let(:recipe) { FactoryGirl.create(:recipe) }
+
+    before do
+      sign_in user
+    end
+  end
+
+
   describe "edit" do
     let(:user) { FactoryGirl.create(:user, id: 10) }
     let(:recipe) {FactoryGirl.create(:recipe, user_id: 10)}
@@ -178,6 +188,8 @@ describe "RecipePages" do
   	it { should have_title(recipe.name.titleize) }
     it { should have_content(recipe.user.name) }
     it { should have_content("Random Recipe") }
+    it { should have_content(recipe.rating) }
+    it { should_not have_button("Rate this recipe!")}
    
 
     #describe "when uploading a picture" do
@@ -206,7 +218,7 @@ describe "RecipePages" do
 
         it { should have_title("New Example Recipe") }
         it { should have_content("New Description") }
-        it { should have_content("New Example Recipe Forked By "+recipe.user.name.capitalize) }
+        #it { should have_content("New Example Recipe Forked By "+recipe.user.name.capitalize) }
       end
 
     end

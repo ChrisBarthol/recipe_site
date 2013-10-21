@@ -60,6 +60,7 @@ class RecipesController < ApplicationController
     @commentfeed = @recipe.commentfeed.paginate(page: params[:page])
     @random_recipe = Recipe.order('random()').first
 
+    #Carousel Images
     @recipetwo = Recipe.find_by_id(@recipe.id+1)
     if @recipetwo.nil?
       @recipetwo = Recipe.order('random()').first
@@ -69,22 +70,8 @@ class RecipesController < ApplicationController
       @recipethree = Recipe.order('random()').first
     end
 
-
-    @ratings = @recipe.ratings
-
-    if @ratings.length > 0
-       @newrating = @ratings.collect{|r| r.rankings[label]}.compact.map(&:to_f).sum / @ratings.length
-    else
-      @newrating = "Not Reviewed"
-    end
-
-    #@rating.reject{|rating| rating.rankings[label].nil?}.collect{|rating| rating.rankings[label].to_i}.sum.to_f/@ratings.length if @ratings.length > 0
-
-    #@rating = @recipe.rating.average('ranking')
-
-    #@ordered_hash = Rating.group('recipe_id').average('ranking')
-    #@keys = @ordered_hash.keys
-    #@ratings = Rating.where(:recipe_id=>@keys).uniq { |x| x.recipe_id}
+    #Recipe Rankings
+    @newrating = Rating.where("recipe_id = ?", @recipe.id).average('ranking')
     
   end
 
