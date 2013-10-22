@@ -20,4 +20,3 @@ $(document).on 'click', '.info_link', (event) ->
   $('.info_link').css({'font-weight':'normal'})
   $(this).css({'font-weight':'bold'})
   ingredient = $(this).text()
-  alert($(this).text())

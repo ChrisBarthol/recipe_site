@@ -4,6 +4,10 @@ class RatingsController < ApplicationController
 
   def create
   	@rating = Rating.new(rating_params)
+  	@oldrating = Rating.where("recipe_id = ?", @rating.recipe_id).sum('ranking')
+  	@ratingcount = Rating.where("recipe_id = ?", @rating.recipe_id).count
+  	@newrating = ((@oldrating+@rating.ranking)/(@ratingcount+1)).round
+  	@yourrating = @rating.ranking
   	if @rating.save
   	respond_to do |format|
         format.html { redirect_to root_url, :flash => {notice: "Rating was added!" }}

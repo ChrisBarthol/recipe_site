@@ -42,34 +42,22 @@
   </span>
 </div>
 
-<%= @newrating %>
-<% if signed_in? %>
-<%= form_for Rating.new do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <div class="field">
-    <%= f.text_field :ranking %>
-    <div><%= f.hidden_field :recipe_id, :value => @recipe.id %></div>
-    <div><%= f.hidden_field :user_id, :value => current_user.id %></div>
-  </div>
-  <%= f.submit "Rate this Recipe", class: "btn btn-small btn-primary" %>
-<% end %>
-<% end %>
 
 
 <div class="serving">
   <h3><%= @recipe.name.titleize %> Info</h3>
   <span class="span10">
-    <h4>
+          <h4>
       <div class="span2">Servings</div>
       <div class="span2">Prep Time</div>
       <div class="span2">Total Time</div>
-      <div class="span2">Rating</div>
+      <div class="span2" id="endinfo">Rating</div>
     </h4>
     <div class="span2"><%= @recipe.serving %></div>
     <div class="span2"><%= @recipe.preptime %></div>
     <div class="span2"><%= @recipe.totaltime %></div>
-    <div class="span2"><%= @newrating %></div>
-    
+      <%= render 'recipes/recipeinfo' %>
+      <%= render 'recipes/rating_fields' %>
   </span>
 </div>
 

@@ -72,6 +72,11 @@ class RecipesController < ApplicationController
 
     #Recipe Rankings
     @newrating = Rating.where("recipe_id = ?", @recipe.id).average('ranking')
+    if @newrating == nil
+      @newrating = "Not Reviewed"
+    else
+      @newrating.round
+    end
     
   end
 

@@ -1,0 +1,6 @@
+$("#rating2").html("<%= escape_javascript(render('recipes/recipeinfo')) %>");
+$("#endinfo").after("Your Rating")
+$("#ratingfield").css({'font-weight':'bold'});
+$("#ratingfield").replaceWith("<%= escape_javascript(render('recipes/yourrating')) %>");
+
+
