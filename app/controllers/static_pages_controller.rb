@@ -17,5 +17,7 @@ class StaticPagesController < ApplicationController
   end
 
   def tour
+    @newest = Recipe.order('created_at DESC').limit(5)
+    #@recipe = Recipe.find_by_id
   end
 end

@@ -70,6 +70,13 @@ class RecipesController < ApplicationController
       @recipethree = Recipe.order('random()').first
     end
 
+    #Find ingredients
+
+    #submit name of ingredient from jquery when users clicks
+    #@submitedname = 
+
+    #@onerecipe = Ingredient.where("name = ?", @submitedname).first
+
     #Recipe Rankings
     @newrating = Rating.where("recipe_id = ?", @recipe.id).average('ranking')
     if @newrating == nil
