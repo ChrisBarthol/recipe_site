@@ -12,4 +12,8 @@ class Comment < ActiveRecord::Base
     where("user_id IN (#{followed_user_ids}) OR user_id = :user_id",
           user_id: user.id)
   	end
+
+  	def commentfeed
+		Comment.where("recipe_id = ?", id)
+	end
 end

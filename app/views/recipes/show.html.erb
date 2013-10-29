@@ -109,6 +109,7 @@
   </div>
 <% end %>
 
+<% @new_recipe %>
 
 <!--  Carousel Example  -->
 <aside class ="span12">
@@ -123,9 +124,9 @@
             </ol>
             <!-- Carousel items -->
             <div class="carousel-inner">
-                <div class="active item"><%= image_tag @recipe.recipeimage_url %></div>
-                <div class="item"><%= image_tag @recipetwo.recipeimage_url %></div>
-                <div class="item"><%= image_tag @recipethree.recipeimage_url %></div>
+                <div class="active item" id="one"><%= image_tag @recipe.recipeimage_url %></div>
+                <div class="item" id="two"><%= image_tag @recipetwo.recipeimage_url %></div>
+                <div class="item" id="three"><%= image_tag @recipethree.recipeimage_url %></div>
             </div>
             <!-- Carousel nav  -->
             <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
@@ -160,7 +161,7 @@
     </section>
   </aside>
 </div>
-<div class="row">
+<div class="row" id="commentfeed">
   <aside class="span12">
     <section>
       <%= render @commentfeed %>

@@ -72,10 +72,11 @@ class RecipesController < ApplicationController
 
     #Find ingredients
 
+    
     #submit name of ingredient from jquery when users clicks
     #@submitedname = 
 
-    #@onerecipe = Ingredient.where("name = ?", @submitedname).first
+    #@oneingredient = Ingredient.where("name = ?", @submitedname)
 
     #Recipe Rankings
     @newrating = Rating.where("recipe_id = ?", @recipe.id).average('ranking')
@@ -85,6 +86,12 @@ class RecipesController < ApplicationController
       @newrating.round
     end
     
+  end
+
+  def newingredient
+    @newingredient = Ingredient.where("name = ? ", new_ingredient).first
+    @newrecipe = Recipe.where("recipe.ingredient.name = ? ", new_ingredient).first
+    @new_recipe = @newrecipe.name
   end
 
   def index

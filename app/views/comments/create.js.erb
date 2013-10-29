@@ -1,3 +1,5 @@
-$("#comment_form").html("<%= escape_javascript(render('@commentfeed)') %>");
-$("#comment_form").html("<%= escape_javascript(render('shared/comment_form') %>");
-window.alert("sometext");
+$('#comment_listing').first().prepend("<%= escape_javascript(render('comments/newcomment')) %>");
+$('#comment_content').val('');
+
+
+

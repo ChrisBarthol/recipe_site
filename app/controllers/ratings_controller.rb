@@ -11,7 +11,7 @@ class RatingsController < ApplicationController
   	if @rating.save
   	respond_to do |format|
         format.html { redirect_to root_url, :flash => {notice: "Rating was added!" }}
-        format.js #requires remote true added
+        format.js
     end
 end
   end
