@@ -27,16 +27,8 @@
 	  <%= f.label :totaltime, "Total Time" %>
 	  <%= f.text_field :totaltime %>
 	</span>
-	<span class="span1">
 
-	  <%= f.fields_for :ratings do |builder| %>
 
-	  		<%= render 'rating_fields', :f => builder %>
-	  <% end %>
-
-	</span>
-
-	
 	</div>
 	<span class="span12">
 	  

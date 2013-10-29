@@ -52,6 +52,16 @@ class RecipesController < ApplicationController
     end
   end
 
+  def newingredient
+    @newingredient = Ingredient.find_by_name(params[:name])
+    t = Ingredient.where("name = ?", @newingredient).first
+
+    # respond_to do |format|
+    #     format.html { redirect_to root_url, :flash => {notice: "Comment was fully created." }}
+    #     format.js
+    # end
+  end
+
   def show
     
   	@recipe = Recipe.find(params[:id])
@@ -72,7 +82,7 @@ class RecipesController < ApplicationController
 
     #Find ingredients
 
-    
+    t = Ingredient.where("name = ?", :data).first
     #submit name of ingredient from jquery when users clicks
     #@submitedname = 
 
@@ -88,11 +98,9 @@ class RecipesController < ApplicationController
     
   end
 
-  def newingredient
-    @newingredient = Ingredient.where("name = ? ", new_ingredient).first
-    @newrecipe = Recipe.where("recipe.ingredient.name = ? ", new_ingredient).first
-    @new_recipe = @newrecipe.name
-  end
+
+
+
 
   def index
     @recipes = Recipe.paginate(page: params[:page])

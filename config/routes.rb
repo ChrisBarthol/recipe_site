@@ -1,7 +1,7 @@
 RecipeSite::Application.routes.draw do
   resources :recipes do
     member do
-      get :fork, :random
+      get :fork, :random, :newingredient
     end
   end
   resources :users do
@@ -25,6 +25,7 @@ RecipeSite::Application.routes.draw do
   match '/signup',    to: 'users#new',            via: 'get'
   match '/signout',   to: 'sessions#destroy',     via: 'delete'
   match '/signin',    to: 'sessions#new',         via: 'get'
+  match '/recipes/newingredient',       to: 'recipes#newingredient', via: 'post'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

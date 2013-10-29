@@ -4,7 +4,16 @@ $(function(){
     $('.info_link').css({'font-weight':'normal'})
     $(this).css({'font-weight':'bold'})
 
-    showingredient = this.text;
+    var t = $(this).text();
+    
+
+    $.ajax( '/recipes/newingredient',{
+    	type: 'POST',
+    	data: {'name': t},
+    	success: function(t){
+    		alert(t);
+    	},
+    });
 
    //  reloadCarousel: (data) ->
    //  alert("This worked!")	
