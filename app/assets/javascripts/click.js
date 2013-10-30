@@ -11,8 +11,10 @@ $(function(){
     	type: 'POST',
     	data: {'name': t},
     	success: function(t){
-    		alert(t);
+
+    		alert("Hi");
     	},
+
     });
 
    //  reloadCarousel: (data) ->

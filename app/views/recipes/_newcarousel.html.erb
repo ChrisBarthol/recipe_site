@@ -1,0 +1,16 @@
+<div id="myCarousel" class="carousel slide" style="width: 300px; margin: 0 auto">
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+            <!-- Carousel items -->
+            <div class="carousel-inner">
+                <div class="active item" id="one"><%= link_to image_tag(@one.recipeimage_url), { :action => :show, :id => @one.id} %><%= link_to @one.name, Recipe.find_by_id(@one.id) %></div>
+                <div class="item" id="two"></div>
+                <div class="item" id="three"></div>
+            </div>
+            <!-- Carousel nav  -->
+            <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+            <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+</div>

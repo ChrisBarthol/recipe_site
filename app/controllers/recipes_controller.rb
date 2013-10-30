@@ -54,12 +54,15 @@ class RecipesController < ApplicationController
 
   def newingredient
     @newingredient = Ingredient.find_by_name(params[:name])
-    t = Ingredient.where("name = ?", @newingredient).first
+    t = Ingredient.where("name = ?", @newingredient.name).first
+    @one1 = Recipe.joins(:ingredients).where('ingredients.name = ?', params[:name]).first
+    @one = Recipe.find_by_id(@one1.id)
 
-    # respond_to do |format|
-    #     format.html { redirect_to root_url, :flash => {notice: "Comment was fully created." }}
-    #     format.js
-    # end
+    respond_to do |format|
+        format.js
+        format.html { redirect_to root_url, :flash => {notice: "Comment was fully created." }}
+         
+     end
   end
 
   def show
@@ -91,9 +94,9 @@ class RecipesController < ApplicationController
     #Recipe Rankings
     @newrating = Rating.where("recipe_id = ?", @recipe.id).average('ranking')
     if @newrating == nil
-      @newrating = "Not Reviewed"
+      @newrating1 = "Not Reviewed"
     else
-      @newrating.round
+      @newrating1 = @newrating.round
     end
     
   end

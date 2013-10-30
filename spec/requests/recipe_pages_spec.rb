@@ -140,7 +140,7 @@ describe "RecipePages" do
         fill_in "Servings",   with: "4"
         fill_in "Prep Time",  with: "23 minutes"
         fill_in "Total Time", with: "6 hours"
-        fill_in "Rating",     with: "5"
+
         fill_in "Nutrition",  with: "2 calories"
         fill_in "Ingredient",	with: "Example Ingredient", :match => :first
         fill_in "Quantity",		with: "1",  :match => :first
