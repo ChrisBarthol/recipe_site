@@ -12,7 +12,6 @@ $(function(){
     	data: {'name': t},
     	success: function(t){
 
-    		alert("Hi");
     	},
 
     });
