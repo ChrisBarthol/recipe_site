@@ -10,7 +10,19 @@ describe "RecipePages" do
 
     before do
       sign_in user
+      visit recipe_path(recipe)
     end
+    
+    describe "submit a ranking", :js => true do
+
+      before do
+        fill_in "Rating", with: "2"
+        click_button "Rate this Recipe"
+      end
+      
+      it { should have_content('Your Rating') }
+    end
+
   end
 
 
