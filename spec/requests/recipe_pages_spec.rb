@@ -4,7 +4,7 @@ describe "RecipePages" do
 
   subject {page}
 
-  describe "ranking" do
+  describe "JS submits" do
     let(:user) { FactoryGirl.create(:user) }
     let(:recipe) { FactoryGirl.create(:recipe) }
 
@@ -13,7 +13,7 @@ describe "RecipePages" do
       visit recipe_path(recipe)
     end
     
-    describe "submit a ranking", :js => true do
+    describe "submit a rating", :js => true do
 
       before do
         fill_in "Rating", with: "2"
@@ -21,7 +21,30 @@ describe "RecipePages" do
       end
       
       it { should have_content('Your Rating') }
+      it { should_not have_button('Rate this Recipe') }
+
+      describe "resubmitting a rating" do
+
+        before do
+          visit recipe_path(recipe)
+        end
+
+        it { should_not have_button('Rate this Recipe') }
+        it { should have_content('Your Rating') }
+      end
     end
+
+    describe "submit a comment", :js => true do
+
+      before do 
+        fill_in "comment_content", with: "Testing the comment"
+        click_button "Post"
+      end
+
+      it { should have_content(user.name) }
+      it { should have_content( "Testing the comment") }
+    end
+
 
   end
 

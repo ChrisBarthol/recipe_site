@@ -84,6 +84,9 @@ class RecipesController < ApplicationController
     end
 
     #Find ingredients
+    if signed_in?
+    @haverating = Rating.where('recipe_id = ?', @recipe.id).first
+    end
 
     t = Ingredient.where("name = ?", :data).first
     #submit name of ingredient from jquery when users clicks

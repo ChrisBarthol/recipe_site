@@ -1,8 +1,11 @@
-<%= form_for(Comment.new, :remote => true) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <div class="field">
-    <%= f.text_area :content, placeholder: "Compose new comment..." %>
-    <div><%= f.hidden_field :recipe_id, :value => @recipe.id %></div>
-  </div>
-  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+<% if signed_in? %>
+	<%= form_for(Comment.new, :remote => true) do |f| %>
+	  <%= render 'shared/error_messages', object: f.object %>
+	  <div class="field">
+
+	    <%= f.text_area :content, placeholder: "Compose new comment..." %>
+	    <div><%= f.hidden_field :recipe_id, :value => @recipe.id %></div>
+	  </div>
+	  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+	<% end %>
 <% end %>

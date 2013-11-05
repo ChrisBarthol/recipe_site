@@ -26,6 +26,10 @@ class Recipe < ActiveRecord::Base
 		Comment.where("recipe_id = ?", id)
 	end
 
+	def rankingrecipe(recipe)
+		Ranking.where("recipe_id = ? AND user_id = ?", recipe.id, current_user.id)
+	end
+
 	def recipesaved?(recipe)
  		reciperelationships.find_by(recipesaved_id: recipe.id)
  	end

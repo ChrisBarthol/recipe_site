@@ -46,16 +46,22 @@
 
 <div class="serving">
   <h3><%= @recipe.name.titleize %> Info</h3>
-  <span class="span10">
+  <span class="span11">
           <h4>
       <div class="span2">Servings</div>
       <div class="span2">Prep Time</div>
       <div class="span2">Total Time</div>
       <div class="span2" id="endinfo">Rating</div>
+      <% if signed_in? %>
+      <div class="span2">Your Rating</div>
+      <% else %>
+      <div class="span2"><%= link_to "Sign in to rate!", signin_path %></div>
+      <% end %>
     </h4>
     <div class="span2"><%= @recipe.serving %></div>
     <div class="span2"><%= @recipe.preptime %></div>
     <div class="span2"><%= @recipe.totaltime %></div>
+    
       <%= render 'recipes/recipeinfo' %>
       <%= render 'recipes/rating_fields' %>
   </span>
@@ -161,9 +167,5 @@
   </aside>
 </div>
 <div class="row" id="commentfeed">
-  <aside class="span12">
-    <section>
-      <%= render @commentfeed %>
-    </section>
-  </aside>
+      <%= render @commentfeed %> 
 </div>
