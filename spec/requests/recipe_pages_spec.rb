@@ -224,7 +224,12 @@ describe "RecipePages" do
     it { should have_content(recipe.user.name) }
     it { should have_content("Random Recipe") }
     it { should have_content(recipe.rating) }
+
+    #not signed in user
     it { should_not have_button("Rate this recipe!")}
+    it { should_not have_button("Post") }
+    it { should_not have_content("Your Rating") }
+    it { should have_link('Sign in to rate!', href: signin_path) }
    
 
     #describe "when uploading a picture" do
