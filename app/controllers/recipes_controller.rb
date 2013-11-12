@@ -55,8 +55,16 @@ class RecipesController < ApplicationController
   def newingredient
     @newingredient = Ingredient.find_by_name(params[:name])
     t = Ingredient.where("name = ?", @newingredient.name).first
-    @one1 = Recipe.joins(:ingredients).where('ingredients.name = ?', params[:name]).first
+    @getthree = Recipe.joins(:ingredients).where('ingredients.name = ?', params[:name]).order('random()').first(3)
+    @one1 = @getthree.first
+    @getthree.shift
+    @two2 = @getthree.first
+    @getthree.shift
+    @three3 = @getthree.first
+
     @one = Recipe.find_by_id(@one1.id)
+    @two = Recipe.find_by_id(@two2.id)
+    @three = Recipe.find_by_id(@three3.id)
 
     respond_to do |format|
         format.js

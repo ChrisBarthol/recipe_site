@@ -1,4 +1,4 @@
-$heroUnitBackground: #36546E;
+$heroUnitBackground: white;
 $sansFontFamily: 'Allerta', Helvetica, Arial, sans-serif;
 $serifFontFamily: 'Crimson Text', Georgia, Times, serif;
 
@@ -32,6 +32,8 @@ textarea {
   resize: vertical;
 }
 
+
+
 .center {
   text-align: center;
 }
@@ -60,9 +62,9 @@ h2 {
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: #999;
+  color: black;
 }
-p, div {
+p, div,ol {
     font-family: 'Crimson Text', Georgia, Times, serif;
     font-size: 16px;
     line-height: 25px;
@@ -107,6 +109,7 @@ div.navbar-inner {
 .navbar .nav > .active > a:focus {
   color: $yellow;
 }
+
 #logo {
   float: left;
   margin-right: 10px;
@@ -120,8 +123,10 @@ div.navbar-inner {
   line-height: 1;
   font-family: 'Crimson Text', Georgia, Times, serif;
   &:hover {
-  	color: $red;
+  	color: #36546E;
   	text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 3px;
   }
 
 }
@@ -130,10 +135,10 @@ div.navbar-inner {
 #container2 {
   float: left;
   width: 100%;
-  background:#FFF9F1;
+  background:lightgrey;
   overflow:hidden;
   position:relative;
-
+  
 }
 
 #maincontainer {
@@ -146,10 +151,14 @@ div.navbar-inner {
 
 #col1 {
   float: left;
-  width: 80%;
+  width: 78%;
   position:relative;
   left: 20%;
   overflow:hidden;
+  border-style:solid;
+  border-width:2px;
+  border-radius:10px;
+  padding:5px;
 }
 
 #col2 {
@@ -157,21 +166,26 @@ div.navbar-inner {
   width: 20%;
   background:#FFF9F1;
   position:relative;
-  left: 20%;
+  left: 80%;
   overflow:hidden;
+
+
+
 }
 
 /* footer */
 
 footer {
   margin-top: 45px;
-  padding-top: 5px;
+  padding-top: 15px;
+
   border-top: 1px solid #eaeaea;
-  color: #999;
+  background-color:#36546E;
+  color: black;
   a {
-    color: #555;
+    color: black;
     &:hover {
-      color: #222;
+      color: white;
     }
   }
   small {
@@ -191,8 +205,18 @@ footer {
 .container-fluid {
 	padding-right: 15px;
 	padding-left: 15px;
-	background-color: #161e2f
+  padding-bottom: 15px;
+	background-color: #36546E;
 }
+
+.container {
+  width: 95%;
+  margin-right: 30px;
+  margin-left: 30px;
+  margin-bottom: 15px;
+
+}
+
 @mixin box_sizing {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -292,6 +316,11 @@ input {
 .field_with_errors {
   @extend .control-group;
   @extend .error;
+}
+/* Recipe Page */
+
+ol#ingredients {
+  line-height: 2px;
 }
 
 /* Users index */

@@ -3,26 +3,25 @@
 <% else %>
 
 <div class="center hero-unit">
+  <div id="heading">
   <h1>Welcome to Use Your Foodle</h1>
 
   <h2>
     This is the home page for all your cooking needs.  It is a Recipe Site.
   </h2>
-  <div>
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
-  <%= link_to "Take a tour", tour_path, class: "btn btn-large btn-primary" %>
+  </div>
 </div>
+  <div class="center">
+  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+  <%= link_to "Take a tour!", tour_path, class: "btn btn-large btn-primary" %>
+  <%= link_to "Log in!", signin_path, class: "btn btn-large btn-primary" %>
+  </div>
 
-  <p>
+  <p class="center">
     How often do you throw out food in your house?  For the average U.S. household of four, food waste translates into an estimated $1,350.00 to $2,275.00 in annual losses.  That is real money being thrown away for no reason.  Here at Use Your Foodle our goal is to help you reduce your food waste and put money back in your pocket.
   </p>
   <div class ="homepicture">
   	
   	<%= image_tag("food1.jpg", alt:"Food1") %>
   </div>
-
-  
-</div>
-
-<%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
 <% end %>

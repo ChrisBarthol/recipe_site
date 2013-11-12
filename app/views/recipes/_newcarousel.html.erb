@@ -7,8 +7,8 @@
             <!-- Carousel items -->
             <div class="carousel-inner">
                 <div class="active item" id="one"><%= link_to image_tag(@one.recipeimage_url), { :action => :show, :id => @one.id} %><%= link_to @one.name, Recipe.find_by_id(@one.id) %></div>
-                <div class="item" id="two"></div>
-                <div class="item" id="three"></div>
+                <div class="item" id="two"><%= link_to image_tag(@two.recipeimage_url), { :action => :show, :id => @two.id} %><%= link_to @two.name, Recipe.find_by_id(@two.id) %></div>
+                <div class="item" id="three"><%= link_to image_tag(@three.recipeimage_url), { :action => :show, :id => @three.id} %><%= link_to @three.name, Recipe.find_by_id(@three.id) %></div>
             </div>
             <!-- Carousel nav  -->
             <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
