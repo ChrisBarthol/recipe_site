@@ -12,14 +12,6 @@ $(function(){
     	data: {'name': t},
     	success: function(t){
 
-        $(document).ready(function(){
-  $('.bxslider').bxSlider({
-    mode: 'fade',
-    captions: true,
-    adaptiveHeight: true,
-  });
-});
-
     	},
 
     });
@@ -31,7 +23,6 @@ $(function(){
 $(document).ready(function(){
   $('.bxslider').bxSlider({
     mode: 'fade',
-    captions: true,
-    adaptiveHeight: true,
+    captions: true
   });
 });

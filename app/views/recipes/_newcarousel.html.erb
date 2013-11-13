@@ -1,16 +1,7 @@
-<div id="myCarousel" class="carousel slide" style="width: 300px; margin: 0 auto">
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-            </ol>
-            <!-- Carousel items -->
-            <div class="carousel-inner">
-                <div class="active item" id="one"><%= link_to image_tag(@one.recipeimage_url), { :action => :show, :id => @one.id} %><%= link_to @one.name, Recipe.find_by_id(@one.id) %></div>
-                <div class="item" id="two"><%= link_to image_tag(@two.recipeimage_url), { :action => :show, :id => @two.id} %><%= link_to @two.name, Recipe.find_by_id(@two.id) %></div>
-                <div class="item" id="three"><%= link_to image_tag(@three.recipeimage_url), { :action => :show, :id => @three.id} %><%= link_to @three.name, Recipe.find_by_id(@three.id) %></div>
-            </div>
-            <!-- Carousel nav  -->
-            <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-            <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+<div class="thecarousel" id="Carousel">
+<ul class="bxslider">
+                <li><%= link_to image_tag(@one.recipeimage_url(:thumb).to_s, :title => @one.name), { :action => :show, :id => @one.id} %></li>
+                <li><%= link_to image_tag(@two.recipeimage_url(:thumb).to_s, :title => @two.name), { :action => :show, :id => @two.id} %></li>
+                <li><%= link_to image_tag(@three.recipeimage_url(:thumb).to_s, :title => @three.name), { :action => :show, :id => @three.id} %></li>
+</ul>
 </div>

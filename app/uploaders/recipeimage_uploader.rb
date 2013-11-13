@@ -36,6 +36,14 @@ class RecipeimageUploader < CarrierWave::Uploader::Base
      process :resize_to_limit => [300, 300]
    end
 
+   version :small do
+     process :resize_to_limit => [300, 150]
+   end
+
+   def default_url
+      "/assets/images/" + [version_name, "food2.jpg"].compact.join('_')
+   end
+
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   # def extension_white_list

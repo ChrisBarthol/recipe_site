@@ -286,6 +286,7 @@ aside {
 }
 
 
+
 /* forms */
 
 input, textarea, select, .uneditable-input {
@@ -321,6 +322,26 @@ input {
 
 ol#ingredients {
   line-height: 2px;
+}
+
+.theingredients {
+  width: 100%;
+  overflow: hidden;
+}
+#ingredientlist {
+  width: 500px;
+  height: auto;
+  float: left;
+}
+
+.thecarousel {
+  width: 300px;
+  margin-left: 550px;
+  padding: 0px;
+}
+ul.bxslider {
+  margin: 0;
+  padding: 0;
 }
 
 /* Users index */
