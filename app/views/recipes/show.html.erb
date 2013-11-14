@@ -3,7 +3,7 @@
 
 <div id="recipetitle">
   <div class ="row">
-    <div class="span5">
+    <div class="span7">
       <h1>
         <%= @recipe.name.titleize %>
       </h1>
@@ -15,7 +15,7 @@
       </h2>
     </div>
 
-    <div class="span4" id="pullright">
+    <div class="mainpicture">
       <%= image_tag @recipe.recipeimage_url(:thumb).to_s %>
     </div>
   </div>

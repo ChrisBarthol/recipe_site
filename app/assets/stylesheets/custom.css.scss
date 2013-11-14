@@ -177,8 +177,7 @@ div.navbar-inner {
 
 footer {
   margin-top: 45px;
-  padding-top: 15px;
-
+  padding-top: 45px;
   border-top: 1px solid #eaeaea;
   background-color:#36546E;
   color: black;
@@ -319,6 +318,10 @@ input {
   @extend .error;
 }
 /* Recipe Page */
+
+.mainpicture {
+  margin-left: 600px;
+}
 
 ol#ingredients {
   line-height: 2px;
