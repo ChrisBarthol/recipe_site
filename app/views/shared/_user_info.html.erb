@@ -1,7 +1,5 @@
 <span class = "span6">
 <%= link_to gravatar_for(current_user, size: 52), current_user %><h1><%= current_user.name %></h1>
-</span>
-<span class = "span6">
   <%= link_to "view my profile", current_user %>
   <%= pluralize(current_user.comments.count, "comment") %>
 </span>

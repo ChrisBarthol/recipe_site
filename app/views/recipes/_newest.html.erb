@@ -1,8 +1,15 @@
-<div>
+
 	<h3>Newest Recipes:</h3>
-	<ul>
+	
 	    <% @newest.each do |recipe| %>
-	   	 <li><%= link_to recipe.name.titleize, recipe_path(recipe) %></li><%= image_tag recipe.recipeimage_url(:thumb).to_s %>
+	    <div class="span2">
+	    	<h4>
+	   	 <%= link_to recipe.name.titleize, recipe_path(recipe) %>
+	   	</h4>
+	   	 
+	   	 <%= link_to image_tag(recipe.recipeimage_url(:thumb).to_s, :title => recipe.name), { :action => :show, :id => recipe.id, :controller => :recipes } %>
+	   	</div>
 	    <% end %>
-	</ul>
-</div>
+	
+
+<div class="clearfix visible-xs"></div>

@@ -1,14 +1,22 @@
 <% @body_class = "about" %>
-<div class = "center hero-unit">
+<div class = "center">
     <h1> Use Your Foodle! </h1>
     <h2> Help elminate food waste!  Here are your most important items. </h2>
-    
-    	<%= render 'shared/stats' %>
-	
 </div>
 
+<div class="center">
+    <%= render 'shared/user_info' %>
+    <div class="clearfix visible-xs"></div>
+    <div id="center-stats">
+        <%= render 'shared/stats' %>
+    </div>
+    <div id="dashboard_links">
+  ||<%= link_to "Add a Recipe", newrecipe_path, class: "btn btn-large btn-primary" %> ||
+  <%= link_to "Random Recipe", { :action => :show, :id => Recipe.order('random()').first.id, :controller => :recipes }, class: "btn btn-large btn-primary" %> ||
+  <%= link_to "Search for Recipes", '#', class: "btn btn-large btn-primary" %>||
+</div>
+</div>
 
-  	<%= render 'shared/user_info' %>
 
 <div class="clearfix visible-xs"></div>
 <%= render 'recipes/newest' %>
