@@ -6,6 +6,5 @@
 # For example, setting:
 # GMAIL_USERNAME: 'Your_Gmail_Username'
 # makes 'Your_Gmail_Username' available as ENV["GMAIL_USERNAME"]
-GMAIL_USERNAME: 'Your_Gmail_Username'
 SENDGRID_USERNAME: 'app17064277@heroku.com'
 SENDGRID_PASSWORD: '77qpur1d'

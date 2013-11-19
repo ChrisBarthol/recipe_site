@@ -33,6 +33,7 @@ class UsersController < ApplicationController
   	@user = User.new(user_params)
   	if @user.save
       sign_in @user
+      UserMailer.signup_confirmation(@user).deliver
   		redirect_to root_url, :flash => {notice: "Welcome to Pantry Raid!" }
   	else
   		render 'new'
