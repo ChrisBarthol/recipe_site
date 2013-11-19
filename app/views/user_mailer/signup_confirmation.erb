@@ -1,3 +1,15 @@
-<%= @user.name %>,
+<div class="center hero-unit">
+Hi <%= @user.name %>,
+</div>
+<div>
+	<h2>
+Thank you for signing up with Use Your Foodle!
+</h2>
+<div>
+<h3>
+If you have recipes you would like to share you can add them <%= link_to "here!", newrecipe_path %>
 
-Thank you for signing up.
+You can browse our recipe category by clicking <%= link_to "here!", recipes_path %>
+
+Look to connect with other foodies in the <%= link_to "users section", users_path %>
+</h3>
