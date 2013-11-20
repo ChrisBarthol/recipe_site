@@ -8,6 +8,10 @@ class RecipesController < ApplicationController
   	3.times { @recipe.ingredients.build }
   end
 
+  def search
+    @recipe = Recipe.search(params[:search])
+  end
+
   def fork
     @existing_recipe = Recipe.find(params[:id])
     @newfork = @existing_recipe.id
@@ -62,7 +66,8 @@ class RecipesController < ApplicationController
     @getthree.shift
     @three3 = @getthree.first
 
-    @one = Recipe.find_by_id(@one1.id)
+
+    @one = Recipe.find_by_id(@one1.id) 
     @two = Recipe.find_by_id(@two2.id)
     @three = Recipe.find_by_id(@three3.id)
 

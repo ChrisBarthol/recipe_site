@@ -1,5 +1,8 @@
 RecipeSite::Application.routes.draw do
   resources :recipes do
+    collection do
+      get :search
+    end
     member do
       get :fork, :random, :newingredient
     end
