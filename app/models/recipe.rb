@@ -1,4 +1,6 @@
 class Recipe < ActiveRecord::Base
+	include Tire::Model::Search
+    include Tire::Model::Callbacks
 	before_save { self.name = name.downcase }
 
 

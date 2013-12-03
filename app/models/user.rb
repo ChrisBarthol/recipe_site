@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+	include Tire::Model::Search
+    include Tire::Model::Callbacks
 	before_save { self.email = email.downcase }
 	before_create :create_remember_token
 	validates :name, presence: true, length: 3..50
