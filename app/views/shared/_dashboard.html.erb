@@ -10,6 +10,7 @@
     <div id="center-stats">
         <%= render 'shared/stats' %>
     </div>
+
     <div id="search">
               <%= form_tag({controller: "recipes", action: "search"}, :method => "get") do %>
                 <p>
@@ -29,7 +30,9 @@
 
 
 <div class="clearfix visible-xs"></div>
+<div class="span12">
 <%= render 'recipes/newest' %>
+</div>
 
 
 	<h3>Saved Recipes</h3>

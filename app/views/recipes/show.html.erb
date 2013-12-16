@@ -28,6 +28,11 @@
       <% if signed_in? %>
        || <%= link_to "Fork this recipe", fork_recipe_path(@recipe) if signed_in? %> ||
       <% end %>
+      <!--#
+      #<%= if forktree? %>
+          #<%= link_to "View the Fork Tree", forktree_recipe_path(@recipe) %>
+      #<% end %>-->
+      ||
       <%= link_to "Edit this Recipe", edit_recipe_path(@recipe) if current_user?(@recipe.user) %>
       ||
       <%= link_to "Random Recipe", @random_recipe %>
@@ -44,7 +49,7 @@
 <div class="serving" id="info">
   <h3><%= @recipe.name.titleize %> Info</h3>
   <span class="span12">
-          <h4>
+    <h4>
       <div class="span2">Servings</div>
       <div class="span2">Prep Time</div>
       <div class="span2">Total Time</div>
