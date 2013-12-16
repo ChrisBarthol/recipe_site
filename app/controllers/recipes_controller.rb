@@ -12,6 +12,10 @@ class RecipesController < ApplicationController
     @recipe = Recipe.search(params[:search])
   end
 
+  def forktree
+    
+  end
+
   def fork
     @existing_recipe = Recipe.find(params[:id])
     @newfork = @existing_recipe.id
