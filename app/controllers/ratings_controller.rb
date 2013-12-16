@@ -8,12 +8,12 @@ class RatingsController < ApplicationController
   	@ratingcount = Rating.where("recipe_id = ?", @rating.recipe_id).count
   	@newrating = ((@oldrating+@rating.ranking)/(@ratingcount+1)).round
   	@yourrating = @rating.ranking
-  	if @rating.save
-  	respond_to do |format|
-        format.html { redirect_to root_url, :flash => {notice: "Rating was added!" }}
-        format.js
-    end
-end
+    	if @rating.save
+      	respond_to do |format|
+            format.html { redirect_to root_url, :flash => {notice: "Rating was added!" }}
+            format.js
+        end
+      end
   end
 
   def destroy
