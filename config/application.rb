@@ -73,9 +73,7 @@ module RecipeSite
 
     config.assets.precompile << Proc.new do |path|
 
-    Tire.configure do
-        ENV['ELASTICSEARCH_URL'] = ENV['SEARCHBOX_URL']
-    end
+
   if path =~ /\.(css|js)\z/
     full_path = Rails.application.assets.resolve(path).to_path
     app_assets_path = Rails.root.join('app', 'assets').to_path
