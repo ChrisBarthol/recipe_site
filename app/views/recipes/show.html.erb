@@ -28,10 +28,6 @@
       <% if signed_in? %>
        || <%= link_to "Fork this recipe", fork_recipe_path(@recipe) if signed_in? %> ||
       <% end %>
-      <!--#
-      #<%= if forktree? %>
-          #<%= link_to "View the Fork Tree", forktree_recipe_path(@recipe) %>
-      #<% end %>-->
       ||
       <%= link_to "Edit this Recipe", edit_recipe_path(@recipe) if current_user?(@recipe.user) %>
       ||
