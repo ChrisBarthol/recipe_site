@@ -10,10 +10,12 @@ class RecipesController < ApplicationController
 
   def search
     @recipe = Recipe.search(params[:search])
+    @ingredients = Ingredient.search(params[:search])
+    #@ingredients = Recipe.find_by_id(@ingredient)
   end
 
   def forktree
-    
+
   end
 
   def fork

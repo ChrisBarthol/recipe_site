@@ -8,5 +8,5 @@
 # makes 'Your_Gmail_Username' available as ENV["GMAIL_USERNAME"]
 SENDGRID_USERNAME: 'app17064277@heroku.com'
 SENDGRID_PASSWORD: '77qpur1d'
-ELASTICSEARCH_URL:
 SEARCHBOX_URL: 'http://paas:21e012c2cab7df3b5f55fac41004f561@api.searchbox.io'
+BONSAI_URL: 'http://5htfdw5j:u8h8g4tzjqe39emd@box-1067697.us-east-1.bonsai.io'
