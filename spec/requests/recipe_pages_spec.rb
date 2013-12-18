@@ -258,15 +258,15 @@ describe "RecipePages" do
 
         it { should have_title("New Example Recipe") }
         it { should have_content("New Description") }
-        it { should have_link('Sign in to rate!', href: forktree_path) }
+        it { should have_link('View the Forktree', href: forktree__recipe_path) }
         #it { should have_content("New Example Recipe Forked By "+recipe.user.name.capitalize) }
 
         describe "Fork tree" do
           before do
-            click_button "Examine fork tree"
+            click_button "View the Forktree"
           end
 
-          it { should have_title('New Example Recipe Fork Tree') }
+          it { should have_title('Viewing the Fork Tree for New Example Recipe') }
           it { should have_content('Ex')}
 
         end

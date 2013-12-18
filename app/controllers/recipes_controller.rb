@@ -15,7 +15,7 @@ class RecipesController < ApplicationController
   end
 
   def forktree
-
+    @recipe = Recipe.find(params[:id])
   end
 
   def fork

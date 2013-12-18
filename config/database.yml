@@ -1,13 +1,7 @@
-# SQLite version 3.x
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
 development:
   adapter: postgresql
   encoding: unicode
-  database: store_development
-
+  database: localdb2
   pool: 5
   username: chrisbarthol
   password:
@@ -19,7 +13,7 @@ test:
   adapter: postgresql
   encoding: unicode
   database: store_test
-
+  host: localhost
   pool: 5
   username: chrisbarthol
   password:

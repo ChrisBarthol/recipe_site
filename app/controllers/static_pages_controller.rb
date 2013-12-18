@@ -5,6 +5,7 @@ class StaticPagesController < ApplicationController
       @feed_items = current_user.feed.paginate(page:params[:page])
       @newest = Recipe.order('created_at DESC').limit(5)
     end
+    @recipecount = Recipe.all.count
   end
 
   def help

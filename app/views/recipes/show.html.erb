@@ -26,9 +26,10 @@
   
     <h2>
       <% if signed_in? %>
-       || <%= link_to "Fork this recipe", fork_recipe_path(@recipe) if signed_in? %> ||
+       || <%= link_to "Fork this recipe", fork_recipe_path(@recipe) %>
+       || <%= link_to "View the Forktree", forktree_recipe_path(@recipe) %>
+       ||
       <% end %>
-      ||
       <%= link_to "Edit this Recipe", edit_recipe_path(@recipe) if current_user?(@recipe.user) %>
       ||
       <%= link_to "Random Recipe", @random_recipe %>

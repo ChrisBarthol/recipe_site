@@ -3,5 +3,4 @@ class Rating < ActiveRecord::Base
 	validates :user_id, presence: true
 	validates :recipe_id, presence: true
 	validates :ranking, :inclusion => 1..10
-
 end

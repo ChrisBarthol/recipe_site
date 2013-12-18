@@ -1,20 +1,21 @@
 <h3>Newest Recipes:</h3>
+
 <div class="center">
-<% @newest.each do |recipe| %>
-    <div class="span2">
-    	<h4>
-   	 <%= link_to recipe.name.titleize, recipe_path(recipe) %>
-   		</h4>
-   	</div>
+	<% @newest.each do |recipe| %> <!-- Get the titles of the newest recipes -->
+	    <div class="span2">
+	    	<h4>
+	   	 <%= link_to recipe.name.titleize, recipe_path(recipe) %>
+	   		</h4>
+	   	</div>
+		<% end %>
+
+	<div class="clearfix visible-xs"></div>
+
+	<% @newest.each do |recipe| %>  <!-- Get the pictures of the newest recipes -->
+		<div class="span2">
+	 		<%= link_to image_tag(recipe.recipeimage_url(:thumb).to_s, :title => recipe.name), { :action => :show, :id => recipe.id, :controller => :recipes } %>
+		</div>
 	<% end %>
-
-<div class="clearfix visible-xs"></div>
-
-<% @newest.each do |recipe| %>
-	<div class="span2">
- 		<%= link_to image_tag(recipe.recipeimage_url(:thumb).to_s, :title => recipe.name), { :action => :show, :id => recipe.id, :controller => :recipes } %>
-	</div>
-<% end %>
 </div>
 	
 <div class="clearfix visible-xs"></div>
