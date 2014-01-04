@@ -14,17 +14,20 @@ RecipeSite::Application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.raise_delivery_errors = false
+
 
   # Change mail delivery to either :smtp, :sendmail, :file, :test
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
-    port: 587,
-    authentication: "plain",
-    enable_starttls_auto: true,
-    user_name: "Chris.Barthol",
-    password: "theseven12",
+  #sendgrid actionmailer setup
+  ActionMailer::Base.smtp_settings = {
+    :address        => 'smtp.sendgrid.net',
+    :port           => '587',
+    :authentication => :plain,
+    :user_name      => ENV['SENDGRID_USERNAME'],
+    :password       => ENV['SENDGRID_PASSWORD'],
+    :domain         => 'heroku.com',
+    :enable_starttls_auto => true
   }
 
   # Print deprecation notices to the Rails logger

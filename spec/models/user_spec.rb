@@ -31,7 +31,7 @@ describe User do
   it { should respond_to(:recipesavers) }
   it { should respond_to(:comments) }
   it { should respond_to(:feed) }
-  it { should respond_to(:pantries) }
+  it { should respond_to(:pantry_items) }
 
   it { should be_valid }
   it { should_not be_admin }

@@ -222,6 +222,7 @@ describe "User pages" do
     before { visit signup_path }
 
     let(:submit) { "Create my account" }
+    
 
     describe "with invalid information" do
       it "should not create a user" do
@@ -243,6 +244,9 @@ describe "User pages" do
         fill_in "Password",     with: "foobar"
         fill_in "Confirmation", with: "foobar"
       end
+
+      let(:recipe1) { FactoryGirl.create(:recipe) }
+      let(:recipe2) { FactoryGirl.create(:recipe) }
 
       it "should create a user" do
         expect { click_button submit }.to change(User, :count).by(1)

@@ -23,7 +23,6 @@
     <div class="clearfix visible-xs"></div>
     <div id="dashboard_links">
   ||<%= link_to "Add a Recipe", newrecipe_path, class: "btn btn-large btn-primary" %> ||
-  <%= link_to "Random Recipe", { :action => :show, :id => Recipe.order('random()').first.id, :controller => :recipes }, class: "btn btn-large btn-primary" %> ||
   <%= link_to "Search for Recipes", '#', class: "btn btn-large btn-primary" %>||
 </div>
 </div>
