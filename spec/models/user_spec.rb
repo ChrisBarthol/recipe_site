@@ -32,9 +32,35 @@ describe User do
   it { should respond_to(:comments) }
   it { should respond_to(:feed) }
   it { should respond_to(:pantry_items) }
+  it { should respond_to(:save_ingredient!) }
+  it { should respond_to(:ingredient_saved?) }
+  it { should respond_to(:remove_ingredient!) }
 
   it { should be_valid }
   it { should_not be_admin }
+
+  describe "pantry items" do
+
+    describe "saving ingredient" do
+      let(:user) { FactoryGirl.create(:user) }
+      let(:ingredient) { FactoryGirl.create(:ingredient) }
+      before do
+        @user.save
+        @user.save_ingredient!(ingredient)
+      end
+
+      it { should be_ingredient_saved(ingredient) }
+      its(:ingredients) { should include(ingredient) }
+
+      describe "and removing an ingredient" do
+        before { @user.remove_ingredient!(ingredient) }
+
+        it { should_not be_ingredient_saved(ingredient) }
+        its(:pantry_items) { should_not include(ingredient) }
+      end
+    end
+  end
+
 
 
 

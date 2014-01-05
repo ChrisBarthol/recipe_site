@@ -20,9 +20,22 @@ class User < ActiveRecord::Base
  	has_many :recipesavers, through: :reverse_reciperelationships, source: :recipesaver
  	has_many :comments, dependent: :destroy
  	has_many :pantry_items, dependent: :destroy
+ 	has_many :ingredients, through: :pantry_items
  	before_save { email.downcase! }
 
  	has_secure_password
+
+ 	def ingredient_saved?(ingredient)
+ 		pantry_items.find_by(ingredient_id: ingredient.id)
+ 	end
+
+ 	def remove_ingredient!(ingredient)
+ 		pantry_items.find_by(ingredient_id: ingredient.id).destroy
+ 	end
+
+ 	def save_ingredient!(ingredient)
+ 		self.pantry_items.create!(ingredient_id: ingredient.id)
+ 	end
 
  	def feed
  		Comment.from_users_followed_by(self)

@@ -1,21 +1,21 @@
 <div class="center hero-unit">
-Hi <%= @user.name %>,
+	Hi <%= @user.name %>,
 </div>
 <div>
 	<h2>
-Thank you for signing up with Use Your Foodle!
-</h2>
+		Thank you for signing up with Use Your Foodle!
+	</h2>
+</div>
 <div>
-	<div>
-<h3>
-	<p>
-If you have recipes you would like to share you can add them <%= link_to "here!", newrecipe_path %>
-</p>
-<p>
-You can browse our recipe category by clicking <%= link_to "here!", recipes_path %>
-</p>
-<p>
-Look to connect with other foodies in the <%= link_to "users section", users_path %>
-</p>
-</h3>
+	<h3>
+		<p>
+			If you have recipes you would like to share you can add them <%= link_to "here!", newrecipe_path %>
+		</p>
+		<p>
+			You can browse our recipe category by clicking <%= link_to "here!", recipes_path %>
+		</p>
+		<p>
+			Look to connect with other foodies in the <%= link_to "users section", users_path %>
+		</p>
+	</h3>
 </div>
