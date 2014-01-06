@@ -79,6 +79,12 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
+  def pantry
+    @title = "Pantry Items"
+    @user = User.find(params[:id])
+    @pantry = @user.pantry_items.paginate(page:params[:page])
+  end
+
   private
 
   	def user_params

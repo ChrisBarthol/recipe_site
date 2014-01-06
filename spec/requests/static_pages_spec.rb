@@ -20,6 +20,8 @@ describe "Static pages" do
     describe "for signed-in users" do
       let(:user) { FactoryGirl.create(:user) }
       let(:recipe) {FactoryGirl.create(:recipe, user: user)}
+      let(:ingredient) {FactoryGirl.create(:ingredient) }
+      let(:pantry_item) {user.pantry_items.build(ingredient_id: ingredient.id) }
       before do
         FactoryGirl.create(:comment, user: user, content: "Lorem ipsum")
         FactoryGirl.create(:comment, user: user, content: "Dolor sit amet")
@@ -37,6 +39,10 @@ describe "Static pages" do
         user.saved_recipes.each do |item|
           expect(page).to have_selector("li##{item.id}", text: item.name)
         end
+      end
+
+      describe "should render the user's pantry" do
+        it { should have_link("1 ingredient in your pantry", href: pantry_user_path(user)) }
       end
     end
 

@@ -9,7 +9,7 @@ RecipeSite::Application.routes.draw do
   end
   resources :users do
     member do
-      get :following, :followers, :saved_recipes, :show_recipes
+      get :following, :followers, :saved_recipes, :show_recipes, :pantry
     end
   end
   resources :sessions, only: [:new, :create, :destroy]
@@ -18,6 +18,7 @@ RecipeSite::Application.routes.draw do
   resources :reciperelationships, only: [:create, :destroy]
   resources :comments, only: [:create, :destroy]
   resources :ratings, only: [:create, :destroy]
+  resources :pantry_items, only: [:create, :destroy]
 
   root 'static_pages#home'
   match '/newrecipe', to: 'recipes#new',           via: 'get'

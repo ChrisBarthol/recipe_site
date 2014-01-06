@@ -24,4 +24,10 @@
     </strong>
     submitted recipes
   </a>
+  <a href="<%= pantry_user_path(@user) %>">
+    <strong id="pantry" class="stat">
+      <%= @user.ingredients.count %>
+    </strong>
+    pantry items
+  </a>
 </div>
