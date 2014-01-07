@@ -42,7 +42,7 @@ describe "Static pages" do
       end
 
       describe "should render the user's pantry" do
-        it { should have_link("1 ingredient in your pantry", href: pantry_user_path(user)) }
+        it { should have_link("1 pantry items", href: pantry_user_path(user)) }
       end
     end
 

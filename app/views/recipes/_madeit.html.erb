@@ -1,0 +1,6 @@
+<%= form_for(current_user.pantry_items.build(ingredient_id: ingredient.id)) do |f| %>
+	<%= @recipe.ingredients.each do |ingredient| %>
+		<div><%= f.hidden_field :ingredient_id %></div>
+	<% end %>
+	<%= f.submit "I Made This!", class: "btn btn-large btn-primary" %>
+<% end %>
