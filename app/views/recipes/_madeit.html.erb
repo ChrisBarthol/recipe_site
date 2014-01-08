@@ -1,4 +1,4 @@
-<%= form_for(current_user.pantry_items.build(ingredient_id: ingredient.id)) do |f| %>
+<%= form_for(current_user.pantry_items.build) do |f| %>
 	<%= @recipe.ingredients.each do |ingredient| %>
 		<div><%= f.hidden_field :ingredient_id %></div>
 	<% end %>

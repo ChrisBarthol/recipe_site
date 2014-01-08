@@ -82,7 +82,7 @@ class UsersController < ApplicationController
   def pantry
     @title = "Pantry Items"
     @user = User.find(params[:id])
-    @pantry = @user.pantry_items.paginate(page:params[:page])
+    @pantry_items = @user.ingredients.paginate(page:params[:page])
   end
 
   private
