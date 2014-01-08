@@ -4,6 +4,21 @@ describe "User pages" do
 
 	subject { page }
 
+  describe "pantry" do
+    let(:user) { FactoryGirl.create(:user) }
+    let(:recipe) { FactoryGirl.create(:recipe) }
+
+    describe "saving the ingredients" do
+      before do
+        sign_in user
+        visit pantry_user_path(user)
+      end
+
+      it { should have_title('Your Pantry') }
+      it { should have_selector('h3', text: 'Your Ingredients') }
+    end
+  end
+
   describe "saving recipes" do
     let(:user) { FactoryGirl.create(:user) }
     let(:recipe) { FactoryGirl.create(:recipe) }

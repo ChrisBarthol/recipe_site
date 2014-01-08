@@ -4,6 +4,27 @@ describe "RecipePages" do
 
   subject {page}
 
+  describe "I made it button" do
+    let(:user) { FactoryGirl.create(:user) }
+    let(:recipe) { FactoryGirl.create(:recipes) }
+    before do
+      sign_in user
+      visit recipe_path(recipe)
+    end
+
+    it "should increment the pantry_item count" do
+      expect do
+        click_button "I Made It!"
+      end.to change(user.ingredients, :count).by(1)
+    end
+
+    it "should increment the made recipes count" do
+      exect do
+        click_button "I Made It!"
+      end.to change(user.maderecipes, :count).by(1)
+    end
+  end
+
   describe "JS submits" do
     let(:user) { FactoryGirl.create(:user) }
     let(:recipe) { FactoryGirl.create(:recipe) }
