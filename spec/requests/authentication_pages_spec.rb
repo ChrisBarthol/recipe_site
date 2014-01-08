@@ -175,6 +175,11 @@ describe "Authentication" do
 
       describe "in the Users controller" do
 
+        describe "visiting the pantry page" do
+          before { visit pantry_user_path(user) }
+          it { should have_title('Sign in') }
+        end
+
         describe "visiting the edit page" do
           before { visit edit_user_path(user) }
           it { should have_title('Sign in') }
