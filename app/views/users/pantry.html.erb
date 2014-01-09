@@ -16,9 +16,9 @@
     <h3><%= @title %></h3>
     <% if @pantry_items.any? %>
       <ul class="users">
-        <%= render @ingredients %>
+        <%= render @pantry_items %>
       </ul>
-      <%= will_paginate %>
+      
     <% end %>
   </div>
 </div>
