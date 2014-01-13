@@ -1,4 +1,5 @@
 <% @body_class = "about" %>
+<% provide(:title, @recipe.name.titleize+ " Fork Tree") %>
 <div class="fork_tree_title">
 	<h1>Viewing the Fork Tree for </h1>
 	<h1><%= @recipe.name.titleize %> </h1>

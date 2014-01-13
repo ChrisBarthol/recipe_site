@@ -11,7 +11,7 @@ describe "RecipePages" do
     let(:recipe_ingredient) { FactoryGirl.create(:recipe_ingredient) }
     before do
       sign_in user
-      visit recipe_path(recipe_ingredient)
+      visit recipe_path(recipe)
     end
 
     it "should increment the pantry_item count" do
@@ -258,10 +258,10 @@ describe "RecipePages" do
       before do
         sign_in user
         visit recipe_path(recipe)
-        click_button "View the Forktree"
+        click_link "View the Forktree"
       end
 
-        it { should have_title('Viewing the Fork Tree for Random Recipe') }
+        it { should have_title('Ex Fork Tree') }
         it { should have_content(recipe.name.titleize)}
 
     end
@@ -293,7 +293,6 @@ describe "RecipePages" do
 
         it { should have_title("New Example Recipe") }
         it { should have_content("New Description") }
-        it { should have_link('View the Forktree', href: forktree__recipe_path) }
         #it { should have_content("New Example Recipe Forked By "+recipe.user.name.capitalize) }
 
         
