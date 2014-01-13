@@ -25,6 +25,7 @@ describe "Static pages" do
       before do
         FactoryGirl.create(:comment, user: user, content: "Lorem ipsum")
         FactoryGirl.create(:comment, user: user, content: "Dolor sit amet")
+        user.save_ingredient!(ingredient)
         sign_in user
         visit root_path
       end
@@ -42,7 +43,7 @@ describe "Static pages" do
       end
 
       describe "should render the user's pantry" do
-        it { should have_link("1 pantry items", href: pantry_user_path(user)) }
+        it { should have_link("1 pantry item", href: pantry_user_path(user)) }
       end
     end
 

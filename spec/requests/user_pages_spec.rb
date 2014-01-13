@@ -14,8 +14,8 @@ describe "User pages" do
         visit pantry_user_path(user)
       end
 
-      it { should have_title('Your Pantry') }
-      it { should have_selector('h3', text: 'Your Ingredients') }
+      it { should have_title('Pantry Items') }
+      
     end
   end
 

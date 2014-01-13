@@ -6,21 +6,23 @@ describe "RecipePages" do
 
   describe "I made it button" do
     let(:user) { FactoryGirl.create(:user) }
-    let(:recipe) { FactoryGirl.create(:recipes) }
+    let(:recipe) { FactoryGirl.create(:recipe) }
+    let(:ingredient) { FactoryGirl.create(:ingredient) }
+    let(:recipe_ingredient) { FactoryGirl.create(:recipe_ingredient) }
     before do
       sign_in user
-      visit recipe_path(recipe)
+      visit recipe_path(recipe_ingredient)
     end
 
     it "should increment the pantry_item count" do
       expect do
-        click_button "I Made It!"
+        click_button "I Made This!"
       end.to change(user.ingredients, :count).by(1)
     end
 
     it "should increment the made recipes count" do
-      exect do
-        click_button "I Made It!"
+      expect do
+        click_button "I Made This!"
       end.to change(user.maderecipes, :count).by(1)
     end
   end

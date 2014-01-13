@@ -4,6 +4,9 @@ class CommentsController < ApplicationController
 
   def create
   	@comment = current_user.comments.build(comment_params)
+    if @comment.nil? || @comment.content.length > 500
+      redirect_to @comment.recipe :flash => { error: "There was an error: Failed to save"}
+    end
   	if @comment.save
   		
   		respond_to do |format|

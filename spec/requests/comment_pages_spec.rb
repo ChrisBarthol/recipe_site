@@ -42,7 +42,7 @@ describe "CommentPages" do
 
 			describe "error messages" do
 				before { click_button "Post" }
-				it { should have_content('Error') }
+				it { should have_content('error') }
 			end
 		end
 
