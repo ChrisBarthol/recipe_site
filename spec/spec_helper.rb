@@ -48,7 +48,7 @@ Spork.prefork do
     #     --seed 1234
     config.order = "random"
     config.include Capybara::DSL
-    config.filter_run :focus => true
+    #config.filter_run :focus => true
   end
 end
 

@@ -34,7 +34,8 @@ class UsersController < ApplicationController
   	if @user.save
       sign_in @user
       UserMailer.signup_confirmation(@user).deliver
-  		redirect_to root_url, :flash => {notice: "Welcome to Pantry Raid!" }
+      flash.now[:notice] = "Welcome to Pantry Raid!" 
+  		render 'newuser'
   	else
   		render 'new'
   	end
@@ -50,6 +51,11 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def newuser
+    @title = "Welcome to Use Your Foodle!"
+    @user = User.find(params[:id])
   end
 
   def saved_recipes
