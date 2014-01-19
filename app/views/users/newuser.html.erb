@@ -1,4 +1,42 @@
+<% if signed_in? %>
+
 <% @body_class = "about" %>
 <% provide(:title, @user.name) %>
+<span>
+<div class="image_center">
+	<div><%= image_tag("tomatowords.png", id: "logo") %></div>
+</div>
+</span>
 
-HELLO
+
+<div class="help_links">
+	<div class="help_update">
+		Update your profile
+	</div>
+
+	<div class="help_view">
+		View your profile
+	</div>
+
+	<div class="Help_dash">
+		Clicking on home will take you to your dashboard, giving you an overview of important items.
+	</div>
+
+	<div class="help_add_recipe">
+		Add a recipe
+	</div>
+
+	<div class="help_fork_recipe">
+		Fork a recipe
+	</div>
+
+	<div class="help_follow_users">
+		Follower users
+	</div>
+
+	<div class="help_help">
+		Return to this page by hitting the help link at the bottom of the page
+	</div>
+</div>
+
+<% end %>

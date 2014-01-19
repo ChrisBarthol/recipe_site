@@ -130,10 +130,9 @@ div.navbar-inner {
   line-height: 1;
   font-family: 'Crimson Text', Georgia, Times, serif;
   &:hover {
-  	color: #36546E;
   	text-decoration: none;
-    font-weight: bold;
-    letter-spacing: 3px;
+    text-shadow: 2px 2px #B22222;
+    
   }
 
 }
