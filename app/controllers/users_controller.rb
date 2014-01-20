@@ -34,8 +34,8 @@ class UsersController < ApplicationController
   	if @user.save
       sign_in @user
       UserMailer.signup_confirmation(@user).deliver
-      flash.now[:notice] = "Welcome to Pantry Raid!" 
-  		render 'newuser'
+      flash.now[:notice] = "Welcome to Use Your Foodle!" 
+  		redirect_to help_url, :flash =>{notice: "Welcome to Use Your Foodle!"}
   	else
   		render 'new'
   	end

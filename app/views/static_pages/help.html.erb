@@ -1,11 +1,17 @@
 <% @body_class = "about" %>
 <% provide(:title, 'Help') %>
 
+<% if signed_in? %>
 
+<%= render 'users/newuser' %>
+
+<% else %>
 	<h1>Need Some Help?</h1>
 	<p>
    	This page will have some helpful tips at some point. 
 
   	Stay Tuned!
 	</p>
+
+<% end %>
 
