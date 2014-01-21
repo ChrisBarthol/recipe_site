@@ -8,10 +8,30 @@
 <% else %>
 	<h1>Need Some Help?</h1>
 	<p>
-   	This page will have some helpful tips at some point. 
-
-  	Stay Tuned!
+   	To access all the features of Use Your Foodle, please sign up or if you already have account please sign in for additional help topics.
 	</p>
+	<div class="center">
+		<%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+	    ||
+	    <%= link_to "Log in!", signin_path, class: "btn btn-large btn-primary" %>
+	</div>
+	<p>
+		By siging up you gain access to all the features and more!
+
+  Current features include:
+<ul>
+  <li><strong>Add and save recipes</strong></li>
+  <li><strong>Fork recipes</strong> - Maybe you've made Mrs X's Favorite Apple Pie, but changed a few of the ingredients.  You can now save the recipe with those changes and make it your own.  Forking automatically imports all the data from the recipe and allows you to change the ingredients, and then save the new recipe.</li>
+  <li><strong>Find recipes based on used ingredients</strong> - Directly from the recipe page you can click on any ingredient and find other recipes that use that same ingredient.  Explore recipes and try to use all your ingredients.</li>
+  <li><strong>Follow users </strong>- Following your favorite users and see what they are making!</li>
+  <li><strong>Your personal pantry</strong> - Once you make a recipe we'll save all the ingredients you used to your pantry.  This is a list of food items that you currently have, or have recently used.</li>
+</ul>
+Under Development features include:
+<ul>
+  <li><strong>Fork tree</strong> - See all the changes that have been made to a recipe.  No longer will you have to search the comments to find how people augmented the original recipe.  We'll show you how people have changed the original recipe in an organized manner.  Also, if someone makes a fork to a forked recipe we'll show you that as well!  Share recipes, share changes and improve your cooking!</li>
+  <li><strong>Personal pantry upgrades</strong> - The ultimate goal is to help you control your food inventory from one place.  Once you make a recipe we want you to know how much of each ingredient is left over and when it will expire.</li>
+</ul>
+</p>
 
 <% end %>
 
