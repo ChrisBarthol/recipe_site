@@ -2,7 +2,7 @@ class PantryItemsController < ApplicationController
 	before_action :signed_in_user
 
 	def new
-
+		@pantry_item =Pantry_Item.new
 	end
 
 
@@ -18,9 +18,15 @@ class PantryItemsController < ApplicationController
 			end
 		end
 
-		redirect_to recipe_path(@recipe)
+		respond_to do |format|
+      		format.html { redirect_to recipe_path(@recipe) }
+      		format.js
+    	end
 	end
 
 	def destroy
+	end
+
+	def update
 	end
 end

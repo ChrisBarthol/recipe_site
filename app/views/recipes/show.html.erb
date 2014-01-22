@@ -35,8 +35,8 @@
       <%= link_to "Random Recipe", @random_recipe %>
       ||
       <p>
-        <%= render 'saverecipe_form' if signed_in? %>
-        <%= render 'madeit' if signed_in? %>
+        <span class="span8"><%= render 'saverecipe_form' if signed_in? %>
+        <%= render 'madeit' if signed_in? %></span>
 
       </p>
     </h2>

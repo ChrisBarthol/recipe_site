@@ -4,4 +4,5 @@ class PantryItem < ActiveRecord::Base
 
 	validates :user_id, presence: true
 	validates :ingredient_id, presence: true
+
 end

@@ -10,9 +10,6 @@ class RecipesController < ApplicationController
 
   def search
     @recipe = Recipe.search(params)
-    #@ingredients = Ingredient.search(params)
-
-
   end
 
   def forktree
@@ -86,12 +83,18 @@ class RecipesController < ApplicationController
   end
 
   def show
+
+
     
   	@recipe = Recipe.find(params[:id])
   	@ingredients = @recipe.ingredients
     @comment = current_user.comments.build if signed_in?
     @commentfeed = @recipe.commentfeed.paginate(page: params[:page])
     @random_recipe = Recipe.order('random()').first
+    @ingredient = @recipe.ingredients.first
+
+
+    @alreadysaved = current_user.ingredients.find_by_id(@ingredient)
 
     #Carousel Images
     @recipetwo = Recipe.find_by_id(@recipe.id+1)
