@@ -10,7 +10,12 @@ class PantryItemsController < ApplicationController
 		@recipe = Recipe.find(params[:recipe_id])
 		@recipe.ingredients.each do |ingredient|
 			@ingredient = ingredient.id
-			current_user.save_ingredient!(ingredient)	
+			@alreadysaved = current_user.ingredients.find_by_id(@ingredient)
+			if @alreadysaved.nil?
+				current_user.save_ingredient!(ingredient)
+			else
+				#updated created at and recipe_id render update?
+			end
 		end
 
 		redirect_to recipe_path(@recipe)
