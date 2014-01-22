@@ -1,6 +1,5 @@
 class Recipe < ActiveRecord::Base
-	include Tire::Model::Search
-    include Tire::Model::Callbacks
+	
 	before_save { self.name = name.downcase }
 
 
@@ -19,6 +18,15 @@ class Recipe < ActiveRecord::Base
 	validates :direction, presence: true
 
 	mount_uploader :recipeimage, RecipeimageUploader
+
+	include Tire::Model::Search
+    include Tire::Model::Callbacks
+
+    def self.search(params)
+    	tire.search(load: true) do  
+    		query { string params[:query]} if params[:query].present?
+    	end
+    end
 
 	#def to_param
 	#	"#{id}-#{name}".parameterize

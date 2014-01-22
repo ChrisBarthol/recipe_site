@@ -1,33 +1,37 @@
 
 
 <li>
-<div class="span1.5" >
-<div id="<%= recipe.id %>">
-  <% if current_user == nil %>
+  <span class="span2">
+    <%= image_tag recipe.recipeimage_url(:thumb).to_s %>
+  </span>
+  <span class = "span2">
+        <%= link_to recipe.name, recipe %>
+  </span>
+  <div class="span1.5" >
+    <div id="<%= recipe.id %>">
+      <% if current_user == nil %>
 
-  <% else %>
-  <% if current_user.recipesaved?(recipe) %>
-    <%= form_for(current_user.reciperelationships.find_by(recipesaved_id: recipe),
-             html: { method: :delete }, remote: true) do |f| %>
-  	<%= f.submit "Remove", class: "btn btn-small" %>
-	<% end %>
-  <% else %>
-    <%= form_for(current_user.reciperelationships.build(recipesaved_id: recipe.id), remote: true) do |f| %>
-  	<div><%= f.hidden_field :recipesaved_id %></div>
-  	<%= f.submit "Save", class: "btn btn-small btn-primary" %>
-	<% end %>
-  <% end %>
-  <% end %>
- </div> 
-</div>
-  <% if current_user == nil %>
-      <%= link_to recipe.name, recipe %>
       <% else %>
-      -- <%= link_to recipe.name, recipe %>
+        <% if current_user.recipesaved?(recipe) %>
+          <%= form_for(current_user.reciperelationships.find_by(recipesaved_id: recipe),
+                   html: { method: :delete }, remote: true) do |f| %>
+        	<%= f.submit "Remove", class: "btn btn-small" %>
+      	<% end %>
+        <% else %>
+          <%= form_for(current_user.reciperelationships.build(recipesaved_id: recipe.id), remote: true) do |f| %>
+        	<div><%= f.hidden_field :recipesaved_id %></div>
+        	<%= f.submit "Save", class: "btn btn-small btn-primary" %>
+      	<% end %>
       <% end %>
-</li>
+      <% end %>
+    </div> 
+  </div>
 
-  <!-- <% if current_user && current_user.admin? %>
-    | <%= link_to "delete", recipe, method: :delete,
-                                  data: { confirm: "You sure?" } %>
-  <% end %> -->
+  <span class="span2">
+    <% if current_user== nil %>
+    <% elsif recipe.user_id==current_user.id || current_user.admin? %>
+      | <%= link_to "delete recipe", recipe, method: :delete,
+                                    data: { confirm: "You sure?" } %>
+    <% end %> 
+  </span>
+</li>

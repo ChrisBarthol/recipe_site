@@ -18,7 +18,7 @@
               <%= form_tag({controller: "recipes", action: "search"}, :method => "get") do %>
                 
                   </li>
-                  <li><%= text_field_tag(:search, params[:search],placeholder: "Search for...")%>
+                  <li><%= text_field_tag :query, params[:query], placeholder: "Search for..." %>
                   
                 
               <% end %>

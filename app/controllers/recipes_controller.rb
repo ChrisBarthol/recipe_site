@@ -9,9 +9,10 @@ class RecipesController < ApplicationController
   end
 
   def search
-    @recipe = Recipe.search(params[:search])
-    @ingredients = Ingredient.search(params[:search])
-    #@ingredients = Recipe.find_by_id(@ingredient)
+    @recipe = Recipe.search(params)
+    #@ingredients = Ingredient.search(params)
+
+
   end
 
   def forktree
