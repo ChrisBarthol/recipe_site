@@ -94,7 +94,7 @@ class RecipesController < ApplicationController
     @ingredient = @recipe.ingredients.first
 
 
-    @alreadysaved = current_user.ingredients.find_by_id(@ingredient)
+    @alreadysaved = current_user.ingredients.find_by_id(@ingredient) if signed_in?
 
     #Carousel Images
     @recipetwo = Recipe.find_by_id(@recipe.id+1)
