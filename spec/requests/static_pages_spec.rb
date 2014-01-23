@@ -85,7 +85,7 @@ describe "Static pages" do
     click_link "Help"
     expect(page).to have_title(full_title('Help'))
     click_link "Home"
-    click_link "Sign up now!"
+    click_link "Sign up now!", :match => :first
     expect(page).to have_title(full_title('Sign up'))
     click_link "Use Your Foodle"
     expect(page).to have_title(full_title(''))

@@ -60,23 +60,6 @@ FactoryGirl.define do
     recipe
   end
 
-  factory :ingredient1 do
-    name "pepper"
-    quantity "2"
-    unit "tsp"
-  end
-
-  factory :recipeingredient do
-    sequence(:name) { |n| "Recipe ##{n}" }
-    sequence(:description) { |n| "Description #{n}" }
-    sequence(:direction) { |n| "Add #{n}" }
-    user
-    after(:create) do |instance|
-      create_list :ingredient, 2, recipe: instance
-    end
-  end
-
-
   factory :rating do
     ranking { FactoryGirl.generate(:random_number) }
     recipe

@@ -4,18 +4,18 @@ describe "User pages" do
 
 	subject { page }
 
-  describe "pantry", :focus => true do
+  describe "pantry" do
     let(:user) { FactoryGirl.create(:user) }
     let(:recipe) { FactoryGirl.create(:recipe) }
 
-    describe "saving the ingredients", js => true do
+    describe "saving the ingredients", :js => true do
       before do
         sign_in user
-        visit recipe_path(:recipe)
+        visit recipe_path(recipe)
         click_button "I Made This!"
       end
 
-      it { should have_content('Youve made it') }
+      it { should have_button("You've made it!") }
       
     end
   end
