@@ -8,13 +8,14 @@ describe "User pages" do
     let(:user) { FactoryGirl.create(:user) }
     let(:recipe) { FactoryGirl.create(:recipe) }
 
-    describe "saving the ingredients" do
+    describe "saving the ingredients", js => true do
       before do
         sign_in user
-        visit pantry_user_path(user)
+        visit recipe_path(:recipe)
+        click_button "I Made This!"
       end
 
-      it { should have_title('Pantry Items') }
+      it { should have_content('Youve made it') }
       
     end
   end

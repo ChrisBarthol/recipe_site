@@ -44,6 +44,12 @@ FactoryGirl.define do
     sequence(:name) { |n| "Recipe ##{n}" }
   	sequence(:description) { |n| "Description #{n}" }
     sequence(:direction) { |n| "Add #{n}" }
+
+    trait :with_ingredients do
+      after(:create) do |instance|
+        create_list :ingredient, 2, recipe: instance
+      end
+    end
     user
   end
 
@@ -54,7 +60,13 @@ FactoryGirl.define do
     recipe
   end
 
-  factory :recipe_ingredient do
+  factory :ingredient1 do
+    name "pepper"
+    quantity "2"
+    unit "tsp"
+  end
+
+  factory :recipeingredient do
     sequence(:name) { |n| "Recipe ##{n}" }
     sequence(:description) { |n| "Description #{n}" }
     sequence(:direction) { |n| "Add #{n}" }

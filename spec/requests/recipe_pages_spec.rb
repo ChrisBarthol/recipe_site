@@ -4,11 +4,11 @@ describe "RecipePages" do
 
   subject {page}
 
-  describe "I made it button" do
+  describe "I made it button", :focus => true do
     let(:user) { FactoryGirl.create(:user) }
-    let(:recipe) { FactoryGirl.create(:recipe) }
+    let(:recipe) { FactoryGirl.create(:recipe, :with_ingredients) }
     let(:ingredient) { FactoryGirl.create(:ingredient) }
-    let(:recipe_ingredient) { FactoryGirl.create(:recipe_ingredient) }
+    let(:recipe2) { FactoryGirl.create(:recipeingredient) }
     before do
       sign_in user
       visit recipe_path(recipe)
@@ -17,7 +17,7 @@ describe "RecipePages" do
     it "should increment the pantry_item count" do
       expect do
         click_button "I Made This!"
-      end.to change(user.ingredients, :count).by(1)
+      end.to change(user.ingredients, :count).by(2)
     end
 
     it "should increment the made recipes count" do
