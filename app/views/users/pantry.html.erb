@@ -14,8 +14,9 @@
   </aside>
   <div class="row">
     <span class="span6">
+   
       <h3>Add an Ingredient to Your Pantry </h3>
-    <%= form_tag({controller: "ingredients", action: "create"}, :method => "get") do %>
+    <%= form_tag({controller: "ingredients", action: "create"}, :method => "post") do %>
       <p>
         <%= label_tag(:name, "Ingredient Name") %>
         <%= text_field_tag :name %>
