@@ -8,6 +8,7 @@ class PantryItemsController < ApplicationController
 
 	def create
 		@recipe = Recipe.find(params[:recipe_id])
+		current_user.makerecipes.create!(made_id: @recipe.id)
 		@recipe.ingredients.each do |ingredient|
 			@ingredient = ingredient.id
 			@alreadysaved = current_user.ingredients.find_by_id(@ingredient)

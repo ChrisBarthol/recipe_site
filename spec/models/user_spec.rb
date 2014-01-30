@@ -36,8 +36,26 @@ describe User do
   it { should respond_to(:ingredient_saved?) }
   it { should respond_to(:remove_ingredient!) }
 
+  it { should respond_to(:makerecipes) }
+  it { should respond_to(:made_recipes) }
+  it { should respond_to(:made_recipes) }
+  it { should respond_to(:made?) }
+  it { should respond_to(:make!) }
+
   it { should be_valid }
   it { should_not be_admin }
+
+  describe "make a recipe" do
+    let(:maker) { FactoryGirl.create(:user) }
+    let(:recipe) { FactoryGirl.create(:recipe) }
+    before do
+      @user.save
+      @user.make!(recipe)
+    end
+
+    it { should be_made(recipe) }
+    its(:made_recipes) { should include(recipe) }
+  end
 
   describe "pantry items" do
 

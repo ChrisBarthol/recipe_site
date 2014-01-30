@@ -89,6 +89,7 @@ class UsersController < ApplicationController
     @title = "Pantry Items"
     @user = User.find(params[:id])
     @pantry_items = @user.ingredients.paginate(page:params[:page])
+    @recipe = @user.made_recipes
   end
 
   private

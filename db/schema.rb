@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140110175128) do
+ActiveRecord::Schema.define(version: 20140130144736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,37 @@ ActiveRecord::Schema.define(version: 20140110175128) do
   add_index "ingredients", ["recipe_id", "name", "quantity"], name: "index_ingredients_on_recipe_id_and_name_and_quantity", using: :btree
   add_index "ingredients", ["style"], name: "index_ingredients_on_style", using: :btree
   add_index "ingredients", ["unit"], name: "index_ingredients_on_unit", using: :btree
+
+  create_table "maderecipes", force: true do |t|
+    t.integer  "maker_id"
+    t.integer  "maderecipe_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "maderecipes", ["maderecipe_id"], name: "index_maderecipes_on_maderecipe_id", using: :btree
+  add_index "maderecipes", ["maker_id"], name: "index_maderecipes_on_maker_id", using: :btree
+
+  create_table "makerecipes", force: true do |t|
+    t.integer  "maker_id"
+    t.integer  "made_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "makerecipes", ["made_id"], name: "index_makerecipes_on_made_id", using: :btree
+  add_index "makerecipes", ["maker_id"], name: "index_makerecipes_on_maker_id", using: :btree
+
+  create_table "pantries", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "ingredient_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pantries", ["ingredient_id"], name: "index_pantries_on_ingredient_id", using: :btree
+  add_index "pantries", ["user_id", "ingredient_id"], name: "index_pantries_on_user_id_and_ingredient_id", unique: true, using: :btree
+  add_index "pantries", ["user_id"], name: "index_pantries_on_user_id", using: :btree
 
   create_table "pantry_items", force: true do |t|
     t.integer  "user_id"

@@ -21,9 +21,21 @@ class User < ActiveRecord::Base
  	has_many :comments, dependent: :destroy
  	has_many :pantry_items, dependent: :destroy
  	has_many :ingredients, through: :pantry_items
+
+ 	has_many :makerecipes, foreign_key: "maker_id", dependent: :destroy
+ 	has_many :made_recipes, through: :makerecipes, source: :made
  	before_save { email.downcase! }
 
  	has_secure_password
+
+ 	def made?(recipe)
+ 		makerecipes.find_by(made_id: recipe.id)
+ 	end
+
+ 	def make!(recipe)
+ 		makerecipes.create!(made_id: recipe.id)
+ 	end
+
 
  	def ingredient_saved?(ingredient)
  		pantry_items.find_by(ingredient_id: ingredient.id)

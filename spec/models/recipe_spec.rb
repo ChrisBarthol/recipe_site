@@ -21,10 +21,19 @@ describe Recipe do
   it { should respond_to(:nutrition) }
   it { should respond_to(:rating) }
   it { should respond_to(:ratings) }
+
+  it { should respond_to(:reverse_makerecipes) }
+  it { should respond_to(:makers) }
  
   its(:user) { should eq user }
 
   it { should be_valid }
+
+  #describe "making" do
+   # let(:maker) { FactoryGirl.create(:user) }
+   # let(:recipe) { FactoryGirl.create(:recipe) }
+   # before do
+
 
   describe "rating associations" do
     before { @recipe.save }

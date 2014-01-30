@@ -12,6 +12,9 @@ class Recipe < ActiveRecord::Base
 	accepts_nested_attributes_for :ingredients, :reject_if => lambda { |a| a[:name].blank? }, allow_destroy: true
 	has_many :comments
 	has_many :ratings, dependent: :destroy
+	has_many :reverse_makerecipes, foreign_key: "made_id", class_name: "Makerecipe", dependent: :destroy
+	has_many :makers, through: :reverse_makerecipes, source: :maker
+
 	validates :name, presence: true, uniqueness: { case_sensitive: false }
 	validates :description, presence: true
 	validates :user_id, presence: true

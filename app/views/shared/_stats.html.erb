@@ -30,4 +30,10 @@
     </strong>
     pantry items
   </a>
+  <a href="<%= pantry_user_path(@user) %>">
+    <strong id="pantry" class="stat">
+      <%= @user.made_recipes.count %>
+    </strong>
+    made recipes
+  </a>
 </div>
