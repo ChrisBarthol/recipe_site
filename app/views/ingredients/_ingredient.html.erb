@@ -1,9 +1,11 @@
-
-
+<% if @pp = true %>
+	<%= ingredient.name %>
+<% else %>
 <div class="span2"><%= ingredient.quantity %> <%= ingredient.unit %></div>
-<div class="span4">
+<div class="span2">
 <span class="info_link" data-name='<%= @random_recipe %>'><%= ingredient.name %></span> <% if ingredient.style.present? %><%= ingredient.style %>  <% end %>
 </div>
+<% end %>
 
 
 

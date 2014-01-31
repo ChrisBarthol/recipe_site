@@ -38,11 +38,11 @@
       
     <% end %>
   </div>
-  <div class="span8">
+  <div class="span6">
     <h3><%= @title %></h3>
     <% if @pantry_items.any? %>
       <ul class="users">
-        <%= render @pantry_items %>
+        <%= render partial: "ingredients/pantry_item", collection: @user.ingredients, as: :ingredient %>
       </ul>
       
     <% end %>
