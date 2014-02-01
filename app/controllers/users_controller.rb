@@ -88,7 +88,9 @@ class UsersController < ApplicationController
   def pantry
     @title = "Pantry Items"
     @user = User.find(params[:id])
-    @pantry_items = @user.ingredients.paginate(page:params[:page])
+    @pantry_items = @user.ingredients
+    #@pi = @user.pantry_items.created_at
+    pantry = User.find(:all, :include => [:ingredients], :order => "ingredients.created_at DESC")
     @recipe = @user.made_recipes
     @pp = false
   end
