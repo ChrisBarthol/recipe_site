@@ -27,7 +27,7 @@
 
   <span class="span2">
     <% if current_user== nil %>
-    <% elsif recipe.user_id==current_user.id || current_user.admin? %>
+    <% elsif current_user.admin? || recipe.user_id==current_user.id || current_user.admin? %>
       | <%= link_to "delete recipe", recipe, method: :delete,
                                     data: { confirm: "You sure?" } %>
     <% end %> 

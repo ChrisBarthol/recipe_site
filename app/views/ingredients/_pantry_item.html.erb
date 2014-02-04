@@ -1,5 +1,5 @@
 <li>
 	<span class="span2"><%= ingredient.name %></span>
 	<span class="span2"><%= ingredient.quantity %></span>
-	
+	<span class="span3"><%= @user.pantry_items.find_by(:ingredient_id => ingredient.id).created_at %></span>
 </li>
