@@ -17,22 +17,24 @@ class RecipesController < ApplicationController
   end
 
   def fork
-    @existing_recipe = Recipe.find(params[:id])
-    @newfork = @existing_recipe.id
-    @name=@existing_recipe.name
-    @username = @existing_recipe.user.name.downcase
-    array = [Regexp.union(@username), Regexp.union('forked by')]
-    @name2 = @name.gsub(Regexp.union(array), '').split.join(' ')
+    @existing_recipe = Recipe.find(params[:id])  #get recipe
+    @newfork = @existing_recipe.id  #isolate recipe.id
+    @name=@existing_recipe.name  #isolate recipe.name
+
+    #@username = @existing_recipe.user.name.downcase  #isolate username
+    #array = [Regexp.union(@username), Regexp.union('forked by')]
+    #@name2 = @name.gsub(Regexp.union(array), '').split.join(' ')
+
     @recipe= Recipe.new(@existing_recipe.attributes)
     @recipe.fork_id = @newfork
-    @recipe.name = @name2 + ' forked by ' + current_user.name
+    @recipe.name = @name.titleize + ' forked by ' + current_user.name.titleize
     
-    @recipe.ingredients.each do |ingredient|
+    @recipe.ingredients.each do |ingredient|  #reset ingredient.id for new ingredients
       ingredient.id = nil
     end
 
       if @recipe.name.downcase == @existing_recipe.name.downcase
-          flash[:warning] = "You've forked this recipe please update your fork"
+          flash[:warning] = "You've forked this recipe please update your fork or change the name"
           render 'new'
       else
           render 'new'
