@@ -4,9 +4,9 @@ class RatingsController < ApplicationController
 
   def create
   	@rating = Rating.new(rating_params)
-  	@oldrating = Rating.where("recipe_id = ?", @rating.recipe_id).sum('ranking')
-  	@ratingcount = Rating.where("recipe_id = ?", @rating.recipe_id).count
-  	@newrating = ((@oldrating+@rating.ranking)/(@ratingcount+1)).round
+  	@oldrating = Rating.where("recipe_id = ?", @rating.recipe_id).sum('ranking') #old rating
+  	@ratingcount = Rating.where("recipe_id = ?", @rating.recipe_id).count #number of ratings
+  	@newrating = ((@oldrating*@ratingcount+@rating.ranking)/(@ratingcount+1)).round #average of recipe with new rating (xy+z)/(x+1)
   	@yourrating = @rating.ranking
     	if @rating.save
       	respond_to do |format|

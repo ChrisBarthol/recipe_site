@@ -8,7 +8,6 @@ class IngredientsController < ApplicationController
 	def create
 		@ingredient = Ingredient.new(ingred_params)
 		@id = @ingredient.id
-
 		if @ingredient.save
 		 current_user.save_ingredient!(@ingredient)
 		 redirect_to pantry_user_path(current_user), :flash => {notice: "Ingredient Added!" }

@@ -8,14 +8,14 @@ class PantryItemsController < ApplicationController
 
 	def create
 		@recipe = Recipe.find(params[:recipe_id])
-		current_user.makerecipes.create!(made_id: @recipe.id)
+		current_user.makerecipes.create!(made_id: @recipe.id) #add relationship to make recipe table
 		@recipe.ingredients.each do |ingredient|
 			@ingredient = ingredient.id
-			@alreadysaved = current_user.ingredients.find_by_id(@ingredient)
+			@alreadysaved = current_user.ingredients.find_by_id(@ingredient) #check it ingredient is already saved this needs to be removed once queries get sorted
 			if @alreadysaved.nil?
 				current_user.save_ingredient!(ingredient)
 			else
-				#updated created at and recipe_id render update?
+				#updated created_at and recipe_id, render update?
 			end
 		end
 
