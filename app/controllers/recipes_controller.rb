@@ -65,6 +65,7 @@ class RecipesController < ApplicationController
   def newingredient
     @newingredient = Ingredient.find_by_name(params[:name])
     t = Ingredient.where("name = ?", @newingredient.name).first
+    #get recipes with same ingredient and have the first 3 available ---- Better Implementation? 
     @getthree = Recipe.joins(:ingredients).where('ingredients.name = ?', params[:name]).order('random()').first(3)
     @one1 = @getthree.first
     @getthree.shift
@@ -72,7 +73,7 @@ class RecipesController < ApplicationController
     @getthree.shift
     @three3 = @getthree.first
 
-
+    #get recipe.id for displaying and linking
     @one = Recipe.find_by_id(@one1.id) 
     @two = Recipe.find_by_id(@two2.id)
     @three = Recipe.find_by_id(@three3.id)
@@ -85,15 +86,12 @@ class RecipesController < ApplicationController
   end
 
   def show
-
-
-    
-  	@recipe = Recipe.find(params[:id])
-  	@ingredients = @recipe.ingredients
-    @comment = current_user.comments.build if signed_in?
-    @commentfeed = @recipe.commentfeed.paginate(page: params[:page])
-    @random_recipe = Recipe.order('random()').first
-    @ingredient = @recipe.ingredients.first
+  	@recipe = Recipe.find(params[:id])                                   #get recipe
+  	@ingredients = @recipe.ingredients                                   #get ingredients
+    @comment = current_user.comments.build if signed_in?                 #get comments
+    @commentfeed = @recipe.commentfeed.paginate(page: params[:page])     #display comments
+    @random_recipe = Recipe.order('random()').first                      #random recipe for the random link
+    @ingredient = @recipe.ingredients.first                             
 
 
     @alreadysaved = current_user.ingredients.find_by_id(@ingredient) if signed_in?
@@ -108,7 +106,7 @@ class RecipesController < ApplicationController
       @recipethree = Recipe.order('random()').first
     end
 
-    #Find ingredients
+    #Recipe Rankings
     if signed_in?
     @haverating = Rating.where('recipe_id = ?', @recipe.id).first
     end
@@ -119,7 +117,7 @@ class RecipesController < ApplicationController
 
     #@oneingredient = Ingredient.where("name = ?", @submitedname)
 
-    #Recipe Rankings
+
     @newrating = Rating.where("recipe_id = ?", @recipe.id).average('ranking')
     if @newrating == nil
       @newrating1 = "Not Reviewed"
