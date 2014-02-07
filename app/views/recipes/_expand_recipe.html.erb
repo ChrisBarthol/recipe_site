@@ -1,4 +1,7 @@
+
 <div>
-<%= @recipe.direction %>
-<%= @recipe.ingredients %>
+	<h3> Directions </h3>
+    <%= simple_format(@recipe.direction) %> 
+    <h3> Ingredients </h3>
+<div class ="span8"><%= render @recipe.ingredients %></div>
 </div>
