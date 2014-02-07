@@ -152,7 +152,7 @@ class RecipesController < ApplicationController
 
   def expand
     @recipe = Recipe.find(params[:id])
-    @id = @recipe.id
+    
 
     respond_to do |format|
       format.html
