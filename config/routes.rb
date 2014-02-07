@@ -4,7 +4,7 @@ RecipeSite::Application.routes.draw do
       get :search
     end
     member do
-      get :fork, :random, :newingredient, :forktree
+      get :fork, :random, :newingredient, :forktree, :expand
     end
   end
   resources :users do

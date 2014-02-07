@@ -150,6 +150,16 @@ class RecipesController < ApplicationController
   	end
   end
 
+  def expand
+    @recipe = Recipe.find(params[:id])
+    @id = @recipe.id
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   private
 
   	def recipe_params

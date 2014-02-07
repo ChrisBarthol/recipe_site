@@ -1,0 +1,1 @@
+$('recipe_<%= @recipe.id %>').replaceWith('<%= escape_javascript( render :partial =>"expand_recipe", :locals => { :recipe => @recipe }) %>');

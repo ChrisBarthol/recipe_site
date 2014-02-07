@@ -6,28 +6,14 @@
         <%= link_to recipe.name, recipe %>
   </span>
   <div class="span1.5" >
-    <div id="<%= recipe.id %>">
-      <% if current_user == nil %>
-
-      <% else %>
-        <% if current_user.recipesaved?(recipe) %>
-          <%= form_for(current_user.reciperelationships.find_by(recipesaved_id: recipe),
-                   html: { method: :delete }, remote: true) do |f| %>
-        	<%= f.submit "Remove", class: "btn btn-small" %>
-      	<% end %>
-        <% else %>
-          <%= form_for(current_user.reciperelationships.build(recipesaved_id: recipe.id), remote: true) do |f| %>
-        	<div><%= f.hidden_field :recipesaved_id %></div>
-        	<%= f.submit "Save", class: "btn btn-small btn-primary" %>
-      	<% end %>
-      <% end %>
-      <% end %>
+    <div id="recipe_<%= recipe.id %>">
+      <%= link_to raw("Expand"), expand_recipe_path(recipe), class: "btn btn-success", :remote => true %>
     </div> 
   </div>
 
   <span class="span2">
     <% if current_user== nil %>
-    <% elsif current_user.admin? || recipe.user_id==current_user.id || current_user.admin? %>
+    <% elsif current_user.admin? || recipe.user_id==current_user.id %>
       | <%= link_to "delete recipe", recipe, method: :delete,
                                     data: { confirm: "You sure?" } %>
     <% end %> 
