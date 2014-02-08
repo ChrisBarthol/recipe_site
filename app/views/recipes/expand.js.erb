@@ -1,1 +1,2 @@
-$('#recipe_<%= @recipe.id %>').replaceWith("<%= escape_javascript(render('recipes/expand_recipe')) %>")
+$('#recipe_<%= @recipe.id %>').append("<%= escape_javascript(render('recipes/expand_recipe')) %>")
+$('#<%= @recipe.id %>').replaceWith("<%= escape_javascript(render('recipes/minimize_recipe')) %>")
