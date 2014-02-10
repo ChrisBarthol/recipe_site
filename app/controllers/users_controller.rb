@@ -88,7 +88,7 @@ class UsersController < ApplicationController
   def pantry
     @title = "Pantry Items"
     @user = User.find(params[:id])
-    @pantry_items = @user.ingredients
+    @pantry_items = Ingredient.all(:joins => {:pantry_items => :user}, :conditions => { :pantry_items => { :user_id => current_user.id}}, :order =>"ingredients.name asc")
     #@new_p_items = PantryItem.where(maker_id = @user.id).first.id
     #@pi = @user.pantry_items.created_at
     @recipe = @user.made_recipes
