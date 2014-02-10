@@ -152,8 +152,16 @@ class RecipesController < ApplicationController
 
   def expand
     @recipe = Recipe.find(params[:id])
-    
 
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  def minimize
+    @recipe = Recipe.find(params[:id])
     respond_to do |format|
       format.html
       format.js

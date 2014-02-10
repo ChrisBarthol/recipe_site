@@ -1,5 +1,3 @@
-<div class="span1.5" >
-    <div id="delete_recipe">
-      <%= link_to raw("Minimize"), '#', class: "btn btn-success", :remote => true %>
-    </div> 
+<div id="minimize_<%= @recipe.id %>">
+	<%= link_to raw("Minimize"), minimize_recipe_path, class: "btn btn-warning", :remote => true %>
 </div>

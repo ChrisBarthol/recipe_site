@@ -5,7 +5,7 @@
   <span class = "span2">
         <%= link_to recipe.name, recipe %>
   </span>
-  <div class="span1.5" >
+  <div class="span1.5">
     <div id="<%= recipe.id %>">
       <%= link_to raw("Expand"), expand_recipe_path(recipe), class: "btn btn-success", :remote => true %>
     </div> 
