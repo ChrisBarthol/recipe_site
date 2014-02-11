@@ -92,7 +92,7 @@ class UsersController < ApplicationController
 
     #@pantry_items = Ingredient.all(:joins => {:user => :pantry_items => :ingredients}, )
 
-    @pantry_items = Ingredient.all(:joins => {:pantry_items => :user}, :conditions => { :pantry_items => { :user_id => current_user.id}},:order =>"pantry_items.created_at asc")
+    @pantry_items = Ingredient.all(:joins => {:pantry_items => :user}, :conditions => { :pantry_items => { :user_id => current_user.id}},:order =>"pantry_items.created_at asc").uniq
     #@pitems = @pantry_items.all(:joins => {:pantry_items => :ingredient}, :conditions => { :pantry_item => { :ingredient_id => ingredient.id}}, :group => "ingredient.name")
     #@new_p_items = PantryItem.where(maker_id = @user.id).first.id
     #@pi = @user.pantry_items.created_at
