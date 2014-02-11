@@ -62,6 +62,10 @@ module RecipeSite
     # Enable the asset pipeline
     config.assets.enabled = true
 
+    #Set Time zone
+    config.time_zone = 'Eastern Time (US & Canada)'
+    config.active_record.default_timezone = :local
+
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
