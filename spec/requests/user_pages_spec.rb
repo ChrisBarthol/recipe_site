@@ -16,6 +16,9 @@ describe "User pages" do
       end
 
       it { should have_button("You've made it!") }
+
+      describe "visiting the pantry"
+      end
       
     end
   end

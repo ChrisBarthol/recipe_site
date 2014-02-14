@@ -12,6 +12,7 @@
                                     data: { confirm: "You sure?" } %>
     <% end %> 
   </span>
+  
   <div class="span1.5">
     <div id="<%= recipe.id %>">
       <%= link_to raw("Expand"), expand_recipe_path(recipe), class: "btn btn-success", :remote => true %>

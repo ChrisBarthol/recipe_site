@@ -39,7 +39,7 @@
     <% end %>
   </div>
   <div class="span8">
-    <h3><%= @title %></h3>
+    <h3>Recently Used Pantry Items</h3>
     <% if @pantry_items.any? %>
       <ul class="users">
         <%= render partial: "ingredients/pantry_item", collection: @pantry_items, as: :ingredient %>

@@ -16,6 +16,9 @@ RecipeSite::Application.configure do
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
 
+  # Time Zone Change
+  config.time_zone = 
+
 
   # Change mail delivery to either :smtp, :sendmail, :file, :test
   config.action_mailer.delivery_method = :smtp
