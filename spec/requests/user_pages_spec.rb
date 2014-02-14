@@ -8,19 +8,51 @@ describe "User pages" do
     let(:user) { FactoryGirl.create(:user) }
     let(:recipe) { FactoryGirl.create(:recipe) }
 
-    describe "saving the ingredients", :js => true do
-      before do
-        sign_in user
-        visit recipe_path(recipe)
-        click_button "I Made This!"
-      end
-
-      it { should have_button("You've made it!") }
-
-      describe "visiting the pantry"
-      end
-      
+    before do
+      sign_in user
+      visit recipe_path(recipe)
+      click_button "I Made This!"
+      visit pantry_user_path(user)
     end
+
+    it { should have_content('Made Recipes') }
+    it { should have_content('Recently Used Pantry Items') }
+    it { should have_content('Add an Ingredient to Your Pantry') }
+    it { should have_content(recipe.name) }
+
+    describe "expanding a recipe", :js => true do
+      before { click_link "Expand" }
+
+      it { should have_content('Directions') }
+      it { should have_content('Ingredients') }
+      it { should have_link('Minimize') }
+      it { should have_content(recipe.direction) }
+      it { should have_content(recipe.ingredients.first) }
+
+      describe "minimize" do
+        before { click_link "Minimize" }
+
+        it { should_not have_content('Directions') }
+        it { should_not have_content('Ingredients') }
+        it { should_not have_link('Minimize') }
+        it { should_not have_content(recipe.direction) }
+        it { should_not have_content(recipe.ingredients) }
+      end
+    end
+
+    describe "add an ingredient to pantry" do
+      before do
+        fill_in "Ingredient Name", with: "Cheese"
+        fill_in "Quantity", with: "142"
+        fill_in "Units", with: "wheel"
+        click_button "Add Ingredient to Pantry"
+      end
+
+      it { should have_content('Cheese') }
+      it { should have_content('142') }
+      it { should have_content('wheel') }
+    end
+
   end
 
   describe "saving recipes" do
