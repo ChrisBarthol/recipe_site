@@ -4,7 +4,7 @@ describe "RecipePages" do
 
   subject {page}
 
-  describe "I made it button", :focus => true do
+  describe "I made it button" do
     let(:user) { FactoryGirl.create(:user) }
     let(:recipe) { FactoryGirl.create(:recipe, :with_ingredients) }
     let(:ingredient) { FactoryGirl.create(:ingredient) }
