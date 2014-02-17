@@ -11,8 +11,6 @@ gem 'bootstrap-will_paginate', '0.0.9'
 gem 'newrelic_rpm'
 gem 'tire'
 gem 'fog'
-gem 'carrierwave_direct'
-gem 'sidekiq'
 
 
 group :development, :test do
