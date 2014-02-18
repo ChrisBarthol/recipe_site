@@ -1,4 +1,5 @@
 class Pantry < ActiveRecord::Base
-	validates :name, presence: true
+	before_save { self.name = name.downcase }
+	validates :name, presence: true#, uniqueness: true
 	validates :user_id, presence: true
 end
