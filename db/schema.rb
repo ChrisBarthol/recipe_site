@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140217182610) do
+ActiveRecord::Schema.define(version: 20140224175128) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,8 +68,10 @@ ActiveRecord::Schema.define(version: 20140217182610) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "expiration"
   end
 
+  add_index "pantries", ["expiration"], name: "index_pantries_on_expiration", using: :btree
   add_index "pantries", ["name", "user_id"], name: "index_pantries_on_name_and_user_id", unique: true, using: :btree
   add_index "pantries", ["quantity"], name: "index_pantries_on_quantity", using: :btree
   add_index "pantries", ["unit"], name: "index_pantries_on_unit", using: :btree

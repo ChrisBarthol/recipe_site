@@ -1,4 +1,5 @@
 class Ingredient < ActiveRecord::Base
+	before_save { self.name = name.downcase }
 	include Tire::Model::Search
     include Tire::Model::Callbacks
 	belongs_to :recipe
