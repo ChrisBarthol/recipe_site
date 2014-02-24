@@ -24,3 +24,4 @@ doc/
 .idea
 bundler_stubs/
 /config/local_env.yml
+/config/newrelic.yml
