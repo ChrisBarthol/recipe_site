@@ -16,7 +16,7 @@
     <span class="span6">
    
       <h3>Add an Ingredient to Your Pantry </h3>
-    <%= form_tag({controller: "ingredients", action: "create"}, :method => "post") do %>
+    <%= form_tag({controller: "pantries", action: "create"}, :method => "post") do %>
       <p>
         <%= label_tag(:name, "Ingredient Name") %>
         <%= text_field_tag :name %>
@@ -24,6 +24,8 @@
         <%= text_field_tag :quantity %>
         <%= label_tag(:unit, "Units") %>
         <%= text_field_tag :unit %>
+        <%= label_tag(:expiration, "Expires?") %>
+        <%= text_field_tag :expiration %>
       </p>
       <div class="center"><%= submit_tag("Add Ingredient to Pantry", class: "btn btn-small btn-primary") %></div>
     <% end %>
