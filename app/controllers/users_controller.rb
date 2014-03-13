@@ -89,9 +89,11 @@ class UsersController < ApplicationController
     @title = "Pantry Items"
     @user = User.find(params[:id])
     @pitems = Ingredient.group('name')
+;
+    @stored_ingred = Pantry.where(user_id: current_user.id).order(created_at: :desc)
 
     #@pantry_items = Ingredient.all(:joins => {:user => :pantry_items => :ingredients}, )
-    @pantry_items = Ingredient.joins(:pantry_items).where(pantry_items: {user_id: current_user.id}).order(created_at: :desc)
+    @pantry_items = Ingredient.joins(:pantry_items).where(pantry_items: {user_id: current_user.id}, pantry_items: {:created_at => Time.now-21.days..Time.now}).order(created_at: :asc)
     #@pantry_items = Ingredient.all(:joins => {:pantry_items => :user}, :conditions => { :pantry_items => { :user_id => current_user.id}},:order =>"pantry_items.created_at asc")
     #@pitems = @pantry_items.all(:joins => {:pantry_items => :ingredient}, :conditions => { :pantry_item => { :ingredient_id => ingredient.id}}, :group => "ingredient.name")
     #@new_p_items = PantryItem.where(maker_id = @user.id).first.id

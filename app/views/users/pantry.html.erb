@@ -40,11 +40,20 @@
       
     <% end %>
   </div>
+  <div class="span12">
+    <h3>My Pantry</h3>
+    <% if @user.pantries.any? %>
+      <ul class="users">
+        <%= render partial: "pantry/stored", collection: @stored_ingred, as: :ingredient %>
+      </ul>
+      
+    <% end %>
+  </div>
   <div class="span8">
     <h3>Recently Used Pantry Items</h3>
     <% if @pantry_items.any? %>
       <ul class="users">
-        <%= render partial: "ingredients/pantry_item", collection: @pantry_items, as: :ingredient %>
+        <%= render partial: "pantry_items/pantry_item", collection: @pantry_items, as: :ingredient %>
       </ul>
       
     <% end %>
