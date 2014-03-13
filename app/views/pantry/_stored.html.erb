@@ -2,4 +2,13 @@
 	<span class="span2"><%= ingredient.name %></span>
 	<span class="span2"><%= ingredient.quantity %> <%= ingredient.unit %></span>
 	<span class="span3"><%= ingredient.created_at.strftime("%d %b. %Y at %H:%M") %></span>
+	<% if ingredient.expiration.present? %>
+		<span class="span3">Expires: <%= ingredient.expiration %></span>
+	<% else %>
+		<div class="span3" id="ratingfield">
+			<% if signed_in? %>
+				<input type="text" class="form-control" placeholder="Expires...?">
+			<% end %>
+		</div>
+	<% end %>
 </li>
