@@ -23,9 +23,11 @@
         <%= label_tag(:quantity, "Quantity") %>
         <%= text_field_tag :quantity %>
         <%= label_tag(:unit, "Units") %>
-        <%= text_field_tag :unit %>
+        <%= select_tag(:ranking, options_for_select(["lbs","oz","tsp","tbs"])) %>
+        
         <%= label_tag(:expiration, "Expires?") %>
         <%= text_field_tag :expiration %>
+        
       </p>
       <div class="center"><%= submit_tag("Add Ingredient to Pantry", class: "btn btn-small btn-primary") %></div>
     <% end %>
