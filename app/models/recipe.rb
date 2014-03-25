@@ -35,6 +35,10 @@ class Recipe < ActiveRecord::Base
 	#	"#{id}-#{name}".parameterize
 	#end
 
+	def average_rating
+		ratings.sum(:ranking) / ratings.size
+	end
+
 	def commentfeed
 		Comment.where("recipe_id = ?", id)
 	end

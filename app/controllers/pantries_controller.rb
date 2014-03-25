@@ -22,7 +22,7 @@ class PantriesController < ApplicationController
 	private
 
 		def ingred_params
-			params.permit(:name, :quantity, :unit, :id, :style, :create_at, :updated_at, :expiration)
+			params.permit(:name, :quantity, :unit, :id, :style, :create_at, :updated_at, :expiration, :user_id)
 		end
 	
 end
