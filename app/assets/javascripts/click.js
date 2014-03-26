@@ -36,3 +36,12 @@ $(document).ready(function(){
   });
 });
 
+$(document).ready(function(){
+  var thescore = $('#rating2').data('score');
+  $('#rating2').raty({
+    readOnly: true,
+    score: thescore,
+    path: '/assets'
+  });
+});
+

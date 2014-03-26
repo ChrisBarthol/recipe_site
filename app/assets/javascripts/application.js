@@ -15,7 +15,7 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require jquery.ui.datepicker
-//= require raty.min.js
+//= require jquery.raty.min.js
 //= require bootstrap
 //= require_tree .
 
