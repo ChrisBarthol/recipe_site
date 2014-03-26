@@ -41,6 +41,9 @@ $(document).ready(function(){
   $('#rating2').raty({
     readOnly: true,
     score: thescore,
+    half: true,
+    size: 46,
+    number: 10,
     path: '/assets'
   });
 });

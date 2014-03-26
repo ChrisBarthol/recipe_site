@@ -13,6 +13,11 @@
         <%= @recipe.description %>
       </p>
       </h2>
+      <h3>
+      <div class="center" id="rfield">
+        Overall Rating: <%= @newrating1 %><div class="span7 center" id="rating2" data-score="<%= @newrating1 %>"></div>
+      </div>
+      </h3>
     </div>
 
     <div class="mainpicture">
@@ -47,12 +52,11 @@
 
 <div class="serving" id="info">
   <h3><%= @recipe.name.titleize %> Info</h3>
-  <span class="span12">
+  <span class="span10">
     <h4>
       <div class="span2">Servings</div>
       <div class="span2">Prep Time</div>
-      <div class="span2">Total Time</div>
-      <div class="span2" id="endinfo">Rating</div>
+      <div class="span2" id="endinfo">Total Time</div>
       <% if signed_in? %>
       <div class="span2">Your Rating</div>
       <% else %>
@@ -63,10 +67,11 @@
     <div class="span2"><%= @recipe.preptime %></div>
     <div class="span2"><%= @recipe.totaltime %></div>
     
-      <%= render 'recipes/recipeinfo' %>
       <%= render 'recipes/rating_fields' %>
   </span>
 </div>
+
+<div class="clearfix visible-xs"></div>
 
 
   
