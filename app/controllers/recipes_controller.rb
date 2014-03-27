@@ -14,6 +14,7 @@ class RecipesController < ApplicationController
 
   def forktree
     @recipe = Recipe.find(params[:id])
+    @fork = Recipe.where(fork_id: @recipe.id)
   end
 
   def fork
@@ -26,7 +27,7 @@ class RecipesController < ApplicationController
     #@name2 = @name.gsub(Regexp.union(array), '').split.join(' ')
 
     @recipe= Recipe.new(@existing_recipe.attributes)
-    @recipe.fork_id = @newfork
+    @recipe.fork_id = @existing_recipe.id
     @recipe.name = @name.titleize + ' forked by ' + current_user.name.titleize
     
     @recipe.ingredients.each do |ingredient|  #reset ingredient.id for new ingredients

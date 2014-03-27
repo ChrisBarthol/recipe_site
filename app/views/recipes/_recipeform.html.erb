@@ -2,6 +2,8 @@
 	<span class="span9">
 	  <%= f.label :name, "Name**" %>
 	  <%= f.text_field :name %>
+
+	  <div><%= f.hidden_field :fork_id, :value => @recipe.id %></div>
 	</span>
 </div>
 	<span class="span8">

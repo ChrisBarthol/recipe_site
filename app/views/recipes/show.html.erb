@@ -114,19 +114,13 @@
   <h3>
     Directions
   </h3>
-
-  <span class="span12">
-    <%= simple_format(@recipe.direction) %>
-  </span>
-
+    <div class="indent"><%= simple_format(@recipe.direction) %></div>
 </div>
 
 <% if @recipe.nutrition.present? %>
   <div class="nutrition">
     <h3>Nutrition Information</h3>
-    <span class="span12">
-      <%= simple_format(@recipe.nutrition) %>
-    </span>
+      <div class="indent"><%= simple_format(@recipe.nutrition) %></div>
   </div>
 <% end %>
 
