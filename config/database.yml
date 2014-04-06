@@ -2,6 +2,7 @@ development:
   adapter: postgresql
   encoding: unicode
   database: localdb2
+  host: localhost
   pool: 5
   username: chrisbarthol
   password:

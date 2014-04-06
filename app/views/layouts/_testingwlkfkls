@@ -1,14 +1,15 @@
+
 <div class="navbar navbar-fixed-top navbar-inverse">
   <%= favicon_link_tag 'bwtomatosmall.png' %>
   <div class="navbar-inner">
     <%= image_tag("whitetomatofull.png", id: "logo") %>
     <%= link_to "Use Your Foodle", root_path, id: "logo" %>
     <%= image_tag("flipwhitetomatofull.png", id: "logo") %>
-    <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
+    <button class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
-    </a>
+    </button>
     <div class="nav-collapse collapse">
       <span>
       <ul class="nav pull-right">
@@ -45,3 +46,39 @@
     </div>
   </div>
 </div>
+
+
+/* header */
+
+div.container {
+  background-color: #FFF9F1;
+  padding: 5px;
+}
+
+div.navbar-inner {
+  background-color: white;
+}
+
+.navbar .brand {
+  padding: 8px 20px 12px;
+  font-size: 20px;
+  color: #727272;
+}
+
+.navbar .divider-vertical {
+  height: 41px;
+  background-color: #ffffff;
+  border-right: 1px solid #c6c6c6;
+}
+
+.navbar .nav > li > a {
+  padding: 10px 10px 11px;
+  font-size: 14px;
+  color: #666666;
+}
+
+.navbar .nav > .active > a,
+.navbar .nav > .active > a:hover,
+.navbar .nav > .active > a:focus {
+  color: $yellow;
+}
