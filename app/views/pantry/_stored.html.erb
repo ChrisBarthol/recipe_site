@@ -1,16 +1,16 @@
 <li>
 	<span class="span2"><%= ingredient.name %></span>
 	<span class="span2"><%= ingredient.quantity %> <%= ingredient.unit %></span>
-	<span class="span3"><%= ingredient.created_at.strftime("%d %b. %Y at %H:%M") %></span>
+	<span class="span3"><%= ingredient.updated_at.strftime("%d %b. %Y at %H:%M") %></span>
 	<% if ingredient.expiration.present? %>
 		<span class="span3">Expires: <%= ingredient.expiration %></span>
 	<% else %>
 		<div class="span3" id="ratingfield">
-			<% if signed_in? %>
+		
 				<%= form_for ingredient, :url => pantry_path(ingredient) do |f| %>
 					<%= f.text_field :expiration, placeholder: "Expires...?" %>
 				<% end %>
-			<% end %>
+			
 		</div>
 	<% end %>
 </li>

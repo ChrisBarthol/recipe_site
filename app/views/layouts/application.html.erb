@@ -31,6 +31,11 @@
             <%= yield %>
           </div>
           <div id="col2">
+            <% if Rails.env.development? %>
+            <div class="pull-right">
+              AD
+            </div>
+            <% else %>
             <div class="pull-right">
             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
             <!-- UseYourFoodle -->
@@ -41,6 +46,7 @@
             <script>
             (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
+            <% end %>
           </div>
           </div>
         </div>

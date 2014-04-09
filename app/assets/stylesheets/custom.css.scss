@@ -19,7 +19,6 @@ html {
 }
 
 body.none {
-  padding-top: 60px;
   background-image:url('food2.jpg');
   background-size:100% 100%;
   background-repeat:no-repeat;
@@ -52,6 +51,10 @@ textarea {
 
 .center h1 {
   margin-bottom: 10px;
+}
+.inner {
+  width: 50%;
+  margin: 0 auto;
 }
 
 /* typography */

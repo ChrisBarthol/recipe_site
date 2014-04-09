@@ -9,10 +9,20 @@ class PantriesController < ApplicationController
 		@ingredient = Pantry.new(ingred_params)
 		@id = @ingredient.id
 		@ingredient.user_id = current_user.id
-		if @ingredient.save
-		 redirect_to pantry_user_path(current_user), :flash => {notice: "Ingredient Added!" }
+
+		@exists = Pantry.where(name: @ingredient.name).first
+
+		if @exists.nil?
+			if @ingredient.save
+			 redirect_to pantry_user_path(current_user), :flash => {notice: "Ingredient Added!" }
+			else
+			 redirect_to pantry_user_path(current_user), :flash => {error: "Error: Failed to save" }
+			end
 		else
-		 redirect_to pantry_user_path(current_user), :flash => {error: "Error: Failed to save" }
+			@conversion = @exists.quantity.to_r.to_f + @ingredient.quantity.to_r.to_f
+			@exists.quantity = @conversion.to_s
+			@exists.update_attributes(params[ingred_params])
+			redirect_to pantry_user_path(current_user)
 		end
 	end
 
