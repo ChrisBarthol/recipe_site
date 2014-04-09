@@ -7,9 +7,9 @@
 	<% else %>
 		<div class="span3" id="ratingfield">
 			<% if signed_in? %>
-			<%= form_for ingredient, :url => pantry_path(ingredient) do |f| %>
-			<%= f.text_field :expiration, placeholder: "Expires...?" %>
-			<% end %>
+				<%= form_for ingredient, :url => pantry_path(ingredient) do |f| %>
+					<%= f.text_field :expiration, placeholder: "Expires...?" %>
+				<% end %>
 			<% end %>
 		</div>
 	<% end %>
