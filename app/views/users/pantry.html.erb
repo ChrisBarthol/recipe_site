@@ -36,7 +36,7 @@
     <h3>Made Recipes</h3>
     <% if @user.made_recipes.any? %>
       <ul class="users">
-        <%= render partial: "shared/made_recipe", collection: @user.made_recipes, as: :recipe %>
+        <%= render partial: "shared/made_recipe", collection: @made, as: :recipe %>
       </ul>
       
     <% end %>

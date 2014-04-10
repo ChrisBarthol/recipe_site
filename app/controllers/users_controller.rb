@@ -89,6 +89,7 @@ class UsersController < ApplicationController
     @title = "Pantry Items"
     @user = User.find(params[:id])
     @pitems = Ingredient.group('name')
+    @made = @user.made_recipes.last(5)
 ;
     @stored_ingred = Pantry.where(user_id: current_user.id).order(created_at: :desc)
 
