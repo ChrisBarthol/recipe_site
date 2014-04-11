@@ -1,8 +1,26 @@
 <% @body_class = "about" %>
 <% provide(:title, @recipe.name.titleize+ " Fork Tree") %>
 <div class="fork_tree_title">
-	<h1>Viewing the Fork Tree for </h1>
+	<h3 class="center">Viewing the Fork Tree for </h3>
 	<h1><%= @recipe.name.titleize %> </h1>
+	<div class="container">
+		<div class="inner">
+			<span class="span2 center">
+				<%= image_tag @recipe.recipeimage_url(:thumb).to_s %>
+			</span>
+			<span class="span3">
+				<%= link_to @recipe.name, @recipe %>
+				<div><%= @recipe.description %></div>
+			</span>
+		</div>
+	</div>
 </div>
-	<%= render @fork %>
-<div>
+<div class="original_recipe">
+	<h3 class="center">First Level Forks</h3>
+</div>
+<div class="fork">
+	<ul class="users">
+	<%= render partial: "shared/made_recipe", collection: @fork, as: :recipe %>
+	</ul>
+</div>
+
