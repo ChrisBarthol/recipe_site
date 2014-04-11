@@ -3,7 +3,7 @@ $sansFontFamily: 'Allerta', Helvetica, Arial, sans-serif;
 $serifFontFamily: 'Crimson Text', Georgia, Times, serif;
 
 @import "bootstrap";
-@import "bootstrap/responsive";
+
 
 
 
@@ -26,12 +26,13 @@ body.none {
 
 body.about{
   background-color:#6F1F1F;
+  padding-top:60px;
 }
-@media (min-width: 979px) {
+/*@media (min-width: 979px) {
     body {
         padding-top: 60px;
     }
-}
+}*/
 
 section {
   overflow: auto;

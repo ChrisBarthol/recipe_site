@@ -84,28 +84,30 @@
   <div class="theingredients">
     <% if @recipe.ingredients.any? %>
       
-      <h3>
-        <span class ="span12">
-            <div class="span2">Amount</div>
-            
-            <div class="span4" id="center">Ingredient   </div>
-            <div class="span5">
-            Select an Ingredient to See Recipes.
-            </div>
-        </span>
-      </h3>
-      <div id="ingredientlist"
+    <h3>
+      <span class ="span12">
+          <div class="span2">Amount</div>
+          
+          <div class="span4" id="center">Ingredient   </div>
+          <div class="span5">
+          Select an Ingredient to See Recipes.
+          </div>
+      </span>
+    </h3>
+    <div id="ingredientlist">
       <ol class="ingredients">
         <%= render @ingredients %>
       </ol>
-        <% end %>
-        <div class="thecarousel" id="Carousel">
-            <ul class="bxslider">
-                <li id="slide"><%= link_to image_tag(@recipe.recipeimage_url(:thumb).to_s, :title => @recipe.name), { :action => :show, :id => @recipe.id} %></li>
-                <li id="slide"><%= link_to image_tag(@recipetwo.recipeimage_url(:thumb).to_s, :title => @recipetwo.name), { :action => :show, :id => @recipetwo.id} %></li>
-                <li id="slide"><%= link_to image_tag(@recipethree.recipeimage_url(:thumb).to_s, :title => @recipethree.name), { :action => :show, :id => @recipethree.id} %></li>
-            </ul>
-        </div>
+    </div>
+    <% end %>
+      
+    <div class="thecarousel" id="Carousel">
+        <ul class="bxslider">
+            <li id="slide"><%= link_to image_tag(@recipe.recipeimage_url(:thumb).to_s, :title => @recipe.name), { :action => :show, :id => @recipe.id} %></li>
+            <li id="slide"><%= link_to image_tag(@recipetwo.recipeimage_url(:thumb).to_s, :title => @recipetwo.name), { :action => :show, :id => @recipetwo.id} %></li>
+            <li id="slide"><%= link_to image_tag(@recipethree.recipeimage_url(:thumb).to_s, :title => @recipethree.name), { :action => :show, :id => @recipethree.id} %></li>
+        </ul>
+    </div>
   </div>
 </div>
 
@@ -140,15 +142,15 @@
   </button>
 </div>
 
-
+<div class="clearfix visible-xs"></div>
 
   <!--  Comment Form and comments   -->
 <div class="center" id="comment_form">
-  <aside class="span12">
+  <div>
     <section>
       <%= render 'shared/comment_form' %>
     </section>
-  </aside>
+  </div>
 </div>
 <div class="row" id="commentfeed">
     <aside class="span8">
