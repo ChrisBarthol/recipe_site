@@ -1,4 +1,9 @@
+<% if ingredient.quantity.to_i < 0 %>
+<li class ="red">
+<% else %>
 <li>
+<% end %>
+
 	<span class="span2"><%= ingredient.name %></span>
 	<span class="span2"><%= ingredient.quantity %> <%= ingredient.unit %></span>
 	<span class="span3"><%= ingredient.updated_at.strftime("%d %b. %Y at %H:%M") %></span>
@@ -10,7 +15,12 @@
 				<%= form_for ingredient, :url => pantry_path(ingredient) do |f| %>
 					<%= f.text_field :expiration, placeholder: "Expires...?" %>
 				<% end %>
-			
 		</div>
 	<% end %>
+	<div class="span1">
+          <%= form_for(current_user.pantries.find_by(name: ingredient.name),
+                   html: { method: :delete }) do |f| %>
+        	<%= f.submit "Remove", class: "btn btn-small" %>
+      	<% end %>
+      </div>
 </li>

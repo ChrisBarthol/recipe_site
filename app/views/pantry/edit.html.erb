@@ -1,0 +1,10 @@
+<% @body_class = "about" %>
+<h1>Editing <%= @ingredient.name %> </h1>
+
+<%= form_for(@ingredient) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<%= render 'recipeform', f: f %>
+	<%= f.submit "Create this recipe", class: "btn btn-large btn-primary" %>
+   
+
+<% end %>

@@ -41,6 +41,10 @@ class PantriesController < ApplicationController
 
 
 	def destroy
+	  	ingredient = Pantry.find(params[:id])
+
+      	ingredient.destroy
+      	redirect_to pantry_user_path(current_user), :flash => {warning: "Ingredient destroyed" }
 	end
 
 	private
