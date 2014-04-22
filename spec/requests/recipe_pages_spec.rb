@@ -45,7 +45,7 @@ describe "RecipePages" do
     describe "submit a rating", :js => true do
 
       before do
-        fill_in "Rating", with: "2"
+        select '2', :from => "Rating"
         click_button "Rate this Recipe"
       end
       
@@ -223,7 +223,7 @@ describe "RecipePages" do
       	it { should have_title('Example Recipe') }
         it { should have_content('Example Direction') }
       	it { should have_content('Example Description') }
-      	it { should have_content('Example Ingredient') }
+      	it { should have_content('example ingredient') }
       	it { should have_content('1') }
         it { should have_content('cup') }
         it { should have_content('4') }

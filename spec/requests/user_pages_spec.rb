@@ -35,6 +35,7 @@ describe "User pages" do
         it { should_not have_content('Directions') }
         it { should_not have_content('Ingredients') }
         it { should_not have_link('Minimize') }
+        it { should have_link("Expand")}
         it { should_not have_content(recipe.direction) }
         it { should_not have_content(recipe.ingredients) }
       end
@@ -44,13 +45,13 @@ describe "User pages" do
       before do
         fill_in "Ingredient Name", with: "Cheese"
         fill_in "Quantity", with: "142"
-        fill_in "Units", with: "wheel"
+        select 'lbs', :from => "Units"
         click_button "Add Ingredient to Pantry"
       end
 
-      it { should have_content('Cheese') }
+      it { should have_content('cheese') }
       it { should have_content('142') }
-      it { should have_content('wheel') }
+      it { should have_content('lbs') }
     end
 
   end

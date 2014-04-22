@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Authentication" do
+describe "Authentication", :focus => true do
 
   subject { page }
 
@@ -34,12 +34,13 @@ describe "Authentication" do
   			click_button "Sign in"
   		end
 
-  		it { should have_title(user.name) }
+  		it { should have_title("Use Your Foodle") }
       it { should have_link('Users',      href: users_path) }
   		it { should have_link('Profile',		href: user_path(user)) }
   		it { should have_link('Sign out', 		href: signout_path) }
   		it { should_not have_link('Sign in',	href: signin_path) }
       it { should have_link('Settings',   href: edit_user_path(user)) }
+      it { should have_content("Here are your most important items") }
 
       describe "followed by signout" do
         before { click_link "Sign out" }
@@ -176,7 +177,7 @@ describe "Authentication" do
           end
 
           it "should render the default (profile) page" do
-            expect(page).to have_title(user.name)
+            expect(page).to have_title("Use Your Foodle")
           end
         end
       end
