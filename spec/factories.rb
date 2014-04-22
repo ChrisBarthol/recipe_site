@@ -40,6 +40,19 @@ FactoryGirl.define do
     user
   end
 
+  factory :singlerecipe, :class => Recipe do
+    name "One Ingredient"
+    description "Only One Item"
+    direction "put it in a bowl"
+
+    trait :with_ingredients do
+      after(:create) do |instance|
+        create_list :ingredient, 1, recipe: instance
+      end
+    end
+    user
+  end
+
   factory :recipe do
     sequence(:name) { |n| "Recipe ##{n}" }
   	sequence(:description) { |n| "Description #{n}" }
