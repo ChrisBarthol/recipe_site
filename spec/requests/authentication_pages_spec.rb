@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Authentication", :focus => true do
+describe "Authentication" do
 
   subject { page }
 

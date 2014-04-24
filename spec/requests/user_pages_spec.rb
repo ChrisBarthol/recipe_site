@@ -9,7 +9,7 @@ describe "User pages" do
 	subject { page }
   keypress = "var e = $.Event('keydown', { keyCode: 13 }); $('body').trigger(e);"
 
-  describe "pantry", :focus => true do
+  describe "pantry" do
     let(:user) { FactoryGirl.create(:user) }
     let(:recipe) { FactoryGirl.create(:singlerecipe, :with_ingredients) }
     let(:ingredient) { recipe.ingredients.first }
@@ -26,7 +26,7 @@ describe "User pages" do
     it { should have_content('Add an Ingredient to Your Pantry') }
     it { should have_content(recipe.name) }
     it { should have_content('My Pantry') }
-    it { page.should have_selector('li.red') } 
+    it { page.should have_selector('li.negative') } 
     it { should have_content(ingredient.name) }
 
     describe "removing a pantry ingredient" do
@@ -48,7 +48,7 @@ describe "User pages" do
     end
 
 
-    describe "expanding a recipe", :broken => true, :js => true do
+    describe "expanding a recipe", :js => true do
       before { click_link "Expand" }
 
       it { should have_content('Directions') }
@@ -82,7 +82,7 @@ describe "User pages" do
     end
 
 
-    describe "add an ingredient to pantry" do
+    describe "add an ingredient to pantry", :focus => true do
       before do
         fill_in "Ingredient Name", with: "cheese"
         fill_in "Quantity", with: "142"

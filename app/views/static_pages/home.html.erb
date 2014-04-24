@@ -2,57 +2,95 @@
 <%= render 'shared/dashboard' %>
 <% else %>
 
-<div class="center hero-unit">
-  <div id="heading">
-    <h1>Welcome to Use Your Foodle</h1>
+<div id="wrapper">
+  <section id="featurette">
+    <div class="container">
+      <section class="row">
+        <div class="span4">
+          <h2>Use Your Foodle</h2>
+          <p>
+            Helping you to reduce your food waste, one recipe at a time.
+          </p>
+        </div>
+        <div class="span2">
+          <span>So many recipes</span>
+        </div>
+        <div class="span2">
+          <span>So many recipes</span>
+        </div>
+        <div class="span2">
+          <span>So many recipes</span>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <section id="signin">
+    <div class="container">
+      <section class="row">
+        <%= form_for(:session, url: sessions_path) do |f| %>
+            <div class="span4">
+              <%= f.label :email %>
+              <%= f.text_field :email %>
+            </div>
+            <div class="span4">
+              <%= f.label :password %>
+              <%= f.password_field :password %>
+            </div>
+            <div class="span2">
+              <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+            </div>
+          </div>
+        <% end %>
+      </section>
+    </div>
+  </section>
+
+
+  <section id="feature">
+    <div class="container">
+     <h1>
+    How often do you throw out food in your house?  
+    </h1>
+    <div class="tight">
+      <h3>
+      For the average U.S. household of four, food waste translates into an estimated <em>$1,350.00 to $2,275.00</em> in annual losses.  That is real money being thrown away for no reason.  Here at Use Your Foodle our goal is to help you reduce your food waste and put money back in your pocket.
+      </h3>
+    </div>
   </div>
+  </section>
+
+  <section id="mainContent">
+    <div class="container">
+      <section class="row">
+        <div class="span6">
+          <strong>Fork recipes</strong> - Maybe you've made Mrs X's Favorite Apple Pie, but changed a few of the ingredients.  You can now save the recipe with those changes and make it your own.  Forking automatically imports all the data from the recipe and allows you to change the ingredients, and then save the new recipe.
+        </div>
+        <div class="span6">
+        </div>
+      </section>
+   
+      <section class="row">
+        <div class="span6">
+        </div>
+        <div class="span6">
+          Find recipes based on used ingredients</strong> - Directly from the recipe page you can click on any ingredient and find other recipes that use that same ingredient.  Explore recipes and try to use all your ingredients.
+        </div>
+      </section>
+ 
+      <section class="row">
+        <div class="span6">
+          <strong>Your personal pantry</strong> - Once you make a recipe we'll save all the ingredients you used to your pantry.  This is a list of food items that you currently have, or have recently used.
+        </div>
+        <div class="span6">
+        </div>
+      </section>
+    </div>
+  </section>
+
+
 </div>
-<div class="center">
-  <p>
-    How often do you throw out food in your house?  For the average U.S. household of four, food waste translates into an estimated $1,350.00 to $2,275.00 in annual losses.  That is real money being thrown away for no reason.  Here at Use Your Foodle our goal is to help you reduce your food waste and put money back in your pocket.
-  </p>
-<!--   <p>
-    This is the home page for all your cooking needs.  It is a recipe site designed to better use the food in your house.
-    You can look through our <%= @recipecount %> recipes.
-  </p> -->
-  <p>
-    Become a memeber by signing up now!  You'll be able to post new recipes and access all of our features which are listed below.  You can also provide feedback and have an impact on the direction of the site and features you would you like to see.
-  </p>
-</div>
 
-
-  <div class="clearfix visible-xs"></div>
-  <div class="center">
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
-  ||
-  <%= link_to "Log in!", signin_path, class: "btn btn-large btn-primary" %>
-  </div>
-  <div class="clearfix visible-xs"></div>
-<div class="center pad"><%= image_tag("food1_s.jpg", id: "food1") %></div>
-
-
-  Current features include:
-<ul>
-  <li><strong>Add and save recipes</strong></li>
-  <li><strong>Fork recipes</strong> - Maybe you've made Mrs X's Favorite Apple Pie, but changed a few of the ingredients.  You can now save the recipe with those changes and make it your own.  Forking automatically imports all the data from the recipe and allows you to change the ingredients, and then save the new recipe.</li>
-  <li><strong>Find recipes based on used ingredients</strong> - Directly from the recipe page you can click on any ingredient and find other recipes that use that same ingredient.  Explore recipes and try to use all your ingredients.</li>
-  <li><strong>Follow users </strong>- Following your favorite users and see what they are making!</li>
-  <li><strong>Your personal pantry</strong> - Once you make a recipe we'll save all the ingredients you used to your pantry.  This is a list of food items that you currently have, or have recently used.</li>
-</ul>
-Under Development features include:
-<ul>
-  <li><strong>Fork tree</strong> - See all the changes that have been made to a recipe.  No longer will you have to search the comments to find how people augmented the original recipe.  We'll show you how people have changed the original recipe in an organized manner.  Also, if someone makes a fork to a forked recipe we'll show you that as well!  Share recipes, share changes and improve your cooking!</li>
-  <li><strong>Personal pantry upgrades</strong> - The ultimate goal is to help you control your food inventory from one place.  Once you make a recipe we want you to know how much of each ingredient is left over and when it will expire.</li>
-</ul>
-<div class="center">
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
-  ||
-  <%= link_to "Log in!", signin_path, class: "btn btn-large btn-primary" %>
-  </div>
-  <div class="center pad"><%= image_tag("food3_us.jpg", id: "food2") %></div>
-  <p>
-We want to help you use all of your food and eliminate household food waste.  We believe that starts will everyone knowing exactly what they have in their fridge and cupboards.  You can currently add all your pantry items to our system, but we know this can be a time consuming and painful process.  By adding recipes, and making those recipes, we can build your pantry over time.  If you want to make a recipe, we want to be able to tell you if you have everything you need or what you might need to purchase.  You will be able to get email updates about a food item that is about to expire, or when you are running low on flour.  Never again clean out your fridge to find forgotten about produce in a drawer, find moldy cheese, or see that your frozen food items have expired or been freezer burned.
-
-Again, this site is still under heavily development.  Feel free to give it a try.  It is currently being hosted on Heroku, and so the load time may be significantly longer than typical page loads.  If you have any questions or comments please direct them to <a href="mailto:admin@chrisbarthol.com">admin@chrisbarthol.com</a>.
-</p>
 <% end %>

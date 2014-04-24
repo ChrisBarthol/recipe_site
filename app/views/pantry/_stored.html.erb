@@ -1,5 +1,7 @@
 <% if ingredient.quantity.to_i < 0 %>
-<li class ="red">
+<li class ="negative">
+<% elsif ingredient.expiration < Date.today %>
+<li class ="expired">
 <% else %>
 <li>
 <% end %>

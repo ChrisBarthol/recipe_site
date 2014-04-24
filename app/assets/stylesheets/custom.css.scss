@@ -2,7 +2,21 @@ $heroUnitBackground: white;
 $sansFontFamily: 'Allerta', Helvetica, Arial, sans-serif;
 $serifFontFamily: 'Crimson Text', Georgia, Times, serif;
 
+
+
+
 @import "bootstrap";
+//narbar color override
+.navbar-inner {
+    background-color: #a44545 !important;
+    background-image: -mox-linear-gradient(top, #a44545, #a44545) !important;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#a44545), to(#a44545)) !important;
+    background-image: -webkit-linear-gradient(top, #a44545, #a44545) !important;
+    background-image: -o-linear-gradient(top, #a44545, #a44545) !important;
+    background-image: linear-gradient(to bottom, #a44545, #a44545) !important;
+    border-color: #a44545 !important;
+    filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ff006633', endColorstr='#ff006633', GradientType=0);
+}
 
 
 
@@ -19,14 +33,11 @@ html {
 }
 
 body.none {
-  background-image:url('food2.jpg');
-  background-size:100% 100%;
-  background-repeat:no-repeat;
-  padding-top:60px;
+  padding-top:40px;
 }
 
 body.about{
-  background-color:#6F1F1F;
+  background-color:#F0E9E9;
   padding-top:60px;
 }
 /*@media (min-width: 979px) {
@@ -58,9 +69,14 @@ textarea {
   width: 50%;
   margin: 0 auto;
 }
-.red {
+.negative {
+  background-color: #FF9A40;
+}
+
+.expired {
   background-color: red;
 }
+
 
 /* typography */
 
@@ -97,13 +113,13 @@ p {
 /* header */
 
 div.container {
-  background-color: #FFF9F1;
   padding: 5px;
 }
 
 div.navbar-inner {
-  background-color: white;
   top: 0;
+  background-image: none;
+  background-color: white;
 }
 
 .navbar .brand {
@@ -124,15 +140,16 @@ div.navbar-inner {
 .navbar .nav > li > a {
   padding: 10px 10px 11px;
   font-size: 14px;
-  color: #666666;
+  color: white;
 }
-
-.navbar .nav > .active > a,
-.navbar .nav > .active > a:hover,
-.navbar .nav > .active > a:focus {
-  color: $yellow;
+.navbar {
+  min-width: 900px;
 }
-
+.navbar .nav > li {
+  &:hover {
+    background-color:#a60000;
+  }
+}
 
 
 #logo {
@@ -168,6 +185,7 @@ div.navbar-inner {
 #maincontainer {
   float: left;
   width: 100%;
+  min-width: 800px;
   background-color:#FFF9F1;
   position: relative;
   right: 0%;
@@ -175,7 +193,7 @@ div.navbar-inner {
 
 #col1 {
   float: left;
-  width: 78%;
+  width: 85%;
   position:relative;
   overflow:hidden;
   border-style:solid;
@@ -186,7 +204,7 @@ div.navbar-inner {
 
 #col2 {
   float: right;
-  width: 20%;
+  width: 13%;
   background:#FFF9F1;
   position:relative;
   overflow:hidden;
@@ -198,10 +216,9 @@ div.navbar-inner {
 /* footer */
 
 footer {
-  margin-top: 45px;
-  padding-top: 45px;
+  padding: 30px;
   border-top: 1px solid #eaeaea;
-  background-color:#36546E;
+  background-color:#5E5E5E;
   color: black;
   a {
     color: black;
@@ -223,12 +240,7 @@ footer {
 }
 
 
-.container-fluid {
-	padding-right: 15px;
-	padding-left: 15px;
-  padding-bottom: 15px;
-	background-color: #36546E;
-}
+
 
 .container {
   width: 95%;
@@ -347,6 +359,7 @@ input {
 
 .mainpicture {
   margin-left: 600px;
+  min-width: 300px;
 }
 
 ol#ingredients {
@@ -422,4 +435,86 @@ ul.bxslider {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+/* landing page */
+
+
+#featurette, #signin, #mainContent{
+  padding: 40px 0 0px;
+  background-color: #F0E9E9;
+  height: 243px;
+  margin-top: 0px;
+  position: relative;
+  z-index:0;
+
+  div.container {
+    background-color: #F0E9E9;
+    width: 980px;
+    margin: auto;
+    padding: 0px;
+
+  }
+  section.row {
+    height: 202px;
+    position: relative;
+  }
+  div.span4 {
+    margin-left: 60px;
+  }
+  div.span2 {
+    margin-left: 60px;
+  }
+}
+
+#signin {
+  
+  height: 100px;
+  padding: 20px 0 0px;
+  section.row {
+    height: 70px;
+    margin-top: 7px;
+    background-color: #F0E9E9;
+  }
+  div.container {
+    background-color: #F0E9E9;
+  }
+  div.span2 {
+    height: 60px;
+    margin-top: 7px;
+  }
+}
+
+
+#feature {
+  text-align: center;
+  padding: 20px 0 10px;
+  background-color: #a44545;
+
+  div.tight {
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+
+  div.container {
+    background-color: #a44545;
+  }
+  em {
+    color: #feeoeo;
+  }
+  h1,h2,h3 {
+    color: white;
+    letter-spacing: 0px;
+  }
+  h1 {
+    font-size: 30px;
+    
+  }
+  h2 {
+    font-size: 20px;
+  }
+
+}
+#mainContent {
+  height: 940px;
 }
