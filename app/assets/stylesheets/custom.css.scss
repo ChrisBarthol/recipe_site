@@ -6,6 +6,7 @@ $serifFontFamily: 'Crimson Text', Georgia, Times, serif;
 
 
 @import "bootstrap";
+@import "font-awesome";
 //narbar color override
 .navbar-inner {
     background-color: #a44545 !important;
@@ -82,7 +83,7 @@ textarea {
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
-  font-family: 'Allerta', Helvetica, Arial, sans-serif;
+  font-family: 'Museo Slab', sans-serif
 }
 
 h1 {
@@ -440,13 +441,18 @@ ul.bxslider {
 /* landing page */
 
 
-#featurette, #signin, #mainContent{
+#featurette, #signin, #mainContent, #endContent{
   padding: 40px 0 0px;
   background-color: #F0E9E9;
   height: 243px;
   margin-top: 0px;
   position: relative;
   z-index:0;
+  h1,h2,h3 {
+
+    letter-spacing: 0px;
+  }
+
 
   div.container {
     background-color: #F0E9E9;
@@ -461,11 +467,22 @@ ul.bxslider {
   }
   div.span4 {
     margin-left: 60px;
+    text-align:center;
   }
   div.span2 {
     margin-left: 60px;
   }
 }
+
+#featurette {
+  h1 {
+    font-size: 30px;
+    color: brown;
+    font-weight: 2em;
+    margin-bottom:0px;
+  }
+}
+
 
 #signin {
   
@@ -479,22 +496,24 @@ ul.bxslider {
   div.container {
     background-color: #F0E9E9;
   }
-  div.span2 {
+  div.span2{
     height: 60px;
     margin-top: 7px;
   }
 }
 
-
+div.tight {
+    margin-left: 100px;
+    margin-right: 100px;
+    color: white;
+    letter-spacing: 0px;
+  }
 #feature {
   text-align: center;
   padding: 20px 0 10px;
   background-color: #a44545;
 
-  div.tight {
-    margin-left: 100px;
-    margin-right: 100px;
-  }
+  
 
   div.container {
     background-color: #a44545;
@@ -517,4 +536,29 @@ ul.bxslider {
 }
 #mainContent {
   height: 940px;
+  div.picture {
+    height: 150px;
+  }
+}
+
+#endContent {
+  height: 350px;
+  background-color: #4E8FC0;
+  div.container {
+    background-color: #4E8FC0;
+  }
+  h1,h2{
+    color: white;
+  }
+}
+
+.recipe-name {
+  height:100px;
+  font-size: 15px;
+  letter-spacing: -1px;
+  line-height: 120%;
+}
+
+section {
+  overflow: hidden;
 }

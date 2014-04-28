@@ -11,6 +11,7 @@ gem 'bootstrap-will_paginate', '0.0.9'
 gem 'newrelic_rpm'
 gem 'tire'
 gem 'fog'
+gem 'font-awesome-rails'
 
 
 group :development, :test do

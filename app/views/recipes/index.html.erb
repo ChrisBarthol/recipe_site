@@ -1,14 +1,19 @@
 <% @body_class = "about" %>
-<% provide(:title, 'All recipes') %>
-<h1>All recipes</h1>
-<div>
-<%= render 'newest' %>
-</div>
+<% provide(:title, 'View Our Recipes') %>
+<h1>View Our Recipes</h1>
+<section class="newest-recipe">
+	<div class="container">
+		<%= render 'newest' %>
+	</div>
+</section>
 
-<%= will_paginate %>
+<section class="feature-recipe">
+	<div class="container">
 
-<ol class="users">
-	<%= render @recipes %>
-</ol>
+	   	 	<%= link_to @featurerecipe.name.titleize, recipe_path(@featurerecipe) %>
 
-<%= will_paginate %>
+	   	 <%= link_to image_tag(@featurerecipe.recipeimage_url(:thumb).to_s, :title => @featurerecipe.name), { :action => :show, :id => @featurerecipe.id, :controller => :recipes } %>
+
+	</div>
+</section>
+

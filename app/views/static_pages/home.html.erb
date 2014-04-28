@@ -6,20 +6,27 @@
   <section id="featurette">
     <div class="container">
       <section class="row">
+        <div class="span2">
+          
+            <span>
+              <%= image_tag("tomatowords.png", id: "logo") %>
+            </span>
+          
+        </div>
         <div class="span4">
-          <h2>Use Your Foodle</h2>
-          <p>
+          <h1>Use Your Foodle</h1>
+                    <p>
             Helping you to reduce your food waste, one recipe at a time.
           </p>
         </div>
         <div class="span2">
-          <span>So many recipes</span>
+          <span>
+            <%= image_tag("greyfork.png", id: "fork") %>
+            So many recipes</span>
         </div>
         <div class="span2">
-          <span>So many recipes</span>
-        </div>
-        <div class="span2">
-          <span>So many recipes</span>
+          <span>
+            <%= image_tag("greyfork.png", id: "knife") %>So many recipes</span>
         </div>
 
       </section>
@@ -32,12 +39,14 @@
       <section class="row">
         <%= form_for(:session, url: sessions_path) do |f| %>
             <div class="span4">
+  
               <%= f.label :email %>
               <%= f.text_field :email %>
+
             </div>
             <div class="span4">
               <%= f.label :password %>
-              <%= f.password_field :password %>
+              <%= f.password_field :password%>
             </div>
             <div class="span2">
               <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
@@ -68,7 +77,9 @@
         <div class="span6">
           <strong>Fork recipes</strong> - Maybe you've made Mrs X's Favorite Apple Pie, but changed a few of the ingredients.  You can now save the recipe with those changes and make it your own.  Forking automatically imports all the data from the recipe and allows you to change the ingredients, and then save the new recipe.
         </div>
-        <div class="span6">
+        <div class="span6 picture">
+          <span class="picture">
+          </span>
         </div>
       </section>
    
@@ -76,7 +87,7 @@
         <div class="span6">
         </div>
         <div class="span6">
-          Find recipes based on used ingredients</strong> - Directly from the recipe page you can click on any ingredient and find other recipes that use that same ingredient.  Explore recipes and try to use all your ingredients.
+          <strong>Find recipes based on used ingredients</strong> - Directly from the recipe page you can click on any ingredient and find other recipes that use that same ingredient.  Explore recipes and try to use all your ingredients.
         </div>
       </section>
  
@@ -87,6 +98,27 @@
         <div class="span6">
         </div>
       </section>
+    </div>
+  </section>
+
+  <section id="endContent">
+    <div class="container">
+      <h1>
+        Your Dashboard brings it all together.
+      </h1>
+
+      <div class="tight">
+        <h2>
+        Recently made a dish you love?  Wondering when that chicken was bought and will expire?  You dashboard provides all your most important items for quick reference. 
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <section id="featurette">
+    <div class="container">
+      <h1>
+      </h1>
     </div>
   </section>
 

@@ -1,5 +1,6 @@
 class PantriesController < ApplicationController
 	before_action :signed_in_user
+	include UnitsHelper
 
 	def new
 		@ingredient = Pantry.new
@@ -19,10 +20,12 @@ class PantriesController < ApplicationController
 			 redirect_to pantry_user_path(current_user), :flash => {error: "Error: Failed to save" }
 			end
 		else
-			@conversion = @exists.quantity.to_r.to_f + @ingredient.quantity.to_r.to_f
-			@exists.quantity = @conversion.to_s
+			@quantity = UnitsHelper.conversion(@exists.quantity.to_r.to_f, @ingredient.quantity.to_r.to_f, @exists.unit, @ingredient.unit)
+			#quantity = @exists.conversion +@ingredient.conversion
+			#@conversion = @exists.quantity.to_r.to_f + @ingredient.quantity.to_r.to_f
+			@exists.quantity = @quantity.to_s
 			@exists.update_attributes(params[ingred_params])
-			redirect_to pantry_user_path(current_user)
+			redirect_to pantry_user_path(current_user) , :flash =>{error: "Error: #{@quantity}"}
 		end
 	end
 

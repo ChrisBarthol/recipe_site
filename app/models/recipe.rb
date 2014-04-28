@@ -4,7 +4,7 @@ class Recipe < ActiveRecord::Base
 
 
 	belongs_to :user
-	default_scope -> { order('name') }
+	
 	has_many :ingredients, dependent: :destroy
 	has_many :reverse_reciperelationships, foreign_key: "recipesaved_id", class_name: "Reciperelationship", dependent: :destroy
  	has_many :recipesavers, through: :reverse_reciperelationships, source: :recipesaver
@@ -25,6 +25,13 @@ class Recipe < ActiveRecord::Base
 	include Tire::Model::Search
     include Tire::Model::Callbacks
 
+    #SCOPES
+
+    scope :by_newest, order("created_at ASC")
+    scope :by_name, order("name DESC")
+    scope :random, order("RANDOM()")
+    #default_scope -> { order('name') }
+
     def self.search(params)
     	tire.search(load: true) do  
     		query { string params[:query]} if params[:query].present?
@@ -34,6 +41,7 @@ class Recipe < ActiveRecord::Base
 	#def to_param
 	#	"#{id}-#{name}".parameterize
 	#end
+
 
 	def average_rating
 		ratings.sum(:ranking) / ratings.size
