@@ -91,7 +91,7 @@ class UsersController < ApplicationController
     @pitems = Ingredient.group('name')
     @made = @user.made_recipes.last(5)
 
-    @units = ['tsp','tbsp','floz','cup','pint','quart','gallon','mL','L','dL','lb','oz','mg','g','kg','inch','foot','mm','cm','m']
+    @units = ['','tsp','tbsp','floz','cup','pint','quart','gallon','mL','L','dL','lb','oz','mg','g','kg','inch','foot','mm','cm','m']
 ;
     @stored_ingred = Pantry.where(user_id: current_user.id).order(created_at: :desc)
 

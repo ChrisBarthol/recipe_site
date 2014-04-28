@@ -4,28 +4,43 @@ module UnitsHelper
 		volume = ['tsp','tbsp','floz','cup','pint','quart','gallon','mL','L','dL']
 		mass = ['lb','oz','mg','g','kg']
 		length = ['inch','foot','mm','cm','m']
+		quantity_unit = Array.new
 
-		if volume.include?(u1)
+		#Handle blank entries
+		if u1.empty?
+			if u2.empty?
+				quantity_unit.push(q1+q2,'')
+			else
+				return "add new entry"
+			end
+		elsif u2.empty?
+			return "add new entry"
+		#Handle volume units
+		elsif volume.include?(u1)
 			if volume.include?(u2)
-				combine = volume_conversion(u1,q1)+volume_conversion(u2,q2)
-				return combine
+				combine =volume_conversion(u1,q1)+volume_conversion(u2,q2)
+				volume_reduce(combine)
+
 			elsif mass.include?(u2)
 				combine = volume_conversion(u1,q1)+mass_to_volume(u2,q2)
-				return combine
+				volume_reduce(combine)
 			else
 				return "add new entry"
 			end
 		elsif mass.include?(u1)
 			if mass.include?(u2)
-				return mass(u1,q1)+mass(u2,q2)
+				combine = mass(u1,q1)+mass(u2,q2)
+				mass_reduce(combine)
 			elsif volume.include?(u2)
-				return volume_conversion(u2,q2)+mass_to_volume(u1,q1)
+				combine = volume_conversion(u2,q2)+mass_to_volume(u1,q1)
+				volume_reduce(combine)
 			else
 				return "add new entry"
 			end
 		elsif length.include?(u1)
 			if length.include?(u2)
-				return length(u1,q1)+length(u2,q2)
+				combine = length(u1,q1)+length(u2,q2)
+				length_reduce(combine)
 			else
 				return "add new entry"
 			end
@@ -131,5 +146,40 @@ module UnitsHelper
 	def self.mass_to_volume(unit,quantity)
 		amount = mass(unit,quantity)
 		return amount*6 #oz-->floz--->tsp
+	end
+
+	def self.volume_reduce(quantity)
+		case quantity
+		when (0..3)
+			[quantity, 'tsp']
+		when (3..48)
+			[quantity.to_r/3, 'tbsp']
+		when (48..96)
+			[quantity.to_r/48, 'cup']
+		when (96..192)
+			[quantity.to_r/96, 'pint']
+		when (192..768)
+			[quantity.to_r/192, 'quart']
+		else
+			[quantity.to_r/768, 'gallon']
+		end
+	end
+
+	def self.mass_reduce(quantity)
+		case quantity
+		when (0..16)
+			[quantity, 'oz']
+		else
+			[quantity.to_r/16, 'lb']
+		end
+	end
+
+	def self.length_reduce(quantity)
+		case quantity
+		when (0..12)
+			[quantity, 'inch']
+		else
+			[quantity.to_r/12, 'foot']
+		end
 	end
 end
