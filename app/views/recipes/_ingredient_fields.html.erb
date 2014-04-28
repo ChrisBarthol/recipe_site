@@ -7,7 +7,8 @@
 	  	</div>
 	  	<div class="span1">
 	  		<%= f.label :unit, "Units" %>
-	  		<%= f.text_field :unit %>
+	  		
+        	<%= f.select(:unit, options_for_select(@units)) %>
 	  	</div>
 	  	<div class="span4">
 	  		

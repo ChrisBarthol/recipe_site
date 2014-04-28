@@ -5,6 +5,8 @@ class RecipesController < ApplicationController
 
   def new
   	@recipe = Recipe.new
+    @units = ['','tsp','tbsp','floz','cup','pint','quart','gallon','mL','L','dL','lb','oz','mg','g','kg','inch','foot','mm','cm','m']
+;
   	3.times { @recipe.ingredients.build }
   end
 

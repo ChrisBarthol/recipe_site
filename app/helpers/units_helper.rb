@@ -4,6 +4,7 @@ module UnitsHelper
 		volume = ['tsp','tbsp','floz','cup','pint','quart','gallon','mL','L','dL']
 		mass = ['lb','oz','mg','g','kg']
 		length = ['inch','foot','mm','cm','m']
+		other = ['can']
 		quantity_unit = Array.new
 
 		#Handle blank entries
