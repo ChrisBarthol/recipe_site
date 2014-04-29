@@ -5,3 +5,5 @@
 jQuery ->
   $('#expiration').datepicker
     dateFormat: 'yy-mm-dd'
+  $('#pantry_expiration').datepicker
+  	dateFormat: 'yy-mm-dd'

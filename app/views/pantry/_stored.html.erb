@@ -9,14 +9,14 @@
 <% end %>
 
 	<span class="span2"><%= ingredient.name %></span>
-	<span class="span2"><%= ingredient.quantity %> <%= ingredient.unit %></span>
-	<span class="span3"><%= ingredient.updated_at.strftime("%d %b. %Y at %H:%M") %></span>
+	<span class="span1"><%= ingredient.quantity %> <%= ingredient.unit %></span>
+	<span class="span3">Added: <%= ingredient.updated_at.strftime("%d %b. at %H:%M") %></span>
 	<% if ingredient.expiration.present? %>
 		<span class="span3">Expires: <%= ingredient.expiration %></span>
 	<% else %>
 		<div class="span3" id="ratingfield">
 		
-				<%= form_for ingredient, :url => pantry_path(ingredient) do |f| %>
+				<%= form_for ingredient do |f| %>
 					<%= f.text_field :expiration, placeholder: "Expires...?" %>
 				<% end %>
 		</div>
@@ -26,5 +26,8 @@
                    html: { method: :delete }) do |f| %>
         	<%= f.submit "Remove", class: "btn btn-small" %>
       	<% end %>
-      </div>
+    </div>
+    <div class="span1">
+    	<%= link_to "Edit", edit_pantry_path(ingredient), class: "btn btn-small" %>
+    </div>
 </li>

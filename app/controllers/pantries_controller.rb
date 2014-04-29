@@ -68,6 +68,7 @@ class PantriesController < ApplicationController
 	def update
 		@ingredient = Pantry.find(params[:id])
 		#update_attributes! throws no erroe but doesnt save to db, update_column does, reason unknown
+		#if @ingredient.update_attributes(params[ingred_params])
 		if @ingredient.update_column(:expiration, params[:pantry][:expiration])
 			redirect_to pantry_user_path(current_user), :flash => {info: "Ingredient Updated"}
 		else
