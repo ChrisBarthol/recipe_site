@@ -1,0 +1,33 @@
+<% if ingredient.quantity.to_i < 0 %>
+<li class ="negative" id ="<%=ingredient.id%>">
+<% elsif ingredient.expiration.nil? %>
+<li id="<%=ingredient.id%>" data-id="<%=ingredient.id%>">
+<% elsif ingredient.expiration < Date.today %>
+<li class ="expired" id ="<%=ingredient.id%>">
+<% else %>
+<li id="<%=ingredient.id%>">
+<% end %>
+
+	<span class="span2"><%= ingredient.name %></span>
+	<span class="span1"><%= ingredient.quantity %> <%= ingredient.unit %></span>
+	<span class="span3">Added: <%= ingredient.updated_at.strftime("%d %b. at %H:%M") %></span>
+	<% if ingredient.expiration.present? %>
+		<span class="span3">Expires: <%= ingredient.expiration %></span>
+	<% else %>
+		<div class="span3" id="ratingfield">
+		
+				<%= form_for ingredient do |f| %>
+					<%= f.text_field :expiration, placeholder: "Expires...?" %>
+				<% end %>
+		</div>
+	<% end %>
+	<div class="span1" data-id"remove">
+          <%= form_for(current_user.pantries.find_by(name: ingredient.name),
+                   html: { method: :delete }) do |f| %>
+        	<%= f.submit "Remove", class: "btn btn-small" %>
+      	<% end %>
+    </div>
+    <div class="span1" data-id ="<%= ingredient.id %>">
+    	<%= link_to "Edit", edit_pantry_path(ingredient),:remote => true, class: "btn btn-small" %>
+    </div>
+</li>

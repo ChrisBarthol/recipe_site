@@ -37,7 +37,7 @@
     <h3>My Pantry</h3>
     <% if @user.pantries.any? %>
       <ul class="users">
-        <%= render partial: "pantry/stored", collection: @stored_ingred, as: :ingredient %>
+        <%= render partial: "pantries/stored", collection: @stored_ingred, as: :ingredient %>
       </ul>
       
     <% end %>

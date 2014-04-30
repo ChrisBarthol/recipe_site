@@ -63,16 +63,35 @@ class PantriesController < ApplicationController
 	end
 
 	def edit
+		@units = ['','tsp','tbsp','floz','cup','pint','quart','gallon','mL','L','dL','lb','oz','mg','g','kg','inch','foot','mm','cm','m']
+;
+		@ingredient = Pantry.find(params[:id])
+		respond_to do |format|
+        	format.html
+        	format.js
+     	end
 	end
 
 	def update
 		@ingredient = Pantry.find(params[:id])
+
+		@ingredient.user_id= current_user.id
+
+		ingredient = @ingredient
 		#update_attributes! throws no erroe but doesnt save to db, update_column does, reason unknown
-		#if @ingredient.update_attributes(params[ingred_params])
-		if @ingredient.update_column(:expiration, params[:pantry][:expiration])
-			redirect_to pantry_user_path(current_user), :flash => {info: "Ingredient Updated"}
+		#@ingredient.update_column(:name, params[:pantry][:name])
+		#@ingredient.update_column(:quantity, params[:pantry][:quantity])
+		#@ingredient.update_column(:unit, params[:pantry][:unit])
+		#@ingredient.update_column(:expiration, params[:pantry][:expiration])
+		if @ingredient.update_attributes(ingredient_params)
+			respond_to do |format|
+        		format.html
+        		format.js
+     		end
+		#if @ingredient.update_column(:expiration, params[:pantry][:expiration])
+			#redirect_to pantry_user_path(current_user), :flash => {info: "Ingredient Updated"}
 		else
-			redirect_to @recipe, :flash => {info: "Failed"}
+			redirect_to pantry_user_path(current_user), :flash => {info: "Failed"}
 		end
 	end
 
@@ -88,6 +107,10 @@ class PantriesController < ApplicationController
 
 		def ingred_params
 			params.permit(:name, :quantity, :unit, :id, :style, :created_at, :updated_at, :expiration, :user_id, :recipe_id)
+		end
+
+		def ingredient_params
+			params.require(:pantry).permit(:name, :quantity, :unit, :expiration, :created_at, :updated_at, :user_id)
 		end
 	
 end
