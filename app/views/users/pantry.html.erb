@@ -34,7 +34,36 @@
   </div>
   
   <div class="span12">
-    <h3>My Pantry</h3>
+    <div class="row">
+      <div class="span2">
+        <h3>My Pantry</h3>
+      </div>
+      <div class="span2 sortbyname">
+        <%= link_to "Sort by name", '#', class: "btn btn-small btn-primary" %>
+      </div>
+      <div class="span2 sortbyexpiration">
+        <%= link_to "Sort by expiration", '#', class: "btn btn-small btn-primary" %>
+      </div>
+      <div class="span2 sortbyexpiration">
+        <%= link_to "Sort by date added", '#', class: "btn btn-small btn-primary" %>
+      </div>
+    </div>
+    <div class="row">
+      <strong>
+      <div class="span2 center">
+        Name<i class="fa fa-arrow-down"></i>
+      </div>
+      <div class="span1">
+        Quantity
+      </div>
+      <div class="span3 center">
+        Date Added
+      </div>
+      <div class="span3 center">
+        Expiration
+      </div>
+    </strong>
+    </div>
     <% if @user.pantries.any? %>
       <ul class="users">
         <%= render partial: "pantries/stored", collection: @stored_ingred, as: :ingredient %>
@@ -43,7 +72,7 @@
     <% end %>
   </div>
   <div class="span12">
-    <h3>Made Recipes</h3>
+    <h3>Last Five Made Recipes</h3>
     <% if @user.made_recipes.any? %>
       <ul class="users">
         <%= render partial: "shared/made_recipe", collection: @made, as: :recipe %>

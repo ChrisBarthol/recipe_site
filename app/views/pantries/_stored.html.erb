@@ -17,7 +17,7 @@
 		<div class="span3" id="ratingfield">
 		
 				<%= form_for ingredient do |f| %>
-					<%= f.text_field :expiration, placeholder: "Expires...?" %>
+					<%= f.text_field :expiration, placeholder: "Expires...?", class: "datepicker"%>
 				<% end %>
 		</div>
 	<% end %>
