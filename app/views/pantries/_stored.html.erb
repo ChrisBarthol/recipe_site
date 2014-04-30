@@ -14,12 +14,7 @@
 	<% if ingredient.expiration.present? %>
 		<span class="span3">Expires: <%= ingredient.expiration %></span>
 	<% else %>
-		<div class="span3" id="ratingfield">
-		
-				<%= form_for ingredient do |f| %>
-					<%= f.text_field :expiration, placeholder: "Expires...?", class: "datepicker"%>
-				<% end %>
-		</div>
+		<span class="span3">No Expiration Set</span>
 	<% end %>
 	<div class="span1" data-id"remove">
 		<%= link_to "Remove", pantry_path(ingredient), method: :delete,:remote => true, class: "btn btn-small" %>
