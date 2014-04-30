@@ -12,6 +12,7 @@ gem 'newrelic_rpm'
 gem 'tire'
 gem 'fog'
 gem 'font-awesome-rails'
+gem 'jquery-ui-rails'
 
 
 group :development, :test do
@@ -57,5 +58,4 @@ end
 # in production environments by default.
 group :assets do
   gem 'uglifier', '2.1.1'
-  gem 'jquery-ui-rails'
 end
