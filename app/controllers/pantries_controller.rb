@@ -78,18 +78,11 @@ class PantriesController < ApplicationController
 		@ingredient.user_id= current_user.id
 
 		ingredient = @ingredient
-		#update_attributes! throws no erroe but doesnt save to db, update_column does, reason unknown
-		#@ingredient.update_column(:name, params[:pantry][:name])
-		#@ingredient.update_column(:quantity, params[:pantry][:quantity])
-		#@ingredient.update_column(:unit, params[:pantry][:unit])
-		#@ingredient.update_column(:expiration, params[:pantry][:expiration])
 		if @ingredient.update_attributes(ingredient_params)
 			respond_to do |format|
         		format.html
         		format.js
      		end
-		#if @ingredient.update_column(:expiration, params[:pantry][:expiration])
-			#redirect_to pantry_user_path(current_user), :flash => {info: "Ingredient Updated"}
 		else
 			redirect_to pantry_user_path(current_user), :flash => {info: "Failed"}
 		end
