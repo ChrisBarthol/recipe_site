@@ -27,8 +27,8 @@
 </div>
 
   <!-- Links to fork and editing pages  -->
-<div id="recipelinks">
-  
+<div class="row" id="recipelinks">
+  <div class ="span12">
     <h2>
       <% if signed_in? %>
        || <%= link_to "Fork this recipe", fork_recipe_path(@recipe) %>
@@ -39,13 +39,12 @@
       ||
       <%= link_to "Random Recipe", @random_recipe %>
       ||
-      <p>
-        <span class="span8"><%= render 'saverecipe_form' if signed_in? %>
-        <%= render 'madeit' if signed_in? %></span>
-
-      </p>
     </h2>
-  
+    </div>
+    <div class="span12 center">
+        <span class="span2"><%= render 'saverecipe_form' if signed_in? %></span>
+        <span class="span2"><%= render 'madeit' if signed_in? %></span>
+      </div>
 </div>
 
 

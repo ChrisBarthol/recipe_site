@@ -1,7 +1,7 @@
 <% if ingredient.quantity.to_i < 0 %>
 <li class ="negative" id ="<%=ingredient.id%>">
 <% elsif ingredient.expiration.nil? %>
-<li id="<%=ingredient.id%>" data-id="<%=ingredient.id%>">
+<li id="<%=ingredient.id%>">
 <% elsif ingredient.expiration < Date.today %>
 <li class ="expired" id ="<%=ingredient.id%>">
 <% else %>
@@ -22,10 +22,7 @@
 		</div>
 	<% end %>
 	<div class="span1" data-id"remove">
-          <%= form_for(current_user.pantries.find_by(name: ingredient.name),
-                   html: { method: :delete }) do |f| %>
-        	<%= f.submit "Remove", class: "btn btn-small" %>
-      	<% end %>
+		<%= link_to "Remove", pantry_path(ingredient), method: :delete,:remote => true, class: "btn btn-small" %>
     </div>
     <div class="span1" data-id ="<%= ingredient.id %>">
     	<%= link_to "Edit", edit_pantry_path(ingredient),:remote => true, class: "btn btn-small" %>
