@@ -12,14 +12,9 @@
 	<span class="span1"><%= @ingredient.quantity %> <%= @ingredient.unit %></span>
 	<span class="span3">Added: <%= @ingredient.updated_at.strftime("%d %b. at %H:%M") %></span>
 	<% if @ingredient.expiration.present? %>
-		<span class="span3">Expires: <%= @ingredient.expiration %></span>
+		<span class="span3"><%= @ingredient.expiration %></span>
 	<% else %>
-		<div class="span3" id="ratingfield">
-		
-				<%= form_for @ingredient do |f| %>
-					<%= f.text_field :expiration, placeholder: "Expires...?", class: "datepicker" %>
-				<% end %>
-		</div>
+		<span class="span3">No Expiration Set</span>
 	<% end %>
 	<div class="span1" data-id"remove">
         <%= link_to "Remove", pantry_path(@ingredient), method: :delete,:remote => true, class: "btn btn-small" %>

@@ -12,7 +12,7 @@
 	<span class="span1"><%= ingredient.quantity %> <%= ingredient.unit %></span>
 	<span class="span3">Added: <%= ingredient.updated_at.strftime("%d %b. at %H:%M") %></span>
 	<% if ingredient.expiration.present? %>
-		<span class="span3">Expires: <%= ingredient.expiration %></span>
+		<span class="span3"><%= ingredient.expiration %></span>
 	<% else %>
 		<span class="span3">No Expiration Set</span>
 	<% end %>

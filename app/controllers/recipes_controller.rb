@@ -23,6 +23,8 @@ class RecipesController < ApplicationController
     @existing_recipe = Recipe.find(params[:id])  #get recipe
     @newfork = @existing_recipe.id  #isolate recipe.id
     @name=@existing_recipe.name  #isolate recipe.name
+    @units = ['','tsp','tbsp','floz','cup','pint','quart','gallon','mL','L','dL','lb','oz','mg','g','kg','inch','foot','mm','cm','m']
+;
 
     #@username = @existing_recipe.user.name.downcase  #isolate username
     #array = [Regexp.union(@username), Regexp.union('forked by')]
