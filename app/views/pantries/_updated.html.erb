@@ -10,11 +10,11 @@
 
 	<span class="span2"><%= @ingredient.name %></span>
 	<span class="span1"><%= @ingredient.quantity %> <%= @ingredient.unit %></span>
-	<span class="span3">Added: <%= @ingredient.updated_at.strftime("%d %b. at %H:%M") %></span>
+	<span class="span3 center"><%= @ingredient.updated_at.strftime("%d %b. at %H:%M") %></span>
 	<% if @ingredient.expiration.present? %>
-		<span class="span3"><%= @ingredient.expiration %></span>
+		<span class="span3 center"><%= @ingredient.expiration %></span>
 	<% else %>
-		<span class="span3">No Expiration Set</span>
+		<span class="span3 center">No Expiration Set</span>
 	<% end %>
 	<div class="span1" data-id"remove">
         <%= link_to "Remove", pantry_path(@ingredient), method: :delete,:remote => true, class: "btn btn-small" %>

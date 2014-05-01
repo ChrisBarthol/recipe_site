@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user,  only: :destroy
 
+  helper_method :sort_column, :sort_direction
+
   def destroy
     user = User.find(params[:id])
       unless current_user?(user)
@@ -93,7 +95,7 @@ class UsersController < ApplicationController
 
     @units = ['','tsp','tbsp','floz','cup','pint','quart','gallon','mL','L','dL','lb','oz','mg','g','kg','inch','foot','mm','cm','m']
 ;
-    @stored_ingred = Pantry.where(user_id: current_user.id).order(created_at: :desc)
+    @stored_ingred = Pantry.where(user_id: current_user.id).order(sort_column + ' ' + sort_direction)
 
     #@pantry_items = Ingredient.all(:joins => {:user => :pantry_items => :ingredients}, )
     @pantry_items = Ingredient.joins(:pantry_items).where(pantry_items: {user_id: current_user.id}, pantry_items: {:created_at => Time.now-21.days..Time.now}).order(created_at: :asc)
@@ -120,6 +122,14 @@ class UsersController < ApplicationController
 
     def admin_user
       redirect_to(root_url) unless current_user.admin?
+    end
+
+    def sort_column
+      Pantry.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
     end
 
 end

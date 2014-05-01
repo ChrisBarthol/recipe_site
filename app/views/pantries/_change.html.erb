@@ -4,8 +4,8 @@
 		<span class="span2"><%= f.text_field :name, placeholder: "#{@ingredient.name}" %></span>
 		<span class="span1"><%= f.text_field :quantity, placeholder: "#{@ingredient.quantity}" %></span>
 		<span class="span1"><%= f.select :unit, options_for_select(@units, selected: "#{@ingredient.unit}")%></span>
-		<span class="span3">Added: <%= @ingredient.updated_at.strftime("%d %b. at %H:%M") %></span>
-		<span class="span2 expiration"><%= f.text_field :expiration, placeholder: "#{@ingredient.expiration}", class: "datepicker" %></span>
+		<span class="span3 center"><%= @ingredient.updated_at.strftime("%d %b. at %H:%M") %></span>
+		<span class="span2 expiration center"><%= f.text_field :expiration, placeholder: "#{@ingredient.expiration}", class: "datepicker" %></span>
 		<span class="span2"><%= f.submit "Submit", class: "btn btn-small" %></span>
 	<% end %>
 </li>

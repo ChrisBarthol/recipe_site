@@ -38,29 +38,29 @@
       <div class="span2">
         <h3>My Pantry</h3>
       </div>
-      <div class="span2 sortbyname">
-        <%= link_to "Sort by name", '#', class: "btn btn-small btn-primary" %>
+      <div class= "span2 sortbyname btn btn-small btn-active">
+        <%= sortable "name" %>
       </div>
-      <div class="span2 sortbyexpiration">
-        <%= link_to "Sort by expiration", '#', class: "btn btn-small btn-primary" %>
+      <div class= "span2 expiration btn btn-small btn-active">
+        <%= sortable "expiration" %>
       </div>
-      <div class="span2 sortbyexpiration">
-        <%= link_to "Sort by date added", '#', class: "btn btn-small btn-primary" %>
+      <div class= "span2 updatedat btn btn-small btn-active">
+        <%= sortable "updated_at" %>
       </div>
     </div>
     <div class="row">
       <strong>
       <div class="span2 center">
-        Name<i class="fa fa-arrow-down"></i>
+        <%= sortable "name" %>
       </div>
       <div class="span1">
-        Quantity
+        <%= sortable "quantity" %>
       </div>
       <div class="span3 center">
-        Date Added
+        <%= sortable "created_at" %>
       </div>
       <div class="span3 center">
-        Expiration
+        <%= sortable "expiration" %>
       </div>
     </strong>
     </div>
