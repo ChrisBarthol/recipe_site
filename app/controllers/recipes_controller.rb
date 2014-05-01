@@ -137,7 +137,7 @@ class RecipesController < ApplicationController
 
   def index
     @recipes = Recipe.paginate(page: params[:page])
-    @newest = Recipe.by_name.limit(5).reverse
+    @newest = Recipe.order("created_at DESC").limit(5)
     @featurerecipe = Recipe.order("RANDOM()").first
   end
 

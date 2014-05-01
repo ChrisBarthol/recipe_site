@@ -4,4 +4,6 @@ class Pantry < ActiveRecord::Base
 
 	validates :name, presence: true#, uniqueness: true
 	validates :user_id, presence: true
+
+	#scope :singularorplural, lambda { where(:name => @ingredient.name.singularize) | where(:name => @ingredient.name.pluarlize)}
 end

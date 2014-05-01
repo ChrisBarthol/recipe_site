@@ -10,8 +10,7 @@ class PantriesController < ApplicationController
 		@ingredient = Pantry.new(ingred_params)
 		@id = @ingredient.id
 		@ingredient.user_id = current_user.id
-
-		@exists= Pantry.where(name: @ingredient.name)
+		@exists= Pantry.where('name=? OR name=?', @ingredient.name.singularize, @ingredient.name.pluralize)
 		@exists_first = @exists.first
 		@exists_last = @exists.last
 
