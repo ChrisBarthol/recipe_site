@@ -32,20 +32,19 @@
     <% end %>
     </span>
   </div>
+
+  <div class="span12">
+    <h3>Recommended Recipes</h3>
+    <ul class="users">
+        <%= render partial: "pantries/recommended", collection: @recommended, as: :recipe %>
+    </ul>
+  </div>
+
   
   <div class="span12">
     <div class="row">
       <div class="span2">
         <h3>My Pantry</h3>
-      </div>
-      <div class= "span2 sortbyname btn btn-small btn-active">
-        <%= sortable "name" %>
-      </div>
-      <div class= "span2 expiration btn btn-small btn-active">
-        <%= sortable "expiration" %>
-      </div>
-      <div class= "span2 updatedat btn btn-small btn-active">
-        <%= sortable "updated_at" %>
       </div>
     </div>
     <div class="row">
@@ -56,7 +55,7 @@
       <div class="span1">
         <%= sortable "quantity" %>
       </div>
-      <div class="span3 center">
+      <div class="span2 center">
         <%= sortable "created_at" %>
       </div>
       <div class="span3 center">

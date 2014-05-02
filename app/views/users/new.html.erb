@@ -1,14 +1,16 @@
 <% @body_class = "about" %>
 <% provide(:title, 'Sign up') %>
-<div class="center hero-unit">
+<div class="center">
 <h1>Sign up</h1>
-
+</div>
 <div class="row">
-  <div class="span6 offset3">
+  <div class="span6 offset3 center">
     <%= form_for(@user) do |f| %>
       <%= render 'fields', f: f %>
+      <p>
+  	By clicking submit you understand that Use Your Foodle is currently in Beta and that the user experience is subject to change without notice.
+  </p>
       <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>
-</div>
 </div>

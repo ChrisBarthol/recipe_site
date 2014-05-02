@@ -92,6 +92,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @pitems = Ingredient.group('name')
     @made = @user.made_recipes.last(5).uniq.reverse
+    @expiration = Pantry.order('expiration')
+
+    #Recipe that includes first expiration pantry item
+    #@recommended = Recipe.ingredients.joins(:name)
 
     @units = ['','tsp','tbsp','floz','cup','pint','quart','gallon','mL','L','dL','lb','oz','mg','g','kg','inch','foot','mm','cm','m']
 ;

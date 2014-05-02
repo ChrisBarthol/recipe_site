@@ -1,0 +1,15 @@
+<li>
+  <span class="span2">
+    <%= image_tag recipe.recipeimage_url(:thumb).to_s %>
+  </span>
+  <span class = "span2">
+        <%= link_to recipe.name, recipe %>
+  </span>  
+  <div class="span1.5">
+    <div id="<%= recipe.id %>">
+      <%= link_to raw("Expand"), expand_recipe_path(recipe), class: "btn btn-success", :remote => true %>
+    </div> 
+  </div>
+  <div id="recipe_<%= recipe.id %>">
+  </div> 
+</li>

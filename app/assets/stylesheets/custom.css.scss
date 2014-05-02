@@ -444,7 +444,7 @@ ul.bxslider {
 #featurette, #signin, #mainContent, #endContent{
   padding: 40px 0 0px;
   background-color: #F0E9E9;
-  height: 243px;
+  height: 203px;
   margin-top: 0px;
   position: relative;
   z-index:0;
@@ -465,21 +465,30 @@ ul.bxslider {
     height: 202px;
     position: relative;
   }
-  div.span4 {
+  div.span4{
     margin-left: 60px;
     text-align:center;
+    margin-top: 30px;
   }
   div.span2 {
     margin-left: 60px;
+  }
+  div.frontpicture {
+    margin-top: 30px;
   }
 }
 
 #featurette {
   h1 {
-    font-size: 30px;
+    font-size: 45px;
     color: brown;
     font-weight: 2em;
     margin-bottom:0px;
+  }
+  div.span6 {
+    margin-left: 60px;
+    text-align:center;
+    margin-top: 20px;
   }
 }
 
@@ -499,6 +508,9 @@ ul.bxslider {
   div.span2{
     height: 60px;
     margin-top: 7px;
+  }
+  div.span4{
+    margin-top:0px;
   }
 }
 
@@ -580,6 +592,9 @@ section {
 
 }
 
+#id {
+  margin: auto;
+}
 
 
 

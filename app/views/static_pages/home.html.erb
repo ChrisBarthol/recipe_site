@@ -6,29 +6,27 @@
   <section id="featurette">
     <div class="container">
       <section class="row">
-        <div class="span2">
+        <div class="span2 offset2">
           
             <span>
               <%= image_tag("tomatowords.png", id: "logo") %>
             </span>
           
         </div>
-        <div class="span4">
+        <div class="span6">
           <h1>Use Your Foodle</h1>
-                    <p>
-            Helping you to reduce your food waste, one recipe at a time.
+          <p>
+            Helping you to reduce your food waste, one recipe at a time.  We are currently in Beta.
           </p>
+
+              <%= link_to "Sign up", signup_path, class: "btn btn-large btn-primary" %>
+
         </div>
-        <div class="span2">
+        <div class="span3 frontpicture">
           <span>
             <%= image_tag("greyfork.png", id: "fork") %>
-            So many recipes</span>
+          </span>
         </div>
-        <div class="span2">
-          <span>
-            <%= image_tag("greyfork.png", id: "knife") %>So many recipes</span>
-        </div>
-
       </section>
 
     </div>
