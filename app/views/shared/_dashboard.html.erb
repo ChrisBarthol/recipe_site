@@ -11,14 +11,19 @@
       <%= render 'shared/stats' %>
   </div>
 
-  <div class="span8 offset1">
-            <%= form_tag({controller: "recipes", action: "search"}, :method => "get") do %>
-                <%= label_tag(:query, "Search for:") %>
-                <%= text_field_tag :query, params[:query], placeholder: "Search for..." %>
-            <% end %>
-  </div>
-  <div class="clearfix visible-xs"></div>
   <div id="dashboard_links">
+            <%= form_tag({controller: "recipes", action: "search"}, :method => "get") do %>
+            
+                <%= label_tag(:query, "Search for:") %>
+                <div class=" well">
+                  
+                <%= text_field_tag :query, params[:query], placeholder: "Search for..." %>
+
+              </div>
+            <% end %>
+  
+  <div class="clearfix visible-xs"></div>
+  
     ||<%= link_to "Add a Recipe", newrecipe_path, class: "btn btn-large btn-primary" %> ||
     <%= link_to "Search for Recipes", '#', class: "btn btn-large btn-primary" %>||
   </div>
@@ -29,7 +34,7 @@
 <div class="span12">
 <%= render 'recipes/newest' %>
 </div>
-
+<div class="clearfix visible-xs"></div>
 <div>
 	<h3>Saved Recipes</h3>
 	<ul class="users">

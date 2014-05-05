@@ -92,10 +92,35 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @pitems = Ingredient.group('name')
     @made = @user.made_recipes.last(5).uniq.reverse
-    @expiration = Pantry.order('expiration')
+    @expiration = Pantry.where(user_id: current_user.id).order('expiration').last(5)
 
     #Recipe that includes first expiration pantry item
-    #@recommended = Recipe.ingredients.joins(:name)
+    #return all recipes that have an ingredient that is in thate pantry and will expire
+    #@pantry = Pantry.where(user_id: current_user.id).first
+    #@item = Ingredient.where(name: @pantry.name).first
+    #@recommended = Recipe.where(id: @item.recipe_id)
+
+    #if @recommended > 5
+        #@next= Recipe.joins(:ingredients).where(ingredients: { name: @expiration.last.previous.name})
+        #@recommended.keep_if {|name| @next.include?(name)}
+
+    @five= Recipe.joins(:ingredients).where(ingredients: { name: @expiration.last.name})
+    #if @five.length > 5
+    #  @five.keep_if {|name| @four.include?(name)}
+    #end
+    #@four = Recipe.joins(:ingredients).where(ingredients: { name: @expiration[4].name})
+    #@three = Recipe.joins(:ingredients).where(ingredients: { name: @expiration[3].name})
+    #@two = Recipe.joins(:ingredients).where(ingredients: { name: @expiration[2].name})
+    #@one = Recipe.joins(:ingredients).where(ingredients: { name: @expiration.first.name})
+
+    @recommended =@five.last(5)
+    # @stuff =Array.new
+    # @item.each do |item|
+    # #@item = Pantry.joins('LEFT OUTER JOIN ingredients ON ingredients.name=pantries.name').where(user_id: current_user.id)
+    #   @stuff << Recipe.where(id: item.recipe_id)
+    # end
+    # @recommended = @stuff
+    #@recommended = Ingredient.joinsx('LEFT OUTER JOIN pantries ON pantries.name=ingredients.name')
 
     @units = ['','tsp','tbsp','floz','cup','pint','quart','gallon','mL','L','dL','lb','oz','mg','g','kg','inch','foot','mm','cm','m']
 ;
