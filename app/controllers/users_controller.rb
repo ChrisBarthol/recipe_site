@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :signed_in_user, only: [:index, :edit, :update, :destroy, :following, :followers, :saved_recipes, :show_recipes, :pantry]
-  before_action :correct_user, only: [:edit, :update]
-  before_action :admin_user,  only: :destroy
+  before_action :correct_user, only: [:edit, :update, :pantry]
+  before_action :admin_user,  only: [:destroy]
 
   helper_method :sort_column, :sort_direction
 
