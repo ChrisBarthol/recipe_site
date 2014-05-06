@@ -1,2 +1,5 @@
 $('#recipe_<%= @recipe.id %>').empty()
 $('#minimize_<%= @recipe.id %>').replaceWith("<%= escape_javascript(render('recipes/expand')) %>")
+
+$('#recommend_recipe_<%= @recipe.id %>').empty()
+$('#recommend_minimize_<%= @recipe.id %>').replaceWith("<%= escape_javascript(render('recipes/expand')) %>")

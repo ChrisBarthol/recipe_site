@@ -90,37 +90,13 @@ class UsersController < ApplicationController
   def pantry
     @title = "Pantry Items"
     @user = User.find(params[:id])
-    @pitems = Ingredient.group('name')
     @made = @user.made_recipes.last(5).uniq.reverse
-    @expiration = Pantry.where(user_id: current_user.id).order('expiration').last(5)
+    expiration = Pantry.where(user_id: current_user.id).order('expiration').last(5)
+    five= Recipe.joins(:ingredients).where(ingredients: { name: expiration.last.name})
 
-    #Recipe that includes first expiration pantry item
-    #return all recipes that have an ingredient that is in thate pantry and will expire
-    #@pantry = Pantry.where(user_id: current_user.id).first
-    #@item = Ingredient.where(name: @pantry.name).first
-    #@recommended = Recipe.where(id: @item.recipe_id)
 
-    #if @recommended > 5
-        #@next= Recipe.joins(:ingredients).where(ingredients: { name: @expiration.last.previous.name})
-        #@recommended.keep_if {|name| @next.include?(name)}
+    @recommended =five.last(5)
 
-    @five= Recipe.joins(:ingredients).where(ingredients: { name: @expiration.last.name})
-    #if @five.length > 5
-    #  @five.keep_if {|name| @four.include?(name)}
-    #end
-    #@four = Recipe.joins(:ingredients).where(ingredients: { name: @expiration[4].name})
-    #@three = Recipe.joins(:ingredients).where(ingredients: { name: @expiration[3].name})
-    #@two = Recipe.joins(:ingredients).where(ingredients: { name: @expiration[2].name})
-    #@one = Recipe.joins(:ingredients).where(ingredients: { name: @expiration.first.name})
-
-    @recommended =@five.last(5)
-    # @stuff =Array.new
-    # @item.each do |item|
-    # #@item = Pantry.joins('LEFT OUTER JOIN ingredients ON ingredients.name=pantries.name').where(user_id: current_user.id)
-    #   @stuff << Recipe.where(id: item.recipe_id)
-    # end
-    # @recommended = @stuff
-    #@recommended = Ingredient.joinsx('LEFT OUTER JOIN pantries ON pantries.name=ingredients.name')
 
     @units = ['','tsp','tbsp','floz','cup','pint','quart','gallon','mL','L','dL','lb','oz','mg','g','kg','inch','foot','mm','cm','m']
 ;
@@ -128,12 +104,8 @@ class UsersController < ApplicationController
 
     #@pantry_items = Ingredient.all(:joins => {:user => :pantry_items => :ingredients}, )
     @pantry_items = Ingredient.joins(:pantry_items).where(pantry_items: {user_id: current_user.id}, pantry_items: {:created_at => Time.now-21.days..Time.now}).order(created_at: :asc)
-    #@pantry_items = Ingredient.all(:joins => {:pantry_items => :user}, :conditions => { :pantry_items => { :user_id => current_user.id}},:order =>"pantry_items.created_at asc")
-    #@pitems = @pantry_items.all(:joins => {:pantry_items => :ingredient}, :conditions => { :pantry_item => { :ingredient_id => ingredient.id}}, :group => "ingredient.name")
-    #@new_p_items = PantryItem.where(maker_id = @user.id).first.id
-    #@pi = @user.pantry_items.created_at
-    @recipe = @user.made_recipes
-    @pp = false
+
+
   end
 
   private
@@ -152,6 +124,8 @@ class UsersController < ApplicationController
     def admin_user
       redirect_to(root_url) unless current_user.admin?
     end
+
+    #View by column options
 
     def sort_column
       Pantry.column_names.include?(params[:sort]) ? params[:sort] : "name"

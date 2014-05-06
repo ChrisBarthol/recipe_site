@@ -4,23 +4,48 @@
 	<h3 class="center">Viewing the Fork Tree for </h3>
 	<h1><%= @recipe.name.titleize %> </h1>
 	<div class="container">
-		<div class="inner">
-			<span class="span2 center">
+		<div class="inner span5">
+			<div class="span2 center">
 				<%= image_tag @recipe.recipeimage_url(:thumb).to_s %>
-			</span>
+			</div>
 			<span class="span3">
-				<%= link_to @recipe.name, @recipe %>
+				<%= link_to @recipe.name.titleize, @recipe %>
 				<div><%= @recipe.description %></div>
 			</span>
 		</div>
+		<% if @previous.nil? %>
+		<div class="inner span5">
+			<h2>This is an original recipe. </h2>
+		</div>
+		<% else %>
+
+		<div class="inner span5">
+			<span class="span2 center">
+				<%= image_tag @previous.recipeimage_url(:thumb).to_s %>
+			</span>
+			<span class="span3">
+				<%= link_to @previous.name.titleize, @previous %>
+				<div><%= @previous.description %></div>
+			</span>
+		</div>
+		
+		<% end %>
 	</div>
 </div>
+<% if @fork.exists? %>
 <div class="original_recipe">
 	<h3 class="center">First Level Forks</h3>
 </div>
 <div class="fork">
-	<ul class="users">
-	<%= render partial: "shared/made_recipe", collection: @fork, as: :recipe %>
-	</ul>
+	
+      <ul class="users">
+        <%= render partial: "shared/made_recipe", collection: @fork, as: :recipe %>
+      </ul>
+    
+</div>
+<% else %>
+<div class="no_fork">
+	<h3 class="center">There are no forks for this recipe.</h3>
 </div>
 
+<% end %>

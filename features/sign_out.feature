@@ -4,4 +4,4 @@ Feature: Sign out
 	Scenario: User signs out
 		Given I am an authenticated user
 		When I sign out
-		Then I am redirected to home
+		Then I should see "How often do you throw out food in your house?"

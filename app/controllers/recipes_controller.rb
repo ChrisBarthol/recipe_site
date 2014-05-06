@@ -17,6 +17,7 @@ class RecipesController < ApplicationController
   def forktree
     @recipe = Recipe.find(params[:id])
     @fork = Recipe.where(fork_id: @recipe.id)
+    @previous = Recipe.where(id: @recipe.fork_id).first
   end
 
   def fork
@@ -99,8 +100,6 @@ class RecipesController < ApplicationController
     @commentfeed = @recipe.commentfeed.paginate(page: params[:page])     #display comments
     @random_recipe = Recipe.order('random()').first                      #random recipe for the random link
     @ingredient = @recipe.ingredients.first                             
-
-
     @alreadysaved = current_user.ingredients.find_by_id(@ingredient) if signed_in?
 
     #Carousel Images

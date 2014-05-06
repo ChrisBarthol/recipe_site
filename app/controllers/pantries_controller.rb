@@ -8,13 +8,13 @@ class PantriesController < ApplicationController
 
 	def create
 		@ingredient = Pantry.new(ingred_params)
-		@id = @ingredient.id
+		id = @ingredient.id
 		@ingredient.user_id = current_user.id
-		@exists= Pantry.where('name=? OR name=?', @ingredient.name.singularize, @ingredient.name.pluralize)
-		@exists_first = @exists.first
-		@exists_last = @exists.last
+		exists= Pantry.where('name=? OR name=?', @ingredient.name.singularize, @ingredient.name.pluralize)
+		exists_first = exists.first
+		exists_last = exists.last
 
-		if @exists.empty?
+		if exists.empty?
 			if @ingredient.save
 			 redirect_to pantry_user_path(current_user), :flash => {notice: "Ingredient Added!" }
 			else
@@ -22,39 +22,39 @@ class PantriesController < ApplicationController
 			end
 		else
 			if @ingredient.unit.empty?
-				if @exists_first.unit.empty?	
-					@quantity = @exists_first.quantity.to_r + @ingredient.quantity.to_r
-					@exists_first.quantity = @quantity.to_f.to_s
-					@exists_first.update_attributes(params[ingred_params])
+				if exists_first.unit.empty?	
+					quantity = exists_first.quantity.to_r + @ingredient.quantity.to_r
+					exists_first.quantity = quantity.to_f.to_s
+					exists_first.update_attributes(params[ingred_params])
 					redirect_to pantry_user_path(current_user), :flash => {notice: "#{@ingredient.name} is unitless."}
-				elsif @exists_last.unit.empty?
-					@quantity = @exists_last.quantity.to_r + @ingredient.quantity.to_r
-					@exists.last_quantity = @quantity.to_f.to_s
-					@exists.update_attributes(params[ingred_params])
+				elsif exists_last.unit.empty?
+					quantity = exists_last.quantity.to_r + @ingredient.quantity.to_r
+					exists.last_quantity = quantity.to_f.to_s
+					exists.update_attributes(params[ingred_params])
 					redirect_to pantry_user_path(current_user)
 				else
 					@ingredient.save
 					redirect_to pantry_user_path(current_user), :flash => {notice: "#{@ingredient.name} had no units.  Unitless #{@ingredient.name} added!"}
 				end
 			else
-				if @exists_first.unit.empty?
-					if @exists_last.unit.empty?
+				if exists_first.unit.empty?
+					if exists_last.unit.empty?
 						@ingredient.save
 						redirect_to pantry_user_path(current_user), :flash => {notice: "Previously saved #{@ingredient.name} had no units.  #{@ingredient.name} with units added!"}
 					else
-						@quantity = UnitsHelper.conversion(@exists_last.quantity.to_r, @ingredient.quantity.to_r, @exists_last.unit, @ingredient.unit)
-						@exists_last.quantity = @quantity[0].to_s
-						@exists_last.unit = @quantity[1]
-						@exists_last.update_attributes(params[ingred_params])
-						redirect_to pantry_user_path(current_user) , :flash =>{error: "Error: #{@quantity}"}
+						quantity = UnitsHelper.conversion(exists_last.quantity.to_r, @ingredient.quantity.to_r, exists_last.unit, @ingredient.unit)
+						exists_last.quantity = quantity[0].to_s
+						exists_last.unit = quantity[1]
+						exists_last.update_attributes(params[ingred_params])
+						redirect_to pantry_user_path(current_user) , :flash =>{error: "Error: #{quantity}"}
 					end
 				else
 
-					@quantity = UnitsHelper.conversion(@exists_first.quantity.to_r, @ingredient.quantity.to_r, @exists_first.unit, @ingredient.unit)
-					@exists_first.quantity = @quantity[0].to_s
-					@exists_first.unit = @quantity[1]
-					@exists_first.update_attributes(params[ingred_params])
-					redirect_to pantry_user_path(current_user) , :flash =>{error: "Error: #{@quantity}"}
+					quantity = UnitsHelper.conversion(exists_first.quantity.to_r, @ingredient.quantity.to_r, exists_first.unit, @ingredient.unit)
+					exists_first.quantity = quantity[0].to_s
+					exists_first.unit = quantity[1]
+					exists_first.update_attributes(params[ingred_params])
+					redirect_to pantry_user_path(current_user) , :flash =>{error: "Error: #{quantity}"}
 				end
 
 			end
@@ -76,7 +76,6 @@ class PantriesController < ApplicationController
 
 		@ingredient.user_id= current_user.id
 
-		ingredient = @ingredient
 		if @ingredient.update_attributes(ingredient_params)
 			respond_to do |format|
         		format.html
