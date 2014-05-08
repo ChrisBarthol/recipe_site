@@ -101,6 +101,28 @@ class RecipesController < ApplicationController
     @random_recipe = Recipe.order('random()').first                      #random recipe for the random link
     @ingredient = @recipe.ingredients.first                             
     @alreadysaved = current_user.ingredients.find_by_id(@ingredient) if signed_in?
+    @red = Array.new
+    @green = Array.new
+    @error = Array.new
+    @exists = Array.new
+  
+    @recipe.ingredients.each do |ingredient|
+      exists= Pantry.where('name=? OR name=?', ingredient.name.singularize.downcase, ingredient.name.pluralize.downcase).first
+      if exists.nil?
+        @red << ingredient
+      else
+        conversion = UnitsHelper.conversion(ingredient.quantity.to_r*-1,exists.quantity.to_r, ingredient.unit, exists.unit)
+        if conversion[0].is_a?(String)
+          @error << ingredient
+          @exists << exists.unit
+        elsif conversion[0] > 0 
+          @green << ingredient
+        else
+          @red << ingredient
+        end
+      end
+    end
+
 
     #Carousel Images
     @recipetwo = Recipe.find_by_id(@recipe.id+1)

@@ -46,7 +46,7 @@ module UnitsHelper
 				return "add new entry"
 			end
 		else
-			return nil
+			return "unknown"
 		end
 	end
 

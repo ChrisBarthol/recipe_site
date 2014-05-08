@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
  	has_many :pantry_items, dependent: :destroy
  	has_many :ingredients, through: :pantry_items
  	has_many :pantries
+ 	has_many :shopping_lists
 
  	has_many :makerecipes, foreign_key: "maker_id", dependent: :destroy
  	has_many :made_recipes, through: :makerecipes, source: :made

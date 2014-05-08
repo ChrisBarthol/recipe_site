@@ -20,6 +20,7 @@ RecipeSite::Application.routes.draw do
   resources :ratings, only: [:create, :destroy]
   resources :pantry_items, only: [:create, :destroy]
   resources :pantries
+  resources :shopping_lists
 
   root 'static_pages#home'
   match '/newrecipe', to: 'recipes#new',           via: 'get'
