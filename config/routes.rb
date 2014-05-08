@@ -9,7 +9,7 @@ RecipeSite::Application.routes.draw do
   end
   resources :users do
     member do
-      get :following, :followers, :saved_recipes, :show_recipes, :pantry, :newuser
+      get :following, :followers, :saved_recipes, :show_recipes, :pantry, :newuser, :shopping_list
     end
   end
   resources :sessions, only: [:new, :create, :destroy]

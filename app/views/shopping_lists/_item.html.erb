@@ -1,0 +1,11 @@
+<li id="<%=item.id%>">
+	<span class="span2"><%= item.name %></span>
+	<span class="span1"><%= item.quantity %> <%= item.unit %></span>
+	<span class="span2 center"><%= item.updated_at.strftime("%d %b. at %H:%M") %></span>
+	<div class="span1" data-id"remove">
+		<%= link_to "Remove", shopping_list_path(item), method: :delete,:remote => true, class: "btn btn-small" %>
+    </div>
+    <div class="span1" data-id ="<%= item.id %>">
+    	<%= link_to "Edit", edit_shopping_list_path(item),:remote => true, class: "btn btn-small" %>
+    </div>
+</li>

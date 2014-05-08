@@ -92,11 +92,11 @@ class PantryItemsController < ApplicationController
 			# 	#updated created_at and recipe_id, render update?
 			# end
 		end
-
-		respond_to do |format|
-      		format.html { redirect_to recipe_path(@recipe) }
-      		format.js
-    	end
+		redirect_to pantry_user_path(current_user)
+		# respond_to do |format|
+  #     		format.html { redirect_to recipe_path(@recipe) }
+  #     		format.js
+  #   	end
 	end
 
 	def destroy

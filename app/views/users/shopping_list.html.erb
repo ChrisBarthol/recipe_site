@@ -1,0 +1,61 @@
+<% @body_class = "about" %>
+<% provide(:title, @title) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <%= gravatar_for @user %>
+      <h1><%= @user.name %></h1>
+      <span><%= link_to "view my profile", @user %></span>
+      <span><b>Recipes:</b> <%= @user.recipes.count %></span>
+    </section>
+    <section>
+      <%= render 'shared/stats' %>
+    </section>
+  </aside>
+  <div class="row container">
+    <span class="span6">
+   
+      <h3>Add an Item to your Shopping List </h3>
+    <%= form_tag({controller: "shopping_lists", action: "create"}, :method => "post") do %>
+      <p>
+        <%= label_tag(:name, "Item Name") %>
+        <%= text_field_tag :name %>
+        <%= label_tag(:quantity, "Quantity") %>
+        <%= text_field_tag :quantity %>
+        <%= label_tag(:unit, "Units") %>
+        <%= text_field_tag :quantity %>
+        <%= label_tag(:style, "Style") %>
+        <%= text_field_tag :style %>
+        
+      </p>
+      <div class="center"><%= submit_tag("Add Item", class: "btn btn-small btn-primary") %></div>
+    <% end %>
+    </span>
+  </div>  
+  <div class="span12">
+    <div class="row">
+      <div class="span4">
+        <h3>Shopping List</h3>
+      </div>
+    </div>
+    <div class="row">
+      <strong>
+      <div class="span2 center">
+        Name
+      </div>
+      <div class="span1">
+        Quantity
+      </div>
+      <div class="span2 center">
+        Added
+      </div>
+    </strong>
+    </div>
+    <% if @user.shopping_lists.any? %>
+      <ul class="users">
+        <%= render partial: "shopping_lists/item", collection: @list, as: :item %>
+      </ul>
+      
+    <% end %>
+  </div>
+</div>

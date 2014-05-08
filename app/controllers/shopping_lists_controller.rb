@@ -18,21 +18,47 @@ class ShoppingListsController < ApplicationController
 
 	def create
 		@shopping = ShoppingList.new(shopping_params)
-		@rep = Recipe.find(params[:id])
-		#@rep.ingredients.each do |ingredient|
-
+		@shopping.user_id = current_user.id
+		if @shopping.save
+			redirect_to shopping_list_user_path(current_user)
+		end
 	end
 
 	def show
 	end
 
 	def update
+		@item = ShoppingList.find(params[:id])
+		@item.user_id = current_user.id
+
+		if @item.update_attributes(shop_params)
+			respond_to do |format|
+				format.html
+				format.js
+			end
+		else
+			redirect_to shopping_list_user_path(current_user)
+		end
+
+	else
+
 	end
 
 	def edit
+		@item = ShoppingList.find(params[:id])
+		respond_to do |format|
+			format.html
+			format.js
+		end
 	end
 
 	def destroy
+		@item = ShoppingList.find(params[:id])
+		@item.destroy
+		respond_to do |format|
+			format.html
+			format.js
+		end
 	end
 
 
@@ -41,5 +67,16 @@ class ShoppingListsController < ApplicationController
 			params.permit(:name, :quantity, :unit, :id, :style, :created_at, :updated_at, :expiration, :user_id, :recipe_id)
 		end
 
+		def shop_params
+			params.require(:shopping_list).permit(:name, :quantity, :unit, :id, :style, :created_at, :updated_at, :user_id)
+		end
+
+		def sort_column
+      		ShoppingList.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    	end
+
+    	def sort_direction
+      		%w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
+    	end
 
 end

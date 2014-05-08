@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :signed_in_user, only: [:index, :edit, :update, :destroy, :following, :followers, :saved_recipes, :show_recipes, :pantry]
-  before_action :correct_user, only: [:edit, :update, :pantry]
+  before_action :correct_user, only: [:edit, :update, :pantry,:shopping_list]
   before_action :admin_user,  only: [:destroy]
 
   helper_method :sort_column, :sort_direction
@@ -108,6 +108,10 @@ class UsersController < ApplicationController
 
   end
 
+  def shopping_list
+    @list = ShoppingList.where(user_id: current_user.id)
+  end
+
   private
 
   	def user_params
@@ -128,7 +132,9 @@ class UsersController < ApplicationController
     #View by column options
 
     def sort_column
-      Pantry.column_names.include?(params[:sort]) ? params[:sort] : "name"
+      
+        Pantry.column_names.include?(params[:sort]) ? params[:sort] : "name"
+
     end
 
     def sort_direction

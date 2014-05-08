@@ -1,0 +1,9 @@
+<li id="<%=@item.id%>">
+	<%= form_for @item, :remote => true do |f| %>
+		<span class="span2"><%= f.text_field :name, placeholder: "#{@item.name}" %></span>
+		<span class="span1"><%= f.text_field :quantity, placeholder: "#{@item.quantity}" %></span>
+		<span class="span1"><%= f.text_field :unit, placeholder: "#{@item.unit}"%></span>
+		<span class="span2 center"><%= @item.updated_at.strftime("%d %b. at %H:%M") %></span>
+		<span class="span2"><%= f.submit "Submit", class: "btn btn-small" %></span>
+	<% end %>
+</li>

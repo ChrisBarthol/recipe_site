@@ -49,7 +49,7 @@ describe "User pages" do
 
 
     describe "expanding a recipe", :js => true do
-      before { click_link "Expand" }
+      before { click_link "Expand", match: :first }
 
       it { should have_content('Directions') }
       it { should have_content('Ingredients') }
@@ -73,7 +73,7 @@ describe "User pages" do
       before do
         fill_in "Ingredient Name", with: ingredient.name
         fill_in "Quantity", with: "142"
-        select 'lbs', :from => "Units"
+        select 'lb', :from => "Units"
         click_button "Add Ingredient to Pantry"
       end
 
@@ -82,11 +82,11 @@ describe "User pages" do
     end
 
 
-    describe "add an ingredient to pantry", :focus => true do
+    describe "add an ingredient to pantry" do
       before do
         fill_in "Ingredient Name", with: "cheese"
         fill_in "Quantity", with: "142"
-        select 'lbs', :from => "Units"
+        select 'lb', :from => "Units"
         click_button "Add Ingredient to Pantry"
       end
 

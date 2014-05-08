@@ -208,7 +208,7 @@ describe "RecipePages" do
         fill_in "Nutrition",  with: "2 calories"
         fill_in "Ingredient",	with: "Example Ingredient", :match => :first
         fill_in "Quantity",		with: "1",  :match => :first
-        fill_in "Units",      with: "cup", :match => :first
+        select 'lb', :from => "Units", :match => :first
       end
 
        it { should have_content("Upload an image") }
