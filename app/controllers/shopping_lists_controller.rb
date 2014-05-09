@@ -13,7 +13,7 @@ class ShoppingListsController < ApplicationController
 			item.user_id = current_user.id
 			item.save
 		end
-		redirect_to pantry_user_path(current_user)
+		redirect_to shopping_list_user_path(current_user)
 	end
 
 	def create
@@ -70,13 +70,4 @@ class ShoppingListsController < ApplicationController
 		def shop_params
 			params.require(:shopping_list).permit(:name, :quantity, :unit, :id, :style, :created_at, :updated_at, :user_id)
 		end
-
-		def sort_column
-      		ShoppingList.column_names.include?(params[:sort]) ? params[:sort] : "name"
-    	end
-
-    	def sort_direction
-      		%w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
-    	end
-
 end
