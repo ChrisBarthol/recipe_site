@@ -99,7 +99,10 @@ class RecipesController < ApplicationController
     @comment = current_user.comments.build if signed_in?                 #get comments
     @commentfeed = @recipe.commentfeed.paginate(page: params[:page])     #display comments
     @random_recipe = Recipe.order('random()').first                      #random recipe for the random link
-    @ingredient = @recipe.ingredients.first                             
+    @ingredient = @recipe.ingredients.first   
+
+    @next = Recipe.where("id > ?", params[:id]).order("id ASC").first
+    @previous = Recipe.where("id < ?", params[:id]).order("id DESC").first                          
     @alreadysaved = current_user.ingredients.find_by_id(@ingredient) if signed_in?
     @red = Array.new
     @green = Array.new

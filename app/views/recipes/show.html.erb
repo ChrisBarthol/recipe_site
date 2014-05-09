@@ -164,13 +164,13 @@
 
 <div class="span4">
   <button type="button" class="btn btn-default btn-lg">
-    <span class="icon-black icon-chevron-left"></span> <%= link_to "Previous Recipe", Recipe.find_by_id(@recipe.id-1) %>
+    <span class="icon-black icon-chevron-left"></span> <%= link_to "Previous Recipe", @previous %>
   </button>
 </div>
 
 <div class="row pull-right">
   <button type="button" class="btn btn-default btn-lg">
-    <%= link_to "Next Recipe", Recipe.find_by_id(@recipe.id+1) %>
+    <%= link_to "Next Recipe", @next %>
     <span class="icon-black icon-chevron-right"></span> 
   </button>
 </div>
