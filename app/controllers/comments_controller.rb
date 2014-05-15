@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
   def destroy
   	@comment.destroy
   	respond_to do |format|
-        format.html { redirect_to @comment.recipe, :flash =>{info: "Comment removed"}}
+        format.html { redirect_to recipe_path(@comment.recipe_id), :flash =>{info: "Comment removed"}}
         format.js #requires remote true added
       end
   end
