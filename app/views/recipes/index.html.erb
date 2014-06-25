@@ -17,3 +17,15 @@
 	</div>
 </section>
 
+
+<section class="all-recipes">
+	<div class="container">
+		<%= will_paginate %>
+
+		<ul class="users">
+			<%= render @recipes %>
+		</ul>
+
+		<%= will_paginate %>
+	</div>
+</section>
