@@ -64,8 +64,19 @@ module QuantityHelper
 	  end
 
 	  def ensure_compatible(other)
-	  	fail TypeError unless other.is_a?(self.class)
-	  	other
+	  	if other.is_a?(self.class)
+	  		other
+	  	elsif other.respond_to?(:conver_to)
+	  		other.convert_to(self.class)
+	  	else
+	  		fail TypeError
+	  	end
+	  end
+
+	  def convert_to(target_type)
+	  	ratio = ConversionRatio.find(self.class, target_type) or 
+	  	   fail TypeError, "Can't convert #{self.class} to #{target_type}"
+	  	target_type.new(magnitude * ratio.number)
 	  end
 
 	  def hash
@@ -82,11 +93,25 @@ module QuantityHelper
 	  alias_method :eql?, :==
 	end
 
+	ConversionRatio = Struct.new(:from, :to, :number) do
+		def self.registry
+			@registry ||=[]
+		end
+
+		def self.find(from, to)
+			registry.detect{|ratio| ratio.from == from && rato.to == to}
+		end
+	end
+
+	ConversionRatio.registry <<
+		ConversionRatio.new(Foot, Meter, 0.3048) <<
+		ConversionRatio.new(Meter, Foot, 3.2804)
+
 	class Tablespoon < Quantity
 		def aliases
 			%w{tbsp tablespoon tablespoons}
 		end
-		
+
 		#check if conversion is available otherwise defer to super
 		def ensure_compatible(other)
 			if other.respond_to?(:to_tablespoon)
@@ -94,14 +119,6 @@ module QuantityHelper
 			else
 				super
 			end
-		end
-
-		def to_tablespoon
-			self
-		end
-
-		def to_teaspoon
-			Tablespoon.new(to_f*3.0)
 		end
 	end
 
