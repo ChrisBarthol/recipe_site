@@ -118,7 +118,7 @@ class RecipesController < ApplicationController
         if conversion[0].is_a?(String)
           @error << ingredient
           @exists << exists.unit
-        elsif conversion[0] > 0 
+        elsif conversion[0] >= 0 
           @green << ingredient
         else
           @red << ingredient
