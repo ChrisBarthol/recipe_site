@@ -103,9 +103,9 @@ module QuantityHelper
 		end
 	end
 
-	ConversionRatio.registry <<
-		ConversionRatio.new(Foot, Meter, 0.3048) <<
-		ConversionRatio.new(Meter, Foot, 3.2804)
+	# ConversionRatio.registry <<
+	# 	ConversionRatio.new(Foot, Meter, 0.3048) <<
+	# 	ConversionRatio.new(Meter, Foot, 3.2804)
 
 	class Tablespoon < Quantity
 		def aliases
@@ -181,4 +181,3 @@ module QuantityHelper
 end
 
 
-end

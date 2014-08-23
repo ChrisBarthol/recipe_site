@@ -9,9 +9,9 @@
       </h1>
       <h2>
         Submitted by <%= @recipe.user.name %>
-      </p>
-        <%= @recipe.description %>
-      </p>
+        </p>
+          <%= @recipe.description %>
+        </p>
       </h2>
       <h3>
       <div class="center" id="rfield">
@@ -42,16 +42,17 @@
     </h2>
   </div>
   <div class="span12">
-      <div class="span2 offset3"><%= render 'saverecipe_form' if signed_in? %></div>
-      <div class="span2"><%= render 'madeit' if signed_in? %></div>
-      <!-- Button trigger modal -->
+  <div class="span2 offset3"><%= render 'saverecipe_form' if signed_in? %></div>
+  <div class="span2"><%= render 'madeit' if signed_in? %></div>
+
+<!-- Button trigger modal -->
       
 <div class="span2">
   <% if signed_in? %>
-<button class="btn btn-small btn-primary" data-toggle="modal" data-target="#myModal">
-  Want to make this?
-</button>
-<% end %>
+    <button class="btn btn-small btn-primary" data-toggle="modal" data-target="#myModal">
+      Want to make this?
+    </button>
+  <% end %>
 </div>
 
 <!-- Modal -->
@@ -65,15 +66,20 @@
       <div class="modal-body">
         <h2> Need to buy </h2>
         <div class="negative"><%= render @red %></div>
-        <h2> Unknown Units for the Following, please check your pantry</h2>
-        <%= render @error %>
-        Items saved are in: <%= @exists %>, respectively
-        <h2> Already Have </h2>
-        <%= render @green %>
+        <% if @error.present? %>
+          <h2> Unknown Units for the Following, please check your pantry</h2>
+          <%= render @error %>
+          Items saved are in: <%= @exists %>, respectively
+        <% end %>
+
+        <% if @green.present? %>
+          <h2> Already Have </h2>
+          <%= render @green %>
+        <% end %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal"><%= link_to "Save to Shopping List?", new_shopping_list_path(:pass => @red), class: "btn btn-small btn-primary" %></button>
+        <button type="button" class="btn btn-primary"><%= link_to "Save to Shopping List?", new_shopping_list_path(:pass => @red), class: "btn btn-small btn-primary" %></button>
       </div>
     </div>
   </div>

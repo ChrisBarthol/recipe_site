@@ -139,7 +139,7 @@ class RecipesController < ApplicationController
 
     #Recipe Rankings
     if signed_in?
-    @haverating = Rating.where('recipe_id = ?', @recipe.id).first
+      @haverating = Rating.where('recipe_id = ?', @recipe.id).first
     end
 
     t = Ingredient.where("name = ?", :data).first
